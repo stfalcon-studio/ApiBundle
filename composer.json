@@ -1,0 +1,52 @@
+{
+    "name": "stfalcon-studio/api-bundle",
+    "description": "Base classes and helper services to build API application via Symfony.",
+    "keywords": ["bundle", "symfony", "api"],
+    "homepage": "https://github.com/stfalcon-studio/ApiBundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/stfalcon-studio/ApiBundle/issues"
+    },
+    "require": {
+        "php": ">=7.3",
+        "doctrine/common": "^2.12",
+        "egulias/email-validator": "^2.1.17",
+        "gesdinet/jwt-refresh-token-bundle": "^v0.9.1",
+        "ircmaxell/password-compat": "^v1.0.4",
+        "justinrainbow/json-schema": "^5.2.9",
+        "ramsey/uuid-doctrine": "^1.6.0",
+        "symfony/config": "^5.0",
+        "symfony/dependency-injection": "^5.0",
+        "symfony/flex": "^1.6",
+        "symfony/http-kernel": "^5.0",
+        "symfony/http-foundation": "^5.0",
+        "symfony/framework-bundle": "^5.0",
+        "symfony/serializer": "^5.0",
+        "symfony/validator": "^5.0"
+    },
+    "require-dev": {
+        "escapestudios/symfony2-coding-standard": "^3.11",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "johnkary/phpunit-speedtrap": "^3.2",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-deprecation-rules": "^0.12",
+        "phpstan/phpstan-doctrine": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-symfony": "^0.12",
+        "thecodingmachine/phpstan-strict-rules": "^0.12",
+        "phpunit/phpunit": "9.1.1",
+        "slam/phpstan-extensions": "^4.0",
+        "symfony/filesystem": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "StfalconStudio\\ApiBundle\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StfalconStudio\\ApiBundle\\Tests\\": "Tests/"
+        }
+    }
+}
