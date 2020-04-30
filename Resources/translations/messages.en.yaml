@@ -1,0 +1,4 @@
+unauthorised_user_message: Bad credentials. Please verify that your login/password are correctly set.
+invalid_jwt_token_message: Bad credentials. Try to login again.
+not_found_jwt_token_message: Bad credentials. Try to login again.
+expired_jwt_token_message: Bad credentials. Try to login again.
