@@ -14,7 +14,7 @@
 
 ```composer req stfalcon-studio/api-bundle='0.1.0'```
 
-### Check the `config/bundles.php` file
+#### Check the `config/bundles.php` file
 
 By default Symfony Flex will add this bundle to the `config/bundles.php` file.
 But in case when you ignored `contrib-recipe` during bundle installation it would not be added. In this case add the bundle manually.
@@ -31,7 +31,7 @@ return [
 
 ## Set Up Steps
 
-### Add mappings to Doctrine ORM config
+#### Add mappings to Doctrine ORM config
 
 ```yaml
 doctrine:
