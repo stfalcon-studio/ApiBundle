@@ -24,7 +24,7 @@ use StfalconStudio\ApiBundle\Exception\LogicException;
  *
  * @Target({"CLASS"})
  */
-final class DTO implements DtoAnnotationInterface
+class DTO implements DtoAnnotationInterface
 {
     private const DTO_SUFFIX = 'Dto';
 

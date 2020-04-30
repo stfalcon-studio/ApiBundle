@@ -25,7 +25,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * JwtSubscriber.
  */
-final class JwtSubscriber implements EventSubscriberInterface
+class JwtSubscriber implements EventSubscriberInterface
 {
     private const ON_AUTHENTICATION_FAILURE_RESPONSE_FUNCTION = 'onAuthenticationFailureResponse';
 

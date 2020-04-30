@@ -17,7 +17,7 @@ use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
 /**
  * ExceptionResponseProcessor.
  */
-final class ExceptionResponseProcessor implements ExceptionResponseProcessorInterface
+class ExceptionResponseProcessor implements ExceptionResponseProcessorInterface
 {
     /** @var CustomAppExceptionResponseProcessorInterface[]|iterable */
     private $errorResponseProcessors;

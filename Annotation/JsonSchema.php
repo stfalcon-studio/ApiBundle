@@ -22,7 +22,7 @@ use StfalconStudio\ApiBundle\Exception\LogicException;
  *
  * @Target({"CLASS"})
  */
-final class JsonSchema implements JsonSchemaAnnotationInterface
+class JsonSchema implements JsonSchemaAnnotationInterface
 {
     private const JSON_FILE_EXTENSION = '.json';
 
