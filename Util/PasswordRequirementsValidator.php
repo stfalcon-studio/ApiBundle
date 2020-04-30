@@ -17,11 +17,11 @@ namespace StfalconStudio\ApiBundle\Util;
  */
 class PasswordRequirementsValidator
 {
-    private const NUMBER_REGEXP = '/[\d]{1,}/';
+    public const NUMBER_REGEXP = '/[\d]{1,}/';
 
-    private const LOWERCASE_LETTER_REGEXP = '/\p{Ll}{1,}/u';
+    public const LOWERCASE_LETTER_REGEXP = '/\p{Ll}{1,}/u';
 
-    private const UPPERCASE_LETTER_REGEXP = '/\p{Lu}{1,}/u';
+    public const UPPERCASE_LETTER_REGEXP = '/\p{Lu}{1,}/u';
 
     /**
      * @param string $password

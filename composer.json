@@ -15,6 +15,7 @@
         "gesdinet/jwt-refresh-token-bundle": "^v0.9.1",
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.9",
+        "lexik/jwt-authentication-bundle": "^v2.6.5",
         "ramsey/uuid-doctrine": "^1.6.0",
         "symfony/config": "^5.0",
         "symfony/dependency-injection": "^5.0",
