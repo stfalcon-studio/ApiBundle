@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="ru" datatype="plaintext" original="messages.ru.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>unauthorised_user_message</source>
+                <target>Неверные учетные данные. Пожалуйста, проверьте, что логин и пароль введены правильно.</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>invalid_jwt_token_message</source>
+                <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>not_found_jwt_token_message</source>
+                <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>expired_jwt_token_message</source>
+                <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
