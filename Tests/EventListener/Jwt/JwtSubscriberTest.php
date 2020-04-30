@@ -83,7 +83,10 @@ final class JwtSubscriberTest extends TestCase
         $event
             ->expects(self::once())
             ->method('setResponse')
-            ->with($this->isInstanceOf(JsonResponse::class))
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                       && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
         ;
 
         $this->subscriber->onAuthenticationFailureResponse($event);

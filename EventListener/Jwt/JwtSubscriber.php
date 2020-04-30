@@ -17,6 +17,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTInvalidEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
+use StfalconStudio\ApiBundle\Error\ErrorNames;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -26,6 +27,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 final class JwtSubscriber implements EventSubscriberInterface
 {
+    private const ON_AUTHENTICATION_FAILURE_RESPONSE_FUNCTION = 'onAuthenticationFailureResponse';
+
     /** @var TranslatorInterface */
     protected $translator;
 
@@ -36,8 +39,6 @@ final class JwtSubscriber implements EventSubscriberInterface
     {
         $this->translator = $translator;
     }
-
-    private const ON_AUTHENTICATION_FAILURE_RESPONSE_FUNCTION = 'onAuthenticationFailureResponse';
 
     /**
      * {@inheritdoc}
@@ -62,19 +63,22 @@ final class JwtSubscriber implements EventSubscriberInterface
         switch (true) {
             case $event instanceof JWTInvalidEvent:
                 $message = 'invalid_jwt_token_message';
+
                 break;
             case $event instanceof JWTNotFoundEvent:
                 $message = 'not_found_jwt_token_message';
+
                 break;
             case $event instanceof JWTExpiredEvent:
                 $message = 'expired_jwt_token_message';
+
                 break;
             default:
                 $message = 'unauthorised_user_message';
         }
 
         $data = [
-            'error' => 'unauthorised_user',
+            'error' => ErrorNames::UNAUTHORISED_USER,
             'errorDescription' => $this->translator->trans($message),
         ];
 
