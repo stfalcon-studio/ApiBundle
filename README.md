@@ -42,6 +42,15 @@ doctrine:
                 type: annotation
 ```
 
+#### Setup a directory for JSON schemas
+
+The default directory is `./src/Json/Schema/`. Or you can change it via bundle configuration.
+
+```yaml
+stfalcon_api:
+     json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
+```
+
 ## Contributing
 
 Read the [CONTRIBUTING](https://github.com/stfalcon-studio/ApiBundle/blob/master/.github/CONTRIBUTING.md) file.
