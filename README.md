@@ -16,8 +16,8 @@
 
 #### Check the `config/bundles.php` file
 
-By default Symfony Flex will add this bundle to the `config/bundles.php` file.
-But in case when you ignored `contrib-recipe` during bundle installation it would not be added. In this case add the bundle manually.
+By default, Symfony Flex adds this bundle to the `config/bundles.php` file.
+In case when you ignored `contrib-recipe` during bundle installation it would not be added. In this case add the bundle manually.
 
 ```php
 # config/bundles.php
@@ -40,6 +40,15 @@ doctrine:
             StfalconApiBundle:
                 is_bundle: true
                 type: annotation
+```
+
+#### Setup a directory for JSON schemas
+
+The default directory is `./src/Json/Schema/`. Or you can change it via bundle configuration.
+
+```yaml
+stfalcon_api:
+     json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
 ```
 
 ## Contributing
