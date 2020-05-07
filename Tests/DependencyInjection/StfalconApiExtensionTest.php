@@ -34,6 +34,7 @@ final class StfalconApiExtensionTest extends TestCase
         $this->extension = new StfalconApiExtension();
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
+        $this->container->setParameter('kernel.project_dir', '/tmp');
     }
 
     protected function tearDown(): void
@@ -46,7 +47,6 @@ final class StfalconApiExtensionTest extends TestCase
 
     public function testLoadExtension(): void
     {
-        $this->container->setParameter('kernel.project_dir', '/tmp');
         $this->container->loadFromExtension($this->extension->getAlias());
         $this->container->compile();
 
@@ -55,8 +55,18 @@ final class StfalconApiExtensionTest extends TestCase
         self::assertArrayHasKey(DtoAnnotationProcessor::class, $this->container->getRemovedIds());
         self::assertArrayNotHasKey(DtoAnnotationProcessor::class, $this->container->getDefinitions());
 
-        $this->expectException(ServiceNotFoundException::class);
+        $childDefinitions = $this->container->getAutoconfiguredInstanceof();
+        foreach ($childDefinitions as $childDefinition) {
+            self::assertTrue($childDefinition->hasTag('stfalcon_api.exception_response_processor'));
+        }
+    }
 
+    public function testExceptionOnGettingPrivateService(): void
+    {
+        $this->container->loadFromExtension($this->extension->getAlias());
+        $this->container->compile();
+
+        $this->expectException(ServiceNotFoundException::class);
         $this->container->get(DtoAnnotationProcessor::class);
     }
 }
