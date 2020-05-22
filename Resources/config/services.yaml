@@ -8,4 +8,4 @@ services:
             iterable $errorResponseProcessors: !tagged_iterator 'stfalcon_api.exception_response_processor'
 
     StfalconStudio\ApiBundle\:
-        resource: '../../{EventListener,Request,Serializer,Service,Util,Validation}/'
+        resource: '../../{EventListener,Request,Serializer,Service,Util,Validator}/'
