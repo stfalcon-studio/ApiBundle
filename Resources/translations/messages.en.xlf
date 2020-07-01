@@ -18,6 +18,10 @@
                 <source>expired_jwt_token_message</source>
                 <target>Bad credentials. Try to login again.</target>
             </trans-unit>
+            <trans-unit id="5">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>Password does not meet requirements. It must contain one lowercase letter, one uppercase letter and one number.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

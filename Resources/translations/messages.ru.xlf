@@ -18,6 +18,10 @@
                 <source>expired_jwt_token_message</source>
                 <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
             </trans-unit>
+            <trans-unit id="5">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>Пароль не отвечает требованиям. Он должен иметь минимум одну строчную букву, минимум одну прописную букву и минимум одну цифру.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

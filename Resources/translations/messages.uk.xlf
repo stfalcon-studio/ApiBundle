@@ -18,6 +18,10 @@
                 <source>expired_jwt_token_message</source>
                 <target>Невірні облікові дані. Спробуйте зайти в акаунт ще раз.</target>
             </trans-unit>
+            <trans-unit id="5">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>Пароль не відповідає вимогам. Він повинен містити мінімум одну малу літеру, мінімум одну велику літеру і мінімум одну цифру.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
