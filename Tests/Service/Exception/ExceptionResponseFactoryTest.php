@@ -31,6 +31,6 @@ final class ExceptionResponseFactoryTest extends TestCase
 
         self::assertSame($json, $response->getContent());
         self::assertSame($statusCode, $response->getStatusCode());
-        self::assertSame(\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE, $response->getEncodingOptions());
+        self::assertSame(JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE, $response->getEncodingOptions());
     }
 }

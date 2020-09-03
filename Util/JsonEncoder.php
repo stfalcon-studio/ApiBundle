@@ -24,6 +24,6 @@ class JsonEncoder
      */
     public static function encodeMessage(array $messageData): string
     {
-        return (string) \json_encode($messageData, \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES);
+        return (string) \json_encode($messageData, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }
