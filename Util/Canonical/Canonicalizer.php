@@ -38,9 +38,9 @@ class Canonicalizer
         $encoding = $this->encodingDetector->detectEncoding($string);
 
         if (\is_string($encoding)) {
-            $result = \mb_convert_case($string, \MB_CASE_LOWER, $encoding);
+            $result = \mb_convert_case($string, MB_CASE_LOWER, $encoding);
         } else {
-            $result = \mb_convert_case($string, \MB_CASE_LOWER);
+            $result = \mb_convert_case($string, MB_CASE_LOWER);
         }
 
         return $result;
