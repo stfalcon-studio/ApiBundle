@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="messages.en.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>unauthorised_user_message</source>
+                <target>Mauvais login et/ou mot de passe.</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>invalid_jwt_token_message</source>
+                <target>Mauvais login et/ou mot de passe, Merci de réessayer.</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>not_found_jwt_token_message</source>
+                <target>Mauvais login et/ou mot de passe, Merci de réessayer.</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>expired_jwt_token_message</source>
+                <target>Mauvais login et/ou mot de passe, Merci de réessayer.</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>Le mot de passe ne répond pas aux exigences. Il doit contenir une lettre minuscule, une lettre majuscule et un chiffre.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
