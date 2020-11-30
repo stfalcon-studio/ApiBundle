@@ -10,8 +10,8 @@
     },
     "require": {
         "php": ">=7.3",
-        "doctrine/common": "^2.12",
-        "egulias/email-validator": "^2.1.17",
+        "doctrine/common": "^2.3",
+        "egulias/email-validator": "^2.1.24",
         "gesdinet/jwt-refresh-token-bundle": "^v0.9.1",
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.9",
