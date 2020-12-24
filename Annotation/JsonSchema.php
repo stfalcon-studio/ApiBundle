@@ -65,7 +65,7 @@ class JsonSchema implements JsonSchemaAnnotationInterface
     private function assertJsonSchemaFileIsSet(array $options): array
     {
         if (!\array_key_exists('value', $options)) {
-            throw new LogicException(\sprintf('Json Schema file must be set.'));
+            throw new LogicException('Json Schema file must be set.');
         }
 
         return $options;

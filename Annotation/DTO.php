@@ -40,7 +40,7 @@ class DTO implements DtoAnnotationInterface
     public function __construct(array $options)
     {
         if (!\array_key_exists('value', $options)) {
-            throw new LogicException(\sprintf('DTO class must be set.'));
+            throw new LogicException('DTO class must be set.');
         }
 
         $class = $options['value'];
