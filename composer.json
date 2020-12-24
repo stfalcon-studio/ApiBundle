@@ -11,7 +11,7 @@
     "require": {
         "php": ">=7.3",
         "doctrine/common": "^2.13 || ^3.0",
-        "egulias/email-validator": "^2.1.17",
+        "egulias/email-validator": "^2.1.24",
         "gesdinet/jwt-refresh-token-bundle": "^v0.10.0",
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.10",
@@ -33,7 +33,7 @@
         "phpstan/phpstan-doctrine": "^0.12",
         "phpstan/phpstan-phpunit": "^0.12",
         "phpstan/phpstan-symfony": "^0.12",
-        "phpunit/phpunit": "9.2.*",
+        "phpunit/phpunit": "^9.5",
         "slam/phpstan-extensions": "^5.0",
         "symfony/filesystem": "^5.0"
     },
