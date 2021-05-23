@@ -3,7 +3,7 @@
 :package: Base classes and helper services to build API application via Symfony.
 
 [![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/stfalcon-studio/ApiBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/stfalcon-studio/ApiBundle/)
-[![Build Status](https://img.shields.io/travis/stfalcon-studio/ApiBundle/master.svg?style=flat-square)](https://travis-ci.org/stfalcon-studio/ApiBundle)
+[![Build Status](https://img.shields.io/github/workflow/status/stfalcon-studio/ApiBundle/CI/main?style=flat-square)](https://github.com/stfalcon-studio/ApiBundle/actions?query=workflow%3ACI+branch%3Amain+)
 [![CodeCov](https://img.shields.io/codecov/c/github/stfalcon-studio/ApiBundle.svg?style=flat-square)](https://codecov.io/github/stfalcon-studio/ApiBundle)
 [![License](https://img.shields.io/packagist/l/stfalcon-studio/api-bundle.svg?style=flat-square)](https://packagist.org/packages/stfalcon-studio/api-bundle)
 [![Latest Stable Version](https://img.shields.io/packagist/v/stfalcon-studio/api-bundle.svg?style=flat-square)](https://packagist.org/packages/stfalcon-studio/api-bundle)
