@@ -102,7 +102,7 @@ class JsonSchemaAnnotationProcessor
             throw new InvalidArgumentException(\sprintf('Cannot read content of file %s', $realPathToJsonSchemaFile));
         }
 
-        $decodedSchema = \json_decode($jsonSchemaContent, true, 512, JSON_THROW_ON_ERROR);
+        $decodedSchema = \json_decode($jsonSchemaContent, true, 512, \JSON_THROW_ON_ERROR);
 
         $this->cachedClasses[$dtoClassName] = $decodedSchema;
 
