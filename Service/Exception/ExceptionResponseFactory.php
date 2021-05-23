@@ -27,6 +27,6 @@ class ExceptionResponseFactory
      */
     public function createJsonResponse(string $json, int $statusCode): JsonResponse
     {
-        return (new JsonResponse($json, $statusCode, [], true))->setEncodingOptions(JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        return (new JsonResponse($json, $statusCode, [], true))->setEncodingOptions(\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
     }
 }

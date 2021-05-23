@@ -46,7 +46,7 @@ class Serializer
             $context,
             [
                 'group' => $serializationGroup,
-                'json_encode_options' => JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE,
+                'json_encode_options' => \JSON_UNESCAPED_SLASHES | \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE,
             ]
         );
 
