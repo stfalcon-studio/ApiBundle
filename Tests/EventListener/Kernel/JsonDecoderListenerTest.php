@@ -177,7 +177,7 @@ final class JsonDecoderListenerTest extends TestCase
             'Content-Type' => 'application/json',
         ]);
 
-        $parameterBag = new ParameterBag([
+        $parameterBag = new InputBag([
             'key' => 'value',
         ]);
 
