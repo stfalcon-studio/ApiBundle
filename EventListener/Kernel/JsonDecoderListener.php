@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\EventListener\Kernel;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 /**
@@ -46,7 +46,7 @@ class JsonDecoderListener implements EventSubscriberInterface
                 $data = \json_decode((string) $request->getContent(), true);
 
                 if (\is_array($data)) {
-                    $request->request = new ParameterBag($data);
+                    $request->request = new InputBag($data);
                 }
             }
         }
