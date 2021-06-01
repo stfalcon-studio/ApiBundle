@@ -16,7 +16,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\EventListener\Kernel\JsonDecoderListener;
 use Symfony\Component\HttpFoundation\HeaderBag;
-use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -31,7 +31,7 @@ final class JsonDecoderListenerTest extends TestCase
     /** @var Request|MockObject */
     private $request;
 
-    /** @var ParameterBag|MockObject */
+    /** @var InputBag */
     private $parameterBag;
 
     /** @var JsonDecoderListener */
@@ -41,7 +41,7 @@ final class JsonDecoderListenerTest extends TestCase
     {
         $this->requestEvent = $this->createMock(RequestEvent::class);
         $this->request = $this->createMock(Request::class);
-        $this->parameterBag = $this->createMock(ParameterBag::class);
+        $this->parameterBag = new InputBag();
         $this->request->request = $this->parameterBag;
 
         $this->jsonDecoderSubscriber = new JsonDecoderListener();
