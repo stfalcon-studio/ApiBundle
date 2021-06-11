@@ -66,5 +66,5 @@ class AnonymousUser implements UserInterface
     public function getUserIdentifier(): string
     {
         return $this->getUsername();
-    }    
+    }
 }
