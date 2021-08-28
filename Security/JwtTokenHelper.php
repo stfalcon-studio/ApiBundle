@@ -32,9 +32,9 @@ class JwtTokenHelper
     }
 
     /**
-     * @return JWTUserToken
-     *
      * @throws DomainException
+     *
+     * @return JWTUserToken
      */
     public function getJwtUserToken(): JWTUserToken
     {
