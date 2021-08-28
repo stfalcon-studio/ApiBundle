@@ -23,11 +23,8 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  */
 final class StfalconApiExtensionTest extends TestCase
 {
-    /** @var StfalconApiExtension */
-    private $extension;
-
-    /** @var ContainerBuilder */
-    private $container;
+    private StfalconApiExtension $extension;
+    private ContainerBuilder $container;
 
     protected function setUp(): void
     {

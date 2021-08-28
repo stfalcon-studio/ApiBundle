@@ -23,7 +23,7 @@ class Serializer
     public const DEFAULT_FORMAT = 'json';
 
     /** @var SerializerInterface|BaseSerializer */
-    protected $symfonySerializer;
+    protected SerializerInterface $symfonySerializer;
 
     /**
      * @param SerializerInterface|BaseSerializer $serializer

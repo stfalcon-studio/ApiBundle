@@ -17,8 +17,7 @@ namespace StfalconStudio\ApiBundle\Util\Canonical;
  */
 class Canonicalizer
 {
-    /** @var EncodingDetector */
-    private $encodingDetector;
+    private EncodingDetector $encodingDetector;
 
     /**
      * @param EncodingDetector $encodingDetector

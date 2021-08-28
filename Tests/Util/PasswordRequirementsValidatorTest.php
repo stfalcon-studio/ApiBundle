@@ -20,8 +20,7 @@ use StfalconStudio\ApiBundle\Util\PasswordRequirementsValidator;
  */
 final class PasswordRequirementsValidatorTest extends TestCase
 {
-    /** @var PasswordRequirementsValidator */
-    private $validator;
+    private PasswordRequirementsValidator $validator;
 
     protected function setUp(): void
     {

@@ -40,8 +40,7 @@ final class JsonSchemaAnnotationProcessorTest extends TestCase
     /** @var JsonSchemaAnnotationInterface|MockObject */
     private $jsonSchemaAnnotation;
 
-    /** @var JsonSchemaAnnotationProcessor */
-    private $jsonSchemaAnnotationProcessor;
+    private JsonSchemaAnnotationProcessor $jsonSchemaAnnotationProcessor;
 
     protected function setUp(): void
     {

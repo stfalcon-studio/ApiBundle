@@ -29,8 +29,7 @@ class JwtSubscriber implements EventSubscriberInterface
 {
     private const ON_AUTHENTICATION_FAILURE_RESPONSE_FUNCTION = 'onAuthenticationFailureResponse';
 
-    /** @var TranslatorInterface */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     /**
      * @param TranslatorInterface $translator

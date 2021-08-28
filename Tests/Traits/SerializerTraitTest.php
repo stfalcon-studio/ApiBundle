@@ -24,8 +24,7 @@ final class SerializerTraitTest extends TestCase
     /** @var Serializer|MockObject */
     private $serializer;
 
-    /** @var DummyClass */
-    private $dummyClass;
+    private DummyClass $dummyClass;
 
     protected function setUp(): void
     {

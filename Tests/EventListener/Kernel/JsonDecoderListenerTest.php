@@ -31,11 +31,8 @@ final class JsonDecoderListenerTest extends TestCase
     /** @var Request|MockObject */
     private $request;
 
-    /** @var InputBag */
-    private $parameterBag;
-
-    /** @var JsonDecoderListener */
-    private $jsonDecoderSubscriber;
+    private InputBag $parameterBag;
+    private JsonDecoderListener $jsonDecoderSubscriber;
 
     protected function setUp(): void
     {

@@ -28,8 +28,7 @@ final class JwtSubscriberTest extends TestCase
     /** @var TranslatorInterface|MockObject */
     private $translator;
 
-    /** @var JwtSubscriber */
-    private $subscriber;
+    private JwtSubscriber $subscriber;
 
     protected function setUp(): void
     {

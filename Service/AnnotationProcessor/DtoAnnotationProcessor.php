@@ -22,11 +22,8 @@ use StfalconStudio\ApiBundle\Exception\RuntimeException;
  */
 class DtoAnnotationProcessor
 {
-    /** @var array */
-    private $cachedClasses = [];
-
-    /** @var Reader */
-    private $annotationReader;
+    private array $cachedClasses = [];
+    private Reader $annotationReader;
 
     /**
      * @param Reader $annotationReader

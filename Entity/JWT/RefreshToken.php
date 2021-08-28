@@ -33,22 +33,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class RefreshToken extends AbstractRefreshToken
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected ?int $id = null;
 
     /**
-     * @var \DateTimeImmutable
-     *
      * @ORM\Column(type="datetimetz_immutable")
      *
      * @Assert\Type("\DateTimeImmutable")
      */
-    private $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * Constructor.
@@ -61,7 +57,7 @@ class RefreshToken extends AbstractRefreshToken
     /**
      * {@inheritdoc}
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

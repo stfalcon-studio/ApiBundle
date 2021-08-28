@@ -20,8 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class RefreshTokenTest extends TestCase
 {
-    /** @var RefreshToken */
-    private $refreshToken;
+    private RefreshToken $refreshToken;
 
     protected function setUp(): void
     {

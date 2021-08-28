@@ -24,20 +24,13 @@ use StfalconStudio\ApiBundle\Util\File\FileReader;
  */
 class JsonSchemaAnnotationProcessor
 {
-    /** @var DtoAnnotationProcessor */
-    private $dtoAnnotationProcessor;
+    private DtoAnnotationProcessor $dtoAnnotationProcessor;
+    private Reader $annotationReader;
+    private FileReader $fileReader;
+    private string $jsonSchemaDir;
 
-    /** @var Reader */
-    private $annotationReader;
-
-    /** @var FileReader */
-    private $fileReader;
-
-    /** @var string */
-    private $jsonSchemaDir;
-
-    /** @var array|string[] */
-    private $cachedClasses = [];
+    /** @var array<string> */
+    private array $cachedClasses = [];
 
     /**
      * @param DtoAnnotationProcessor $dtoAnnotationProcessor

@@ -27,8 +27,7 @@ final class DtoAnnotationProcessorTest extends TestCase
     /** @var Reader|MockObject */
     private $annotationReader;
 
-    /** @var DtoAnnotationProcessor */
-    private $dtoAnnotationProcessor;
+    private DtoAnnotationProcessor $dtoAnnotationProcessor;
 
     protected function setUp(): void
     {

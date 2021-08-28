@@ -17,8 +17,7 @@ use StfalconStudio\ApiBundle\Security\AnonymousUser;
 
 final class AnonymousUserTest extends TestCase
 {
-    /** @var AnonymousUser */
-    private $anonymousUser;
+    private AnonymousUser $anonymousUser;
 
     protected function setUp(): void
     {
