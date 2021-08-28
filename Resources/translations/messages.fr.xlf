@@ -26,6 +26,34 @@
                 <source>invalid_refresh_token_exception_message</source>
                 <target>Mauvaises qualifications. Essayez de vous connecter à nouveau.</target>
             </trans-unit>
+            <trans-unit id="7">
+                <source>optimistic_lock_exception_message</source>
+                <target>La ressource a été modifiée depuis un autre endroit, obtenez une nouvelle version des données.</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>access_denied_exception_message</source>
+                <target>Accès refusé.</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>method_not_allowed_exception_message</source>
+                <target>Not allowed HTTP method.</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>resource_not_found_exception_message</source>
+                <target>Ressource non trouvée.</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>invalid_json_schema_exception_message</source>
+                <target>Votre demande ne correspond pas au schéma JSON spécifié.</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>invalid_entity_exception_message</source>
+                <target>Les règles de validation ne sont pas respectées.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>internal_server_error</source>
+                <target>Erreur Interne Serveur.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

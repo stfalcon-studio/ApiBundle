@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -90,7 +91,26 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 $statusCode = JsonResponse::HTTP_FORBIDDEN;
                 $errorName = BaseErrorNames::ACCESS_DENIED;
                 break;
+            case $e instanceof MethodNotAllowedHttpException:
+                $message = 'method_not_allowed_exception_message';
+                $statusCode = JsonResponse::HTTP_METHOD_NOT_ALLOWED;
+                $errorName = BaseErrorNames::METHOD_NOT_ALLOWED;
+                break;
             default:
+                switch ($e->getStatusCode()) {
+                    case Response::HTTP_BAD_REQUEST:
+                        $errorName = BaseErrorNames::INVALID_REQUEST;
+                        break;
+                    case Response::HTTP_FORBIDDEN:
+                        $errorName = BaseErrorNames::ACCESS_DENIED;
+                        break;
+                    case Response::HTTP_INTERNAL_SERVER_ERROR:
+                        $errorName = BaseErrorNames::INTERNAL_SERVER_ERROR;
+                        break;
+                    default:
+                        $errorName = 'Error code is not yet specified for this case. Please contact to developer about this case.';
+                }
+
                 if (self::PROD_ENV === $this->environment) {
                     $message = 'internal_server_error';
                 } else {
@@ -98,15 +118,12 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 }
 
                 $statusCode = JsonResponse::HTTP_INTERNAL_SERVER_ERROR;
-                $errorName = BaseErrorNames::INTERNAL_SERVER_ERROR;
         }
 
         if ($e instanceof NotFoundHttpException && preg_match('/^(.+) object not found by the @(.+) annotation\.$/', $message)) {
             $errorName = BaseErrorNames::RESOURCE_NOT_FOUND;
             $message = 'resource_not_found_exception_message';
         }
-
-//        ErrorCodes::getErrorNameByErrorCodeAndStatusCode($errorCode, $statusCode);
 
         $responseData = [
             'error' => $errorName,
@@ -141,30 +158,6 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): \Generator
     {
         yield ExceptionEvent::class => '__invoke';
-    }
-
-    /**
-     * @param int|null $statusCode
-     *
-     * @return string
-     */
-    private function getErrorNameByStatusCode(int $statusCode = null): string
-    {
-        switch ($statusCode) {
-            case Response::HTTP_BAD_REQUEST:
-                $result = BaseErrorNames::INVALID_REQUEST;
-                break;
-            case Response::HTTP_FORBIDDEN:
-                $result = BaseErrorNames::ACCESS_DENIED;
-                break;
-            case Response::HTTP_METHOD_NOT_ALLOWED:
-                $result = BaseErrorNames::HTTP_METHOD_NOT_ALLOWED;
-                break;
-            default:
-                $result = 'Error code is not yet specified for this case. Please contact to developer about this case.';
-        }
-
-        return $result;
     }
 
     /**

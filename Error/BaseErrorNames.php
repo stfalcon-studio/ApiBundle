@@ -39,7 +39,7 @@ class BaseErrorNames
     public const RESOURCE_NOT_FOUND = 'resource_not_found';
 
     // 405
-    public const HTTP_METHOD_NOT_ALLOWED = 'method_not_allowed';
+    public const METHOD_NOT_ALLOWED = 'method_not_allowed';
 
     // 409
     public const CONFLICT_TARGET_RESOURCE_UPDATE = 'conflict_target_resource_update';

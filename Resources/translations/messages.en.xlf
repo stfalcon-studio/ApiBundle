@@ -26,6 +26,34 @@
                 <source>invalid_refresh_token_exception_message</source>
                 <target>Bad credentials. Try to login again.</target>
             </trans-unit>
+            <trans-unit id="7">
+                <source>optimistic_lock_exception_message</source>
+                <target>Resource has been updated, please get the actual data.</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>access_denied_exception_message</source>
+                <target>Access denied.</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>method_not_allowed_exception_message</source>
+                <target>Not allowed HTTP method.</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>resource_not_found_exception_message</source>
+                <target>Resource not found.</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>invalid_json_schema_exception_message</source>
+                <target>Your request does not match specified JSON Schema.</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>invalid_entity_exception_message</source>
+                <target>Entity does not pass validation rules.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>internal_server_error</source>
+                <target>Internal Server Error.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
