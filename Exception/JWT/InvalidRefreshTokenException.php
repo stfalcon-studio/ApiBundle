@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Exception\JWT;
 
+use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use StfalconStudio\ApiBundle\Error\ErrorCodes;
 use StfalconStudio\ApiBundle\Exception\AbstractCustomHttpAppException;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,5 +28,13 @@ class InvalidRefreshTokenException extends AbstractCustomHttpAppException
     public function __construct(\Exception $previous = null)
     {
         parent::__construct(Response::HTTP_UNAUTHORIZED, 'invalid_refresh_token_exception_message', $previous, [], ErrorCodes::INVALID_REFRESH_TOKEN);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getErrorName(): string
+    {
+        return BaseErrorNames::INVALID_REFRESH_TOKEN;
     }
 }

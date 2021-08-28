@@ -17,7 +17,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTInvalidEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
-use StfalconStudio\ApiBundle\Error\ErrorNames;
+use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -74,7 +74,7 @@ class JwtSubscriber implements EventSubscriberInterface
         }
 
         $data = [
-            'error' => ErrorNames::UNAUTHORISED_USER,
+            'error' => BaseErrorNames::UNAUTHORISED_USER,
             'errorDescription' => $this->translator->trans($message),
         ];
 

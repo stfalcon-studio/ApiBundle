@@ -29,6 +29,6 @@ final class InvalidRefreshTokenExceptionTest extends TestCase
 
         self::assertSame('invalid_refresh_token_exception_message', $exception->getMessage());
         self::assertSame(Response::HTTP_UNAUTHORIZED, $exception->getStatusCode());
-        self::assertSame(40100, $exception->getCode());
+        self::assertSame('invalid_refresh_token', $exception->getErrorName());
     }
 }

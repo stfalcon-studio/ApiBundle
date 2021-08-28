@@ -9,3 +9,9 @@ services:
 
     StfalconStudio\ApiBundle\:
         resource: '../../{EventListener,Request,Serializer,Service,Util,Validator}/'
+
+    Predis\Client:
+        class: Predis\Client
+
+    JsonSchema\Validator:
+        class: JsonSchema\Validator

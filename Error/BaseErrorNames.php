@@ -13,9 +13,9 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Error;
 
 /**
- * ErrorNames.
+ * BaseErrorNames.
  */
-class ErrorNames
+class BaseErrorNames
 {
     // 400
     public const MISSED_REQUIRED_HEADER = 'missed_required_header';
@@ -42,4 +42,12 @@ class ErrorNames
 
     // 500
     public const INTERNAL_SERVER_ERROR = 'internal_server_error';
+
+    /**
+     * Constructor.
+     */
+    private function __construct()
+    {
+        // noop
+    }
 }

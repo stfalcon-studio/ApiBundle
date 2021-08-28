@@ -19,50 +19,17 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ErrorCodes
 {
-    // 400
-    public const MISSED_REQUIRED_HEADER = 40000;
-    public const MALFORMED_JSON = 40001;
-    public const INVALID_JSON_SCHEMA = 40002;
-    public const INCORRECT_HEADER = 40003;
-
-    // 401
-    public const INVALID_REFRESH_TOKEN = 40100;
-
-    // 402
-    public const INVALID_PAYMENT = 40200;
-
-    // 403
-    public const ACCESS_DENIED = 40300;
-    public const AUTHORIZED_USER = 40301;
-
     // 409
     public const CONFLICT_TARGET_RESOURCE_UPDATE = 40900;
-
-    // 422
-    public const INVALID_ENTITY = 42200;
 
     // 500
     public const INTERNAL_SERVER_ERROR = 50000;
 
     private const ERROR_NAMES = [
-        // 400
-        self::MISSED_REQUIRED_HEADER => ErrorNames::MISSED_REQUIRED_HEADER,
-        self::MALFORMED_JSON => ErrorNames::MALFORMED_JSON,
-        self::INVALID_JSON_SCHEMA => ErrorNames::INVALID_JSON_SCHEMA,
-        self::INCORRECT_HEADER => ErrorNames::INCORRECT_HEADER,
-        // 401
-        self::INVALID_REFRESH_TOKEN => ErrorNames::INCORRECT_HEADER,
-        // 402
-        self::INVALID_PAYMENT => ErrorNames::INVALID_PAYMENT,
-        // 403
-        self::ACCESS_DENIED => ErrorNames::ACCESS_DENIED,
-        self::AUTHORIZED_USER => ErrorNames::AUTHORIZED_USER,
         // 409
-        self::CONFLICT_TARGET_RESOURCE_UPDATE => ErrorNames::CONFLICT_TARGET_RESOURCE_UPDATE,
-        // 422
-        self::INVALID_ENTITY => ErrorNames::INVALID_ENTITY,
+        self::CONFLICT_TARGET_RESOURCE_UPDATE => BaseErrorNames::CONFLICT_TARGET_RESOURCE_UPDATE,
         // 500
-        self::INTERNAL_SERVER_ERROR => ErrorNames::INTERNAL_SERVER_ERROR,
+        self::INTERNAL_SERVER_ERROR => BaseErrorNames::INTERNAL_SERVER_ERROR,
     ];
 
     /**
