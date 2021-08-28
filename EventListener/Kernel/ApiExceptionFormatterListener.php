@@ -58,14 +58,6 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents(): \Generator
-    {
-        yield ExceptionEvent::class => '__invoke';
-    }
-
-    /**
      * @param ExceptionEvent $event
      */
     public function __invoke(ExceptionEvent $event): void
@@ -141,6 +133,14 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
         $response = $this->exceptionResponseFactory->createJsonResponse($json, $statusCode);
 
         $event->setResponse($response);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents(): \Generator
+    {
+        yield ExceptionEvent::class => '__invoke';
     }
 
     /**

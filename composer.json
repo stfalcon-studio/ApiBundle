@@ -17,6 +17,7 @@
         "justinrainbow/json-schema": "^5.2.11",
         "lexik/jwt-authentication-bundle": "^v2.12.6",
         "predis/predis": "^v1.1.7",
+        "sentry/sentry-symfony": "^3.5.4",
         "symfony/config": "^5.3",
         "symfony/dependency-injection": "^5.3",
         "symfony/flex": "^1.14",
