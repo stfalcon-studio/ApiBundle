@@ -86,12 +86,9 @@ jobs:
             fail-fast: false
             matrix:
                 php-version:
-                    - '7.3'
                     - '7.4'
                     - '8.0'
                 symfony-version:
-                    - '5.0'
-                    - '5.1'
                     - '5.2'
                     - '5.3'
         steps:

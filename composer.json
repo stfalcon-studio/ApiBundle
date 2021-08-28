@@ -16,15 +16,16 @@
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.11",
         "lexik/jwt-authentication-bundle": "^v2.12.6",
-        "symfony/config": "^5.0",
-        "symfony/dependency-injection": "^5.0",
+        "predis/predis": "^v1.1.7",
+        "symfony/config": "^5.2",
+        "symfony/dependency-injection": "^5.2",
         "symfony/flex": "^1.14",
-        "symfony/http-kernel": "^5.0",
-        "symfony/http-foundation": "^5.0",
-        "symfony/framework-bundle": "^5.0",
-        "symfony/serializer": "^5.0",
-        "symfony/validator": "^5.0",
-        "symfony/yaml": "^5.0"
+        "symfony/http-kernel": "^5.2",
+        "symfony/http-foundation": "^5.2",
+        "symfony/framework-bundle": "^5.2",
+        "symfony/serializer": "^5.2",
+        "symfony/validator": "^5.2",
+        "symfony/yaml": "^5.2"
     },
     "require-dev": {
         "escapestudios/symfony2-coding-standard": "^3.12",
@@ -35,8 +36,8 @@
         "phpstan/phpstan-symfony": "^0.12",
         "phpunit/phpunit": "^9.5",
         "slam/phpstan-extensions": "^5.1",
-        "symfony/dotenv": "^5.0",
-        "symfony/filesystem": "^5.0"
+        "symfony/dotenv": "^5.2",
+        "symfony/filesystem": "^5.2"
     },
     "autoload": {
         "psr-4": {
