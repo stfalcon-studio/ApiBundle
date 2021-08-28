@@ -89,7 +89,6 @@ jobs:
                     - '7.4'
                     - '8.0'
                 symfony-version:
-                    - '5.2'
                     - '5.3'
         steps:
             - name: 'Checkout Code'
