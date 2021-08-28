@@ -34,7 +34,7 @@ final class AnonymousUserTest extends TestCase
         self::assertSame([], $this->anonymousUser->getRoles());
         self::assertNull($this->anonymousUser->getPassword());
         self::assertNull($this->anonymousUser->getSalt());
-        self::assertSame('anonymous', $this->anonymousUser->getUsername());
+        self::assertSame('anonymous', $this->anonymousUser->getUserIdentifier());
         $this->anonymousUser->eraseCredentials();
     }
 }

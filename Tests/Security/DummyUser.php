@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\Security\Guard;
+namespace StfalconStudio\ApiBundle\Tests\Security;
 
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsTrait;
@@ -43,5 +43,10 @@ class DummyUser implements UserInterface, CredentialsInterface
     public function getUsername(): string
     {
         return 'dummy';
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getUsername();
     }
 }

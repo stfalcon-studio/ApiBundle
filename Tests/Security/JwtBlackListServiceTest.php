@@ -24,7 +24,6 @@ use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Security\JwtCacheHelper;
 use StfalconStudio\ApiBundle\Security\JwtTokenHelper;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 final class JwtBlackListServiceTest extends TestCase
 {
@@ -78,7 +77,7 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn($token)
         ;
 
-        $user = $this->createMock(UserInterface::class);
+        $user = $this->createMock(DummyUser::class);
 
         $token
             ->expects(self::once())
@@ -209,7 +208,7 @@ final class JwtBlackListServiceTest extends TestCase
 
     public function testTokenIsNotInBlackList(): void
     {
-        $user = $this->createMock(UserInterface::class);
+        $user = $this->createMock(DummyUser::class);
         $user
             ->expects(self::once())
             ->method('getUserIdentifier')
@@ -237,7 +236,7 @@ final class JwtBlackListServiceTest extends TestCase
 
     public function testTokenIsInBlackList(): void
     {
-        $user = $this->createMock(UserInterface::class);
+        $user = $this->createMock(DummyUser::class);
         $user
             ->expects(self::once())
             ->method('getUserIdentifier')

@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\DomainException;
 use StfalconStudio\ApiBundle\Security\Guard\JwtTokenAuthenticator;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
+use StfalconStudio\ApiBundle\Tests\Security\DummyUser;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
