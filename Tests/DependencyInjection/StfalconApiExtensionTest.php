@@ -48,6 +48,7 @@ final class StfalconApiExtensionTest extends TestCase
         $this->container->compile();
 
         self::assertSame('/tmp/src/Json/Schema/', $this->container->getParameter('stfalcon_api.json_schema_dir'));
+        self::assertEmpty($this->container->getParameter('stfalcon_api.api_host'));
 
         self::assertArrayHasKey(DtoAnnotationProcessor::class, $this->container->getRemovedIds());
         self::assertArrayNotHasKey(DtoAnnotationProcessor::class, $this->container->getDefinitions());
