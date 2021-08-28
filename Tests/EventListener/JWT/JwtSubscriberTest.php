@@ -19,7 +19,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use StfalconStudio\ApiBundle\EventListener\Jwt\JwtSubscriber;
+use StfalconStudio\ApiBundle\EventListener\JWT\JwtSubscriber;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

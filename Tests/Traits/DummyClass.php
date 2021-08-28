@@ -49,9 +49,4 @@ final class DummyClass
     {
         return $this->translator;
     }
-
-    public function getSymfonySerializer(): SerializerInterface
-    {
-        return $this->symfonySerializer;
-    }
 }

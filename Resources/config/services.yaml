@@ -17,6 +17,3 @@ services:
 
     JsonSchema\Validator:
         class: JsonSchema\Validator
-
-    Sentry\FlushableClientInterface:
-        alias: Sentry\ClientInterface

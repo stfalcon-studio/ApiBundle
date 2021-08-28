@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
         $rootNode
             ->children()
-                ->scalarNode('api_host')->cannotBeEmpty()->end()
+                ->scalarNode('api_host')->cannotBeEmpty()->isRequired()->end()
                 ->scalarNode('json_schema_dir')->defaultValue('%kernel.project_dir%/src/Json/Schema/')->cannotBeEmpty()->end()
             ->end()
         ;

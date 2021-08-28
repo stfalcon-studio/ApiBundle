@@ -51,7 +51,7 @@
                 <target>Entity does not pass validation rules.</target>
             </trans-unit>
             <trans-unit id="13">
-                <source>internal_server_error</source>
+                <source>internal_server_error_error_message</source>
                 <target>Internal Server Error.</target>
             </trans-unit>
         </body>

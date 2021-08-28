@@ -20,7 +20,6 @@ use StfalconStudio\ApiBundle\Service\Exception\ExceptionResponseFactory;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessorInterface;
 use StfalconStudio\ApiBundle\Traits;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -81,23 +80,34 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 break;
             case $e instanceof OptimisticLockException:
                 $message = 'optimistic_lock_exception_message';
-                $statusCode = JsonResponse::HTTP_CONFLICT;
+                $statusCode = Response::HTTP_CONFLICT;
                 $errorName = BaseErrorNames::CONFLICT_TARGET_RESOURCE_UPDATE;
                 $scope = (new Scope())->setExtra('entity', $e->getEntity());
                 $this->sentryClient->captureException($e, $scope);
                 break;
             case $e instanceof AccessDeniedException:
                 $message = 'access_denied_exception_message';
-                $statusCode = JsonResponse::HTTP_FORBIDDEN;
+                $statusCode = Response::HTTP_FORBIDDEN;
                 $errorName = BaseErrorNames::ACCESS_DENIED;
                 break;
             case $e instanceof MethodNotAllowedHttpException:
                 $message = 'method_not_allowed_exception_message';
-                $statusCode = JsonResponse::HTTP_METHOD_NOT_ALLOWED;
+                $statusCode = Response::HTTP_METHOD_NOT_ALLOWED;
                 $errorName = BaseErrorNames::METHOD_NOT_ALLOWED;
                 break;
+            case $e instanceof NotFoundHttpException:
+                $message = $e->getMessage();
+                $statusCode = $e->getStatusCode();
+                $errorName = BaseErrorNames::RESOURCE_NOT_FOUND;
+
+                if (preg_match('/^(.+) object not found by the @(.+) annotation\.$/', $message)) {
+                    $message = 'resource_not_found_exception_message';
+                }
+                break;
             default:
-                switch ($e->getStatusCode()) {
+                $statusCode = $e->getStatusCode();
+
+                switch ($statusCode) {
                     case Response::HTTP_BAD_REQUEST:
                         $errorName = BaseErrorNames::INVALID_REQUEST;
                         break;
@@ -112,17 +122,10 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 }
 
                 if (self::PROD_ENV === $this->environment) {
-                    $message = 'internal_server_error';
+                    $message = 'internal_server_error_error_message';
                 } else {
                     $message = $e->getMessage();
                 }
-
-                $statusCode = JsonResponse::HTTP_INTERNAL_SERVER_ERROR;
-        }
-
-        if ($e instanceof NotFoundHttpException && preg_match('/^(.+) object not found by the @(.+) annotation\.$/', $message)) {
-            $errorName = BaseErrorNames::RESOURCE_NOT_FOUND;
-            $message = 'resource_not_found_exception_message';
         }
 
         $responseData = [
@@ -132,8 +135,8 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
 
         if ($e instanceof CustomAppExceptionInterface) {
             $exceptionResponse = $this->exceptionResponseProcessor->processResponseForException($e);
-            $responseData = array_merge($responseData, $exceptionResponse);
-//            $responseData = [...$responseData, ...$exceptionResponse];
+//            $responseData = array_merge($responseData, $exceptionResponse);
+            $responseData = [...$responseData, ...$exceptionResponse];
 
             if ($e->loggable()) {
                 $scope = (new Scope())->setExtra('response_data', $responseData);

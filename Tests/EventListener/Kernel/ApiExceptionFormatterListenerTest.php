@@ -149,8 +149,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 
     public function testOnKernelExceptionWhenHttpException(): void
     {
-        $exceptionMessage = 'Exception test message';
-        $httpException = new HttpException(Response::HTTP_BAD_REQUEST, $exceptionMessage);
+        $httpException = new HttpException(Response::HTTP_BAD_REQUEST);
 
         $exceptionEvent = new ExceptionEvent(
             $this->kernel,
@@ -165,19 +164,18 @@ final class ApiExceptionFormatterListenerTest extends TestCase
             ->willReturn(self::API_HOST)
         ;
 
-        $exceptionMessage = 'Exception test message';
 
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with($exceptionMessage)
-            ->willReturn($exceptionMessage)
+            ->with('internal_server_error_error_message')
+            ->willReturn('test')
         ;
 
         $this->serializer
             ->expects(self::once())
             ->method('serialize')
-            ->willReturn(sprintf('{"error":"internal_server_error", "error_description":"%s"}', $exceptionMessage))
+            ->willReturn('{"error":"internal_server_error", "error_description":"test"}')
         ;
 
         $this->exceptionResponseProcessor
@@ -185,7 +183,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
             ->method('processResponseForException')
         ;
 
-        $json = '{"error":"internal_server_error", "error_description":"Exception test message"}';
+        $json = '{"error":"internal_server_error", "error_description":"test"}';
         $this->exceptionResponseFactory
             ->expects(self::once())
             ->method('createJsonResponse')
@@ -284,7 +282,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
             ->method('processResponseForException')
         ;
 
-        $json = '{"error":"internal_server_error", "error_description":"Resource not found"}';
+        $json = '{"error":"resource_not_found", "error_description":"Resource not found"}';
         $this->exceptionResponseFactory
             ->expects(self::once())
             ->method('createJsonResponse')
