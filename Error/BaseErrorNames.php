@@ -22,6 +22,7 @@ class BaseErrorNames
     public const MALFORMED_JSON = 'malformed_json';
     public const INVALID_JSON_SCHEMA = 'invalid_json_schema';
     public const INCORRECT_HEADER = 'incorrect_header';
+    public const INVALID_REQUEST = 'invalid_request';
 
     // 401
     public const UNAUTHORISED_USER = 'unauthorised_user';
@@ -32,10 +33,13 @@ class BaseErrorNames
 
     // 403
     public const ACCESS_DENIED = 'access_denied';
-    public const AUTHORIZED_USER = 'authorised_user';
+    public const AUTHORIZED_USER = 'authorized_user';
 
     // 404
     public const RESOURCE_NOT_FOUND = 'resource_not_found';
+
+    // 405
+    public const HTTP_METHOD_NOT_ALLOWED = 'method_not_allowed';
 
     // 409
     public const CONFLICT_TARGET_RESOURCE_UPDATE = 'conflict_target_resource_update';
