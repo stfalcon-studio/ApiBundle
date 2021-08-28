@@ -22,6 +22,10 @@
                 <source>password_does_not_meet_special_requirements</source>
                 <target>Пароль не відповідає вимогам. Він повинен містити мінімум одну малу літеру, мінімум одну велику літеру і мінімум одну цифру.</target>
             </trans-unit>
+            <trans-unit id="6">
+                <source>invalid_refresh_token_exception_message</source>
+                <target>Токен невалідний.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

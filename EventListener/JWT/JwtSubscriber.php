@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\EventListener\Jwt;
+namespace StfalconStudio\ApiBundle\EventListener\JWT;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationFailureEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
@@ -62,15 +62,12 @@ class JwtSubscriber implements EventSubscriberInterface
         switch (true) {
             case $event instanceof JWTInvalidEvent:
                 $message = 'invalid_jwt_token_message';
-
                 break;
             case $event instanceof JWTNotFoundEvent:
                 $message = 'not_found_jwt_token_message';
-
                 break;
             case $event instanceof JWTExpiredEvent:
                 $message = 'expired_jwt_token_message';
-
                 break;
             default:
                 $message = 'unauthorised_user_message';

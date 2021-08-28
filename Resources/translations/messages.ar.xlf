@@ -22,6 +22,10 @@
                 <source>password_does_not_meet_special_requirements</source>
                 <target>كلمة المرور ضعيفة. يجب أن تحتوي على حرف واحد صغير وآخر كبير بالإضافة إلى رقم واحد على الأقل.</target>
             </trans-unit>
+            <trans-unit id="6">
+                <source>invalid_refresh_token_exception_message</source>
+                <target>البيانات المدخلة غير صحيحة. الرجاء محاولة تسجيل الدخول مرة اخرى.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
