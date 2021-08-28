@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Traits;
 
-use App\Exception\RuntimeException;
+use StfalconStudio\ApiBundle\Exception\RuntimeException;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 

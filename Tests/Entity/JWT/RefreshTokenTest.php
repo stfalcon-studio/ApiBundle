@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Entity\JWT;
 
-use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 use PHPUnit\Framework\TestCase;
+use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 
 /**
  * RefreshTokenTest.

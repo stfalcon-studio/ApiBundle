@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Service\Exception\ResponseProcessor;
 
-use App\Exception\Http\Json\InvalidJsonSchemaException;
-use App\Service\Exception\ResponseProcessor\InvalidJsonSchemaExceptionProcessor;
 use PHPUnit\Framework\TestCase;
+use StfalconStudio\ApiBundle\Exception\Http\Json\InvalidJsonSchemaException;
+use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\InvalidJsonSchemaExceptionProcessor;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 final class InvalidJsonSchemaExceptionProcessorTest extends TestCase

@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Service\Exception\ResponseProcessor;
 
-use App\Exception\Http\Validation\InvalidEntityException;
-use App\Service\Exception\ResponseProcessor\InvalidEntityExceptionProcessor;
 use PHPUnit\Framework\TestCase;
+use StfalconStudio\ApiBundle\Exception\Http\Validation\InvalidEntityException;
+use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\InvalidEntityExceptionProcessor;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 final class InvalidEntityExceptionProcessorTest extends TestCase

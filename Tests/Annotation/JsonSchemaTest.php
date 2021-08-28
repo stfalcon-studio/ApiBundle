@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Annotation;
 
+use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Annotation\JsonSchema;
 use StfalconStudio\ApiBundle\Exception\LogicException;
-use PHPUnit\Framework\TestCase;
 
 /**
  * JsonSchemaTest.

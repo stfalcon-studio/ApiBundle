@@ -1,13 +1,20 @@
 <?php
+/*
+ * This file is part of the StfalconApiBundle.
+ *
+ * (c) Stfalcon LLC <stfalcon.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 declare(strict_types=1);
 
-namespace App\Service\Exception\ResponseProcessor;
+namespace StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor;
 
-use App\Exception\Http\Validation\InvalidEntityException;
-use App\Exception\RuntimeException;
 use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
-use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\CustomAppExceptionResponseProcessorInterface;
+use StfalconStudio\ApiBundle\Exception\Http\Validation\InvalidEntityException;
+use StfalconStudio\ApiBundle\Exception\RuntimeException;
 
 /**
  * InvalidEntityExceptionProcessor.

@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Annotation;
 
+use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Annotation\DTO;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 
 /**
  * DTOTest.

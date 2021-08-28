@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Util\File;
 
-use StfalconStudio\ApiBundle\Util\File\FileReader;
 use PHPUnit\Framework\TestCase;
+use StfalconStudio\ApiBundle\Util\File\FileReader;
 
 /**
  * FileReaderTest.

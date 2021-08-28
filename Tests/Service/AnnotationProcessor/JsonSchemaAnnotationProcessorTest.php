@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Service\AnnotationProcessor;
 
+use Doctrine\Common\Annotations\Reader;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Annotation\JsonSchema;
 use StfalconStudio\ApiBundle\Annotation\JsonSchemaAnnotationInterface;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
@@ -19,9 +22,6 @@ use StfalconStudio\ApiBundle\Exception\RuntimeException;
 use StfalconStudio\ApiBundle\Service\AnnotationProcessor\DtoAnnotationProcessor;
 use StfalconStudio\ApiBundle\Service\AnnotationProcessor\JsonSchemaAnnotationProcessor;
 use StfalconStudio\ApiBundle\Util\File\FileReader;
-use Doctrine\Common\Annotations\Reader;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 /**
  * JsonSchemaAnnotationProcessorTest.

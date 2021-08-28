@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\Exception\Validator;
+namespace StfalconStudio\ApiBundle\Tests\Exception\JWT;
 
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\JWT\InvalidRefreshTokenException;
