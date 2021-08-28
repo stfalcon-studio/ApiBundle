@@ -12,9 +12,12 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Traits;
 
+use Sentry\FlushableClientInterface;
 use StfalconStudio\ApiBundle\Request\DtoExtractor;
 use StfalconStudio\ApiBundle\Serializer\Serializer;
 use StfalconStudio\ApiBundle\Traits;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * DummyClass.
@@ -22,7 +25,10 @@ use StfalconStudio\ApiBundle\Traits;
 final class DummyClass
 {
     use Traits\DtoExtractorTrait;
+    use Traits\SentryClientTrait;
     use Traits\SerializerTrait;
+    use Traits\SymfonySerializerTrait;
+    use Traits\TranslatorTrait;
 
     public function getDtoExtractor(): DtoExtractor
     {
@@ -32,5 +38,20 @@ final class DummyClass
     public function getSerializer(): Serializer
     {
         return $this->serializer;
+    }
+
+    public function getSentryClient(): FlushableClientInterface
+    {
+        return $this->sentryClient;
+    }
+
+    public function getTranslator(): TranslatorInterface
+    {
+        return $this->translator;
+    }
+
+    public function getSymfonySerializer(): SerializerInterface
+    {
+        return $this->symfonySerializer;
     }
 }
