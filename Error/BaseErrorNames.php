@@ -34,6 +34,9 @@ class BaseErrorNames
     public const ACCESS_DENIED = 'access_denied';
     public const AUTHORIZED_USER = 'authorised_user';
 
+    // 404
+    public const RESOURCE_NOT_FOUND = 'resource_not_found';
+
     // 409
     public const CONFLICT_TARGET_RESOURCE_UPDATE = 'conflict_target_resource_update';
 

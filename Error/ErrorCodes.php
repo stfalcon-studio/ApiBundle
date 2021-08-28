@@ -21,7 +21,6 @@ class ErrorCodes
 {
     // 409
     public const CONFLICT_TARGET_RESOURCE_UPDATE = 40900;
-
     // 500
     public const INTERNAL_SERVER_ERROR = 50000;
 
