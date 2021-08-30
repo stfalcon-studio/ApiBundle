@@ -23,6 +23,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -105,7 +106,11 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 }
                 break;
             default:
-                $statusCode = $e->getStatusCode();
+                if ($e instanceof HttpExceptionInterface) {
+                    $statusCode = $e->getStatusCode();
+                } else {
+                    $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
+                }
 
                 switch ($statusCode) {
                     case Response::HTTP_BAD_REQUEST:
@@ -135,8 +140,7 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
 
         if ($e instanceof CustomAppExceptionInterface) {
             $exceptionResponse = $this->exceptionResponseProcessor->processResponseForException($e);
-//            $responseData = array_merge($responseData, $exceptionResponse);
-            $responseData = [...$responseData, ...$exceptionResponse];
+            $responseData = array_merge($responseData, $exceptionResponse);
 
             if ($e->loggable()) {
                 $scope = (new Scope())->setExtra('response_data', $responseData);

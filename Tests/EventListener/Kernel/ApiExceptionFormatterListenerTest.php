@@ -274,7 +274,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->serializer
             ->expects(self::once())
             ->method('serialize')
-            ->willReturn(sprintf('{"error":"internal_server_error", "error_description":"%s"}', $resourceNotFoundMessage))
+            ->willReturn(sprintf('{"error":"resource_not_found", "error_description":"%s"}', $resourceNotFoundMessage))
         ;
 
         $this->exceptionResponseProcessor
@@ -422,7 +422,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with('internal_server_error')
+            ->with('internal_server_error_error_message')
             ->willReturn('Internal Server Error')
         ;
 
