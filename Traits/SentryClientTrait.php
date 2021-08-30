@@ -12,21 +12,21 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Traits;
 
-use Sentry\FlushableClientInterface;
+use Sentry\ClientInterface;
 
 /**
  * SentryClientTrait.
  */
 trait SentryClientTrait
 {
-    protected FlushableClientInterface $sentryClient;
+    protected ClientInterface $sentryClient;
 
     /**
-     * @param FlushableClientInterface $sentryClient
+     * @param ClientInterface $sentryClient
      *
      * @required
      */
-    public function setSentryClient(FlushableClientInterface $sentryClient): void
+    public function setSentryClient(ClientInterface $sentryClient): void
     {
         $this->sentryClient = $sentryClient;
     }
