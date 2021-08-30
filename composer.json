@@ -9,22 +9,26 @@
         "issues": "https://github.com/stfalcon-studio/ApiBundle/issues"
     },
     "require": {
-        "php": ">=7.3",
-        "doctrine/common": "^2.13 || ^3.0",
+        "php": "^7.4",
+        "doctrine/common": "^3.1.2",
+        "doctrine/orm": "^2.9.5",
         "egulias/email-validator": "^2.1.24",
         "gesdinet/jwt-refresh-token-bundle": "^v0.12.0",
         "ircmaxell/password-compat": "^v1.0.4",
-        "justinrainbow/json-schema": "^5.2.10",
-        "lexik/jwt-authentication-bundle": "^v2.10.5",
-        "symfony/config": "^5.0",
-        "symfony/dependency-injection": "^5.0",
-        "symfony/flex": "^1.6",
-        "symfony/http-kernel": "^5.0",
-        "symfony/http-foundation": "^5.0",
-        "symfony/framework-bundle": "^5.0",
-        "symfony/serializer": "^5.0",
-        "symfony/validator": "^5.0",
-        "symfony/yaml": "^5.0"
+        "justinrainbow/json-schema": "^5.2.11",
+        "lexik/jwt-authentication-bundle": "^v2.12.6",
+        "predis/predis": "^v1.1.7",
+        "sentry/sentry-symfony": "^3.5.4",
+        "symfony/config": "^5.3",
+        "symfony/dependency-injection": "^5.3",
+        "symfony/flex": "^1.14",
+        "symfony/http-kernel": "^5.3",
+        "symfony/http-foundation": "^5.3",
+        "symfony/framework-bundle": "^5.3",
+        "symfony/serializer": "^5.3",
+        "symfony/translation": "^5.3",
+        "symfony/validator": "^5.3",
+        "symfony/yaml": "^5.3"
     },
     "require-dev": {
         "escapestudios/symfony2-coding-standard": "^3.12",
@@ -34,9 +38,9 @@
         "phpstan/phpstan-phpunit": "^0.12",
         "phpstan/phpstan-symfony": "^0.12",
         "phpunit/phpunit": "^9.5",
-        "slam/phpstan-extensions": "^5.0",
-        "symfony/dotenv": "^5.0",
-        "symfony/filesystem": "^5.0"
+        "slam/phpstan-extensions": "^5.1",
+        "symfony/dotenv": "^5.3",
+        "symfony/filesystem": "^5.3"
     },
     "autoload": {
         "psr-4": {

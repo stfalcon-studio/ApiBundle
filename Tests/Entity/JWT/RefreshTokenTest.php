@@ -12,16 +12,15 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Entity\JWT;
 
-use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 use PHPUnit\Framework\TestCase;
+use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 
 /**
  * RefreshTokenTest.
  */
 final class RefreshTokenTest extends TestCase
 {
-    /** @var RefreshToken */
-    private $refreshToken;
+    private RefreshToken $refreshToken;
 
     protected function setUp(): void
     {

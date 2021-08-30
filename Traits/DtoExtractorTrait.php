@@ -19,8 +19,7 @@ use StfalconStudio\ApiBundle\Request\DtoExtractor;
  */
 trait DtoExtractorTrait
 {
-    /** @var DtoExtractor */
-    protected $dtoExtractor;
+    protected DtoExtractor $dtoExtractor;
 
     /**
      * @param DtoExtractor $dtoExtractor

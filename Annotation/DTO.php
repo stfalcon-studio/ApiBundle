@@ -28,8 +28,7 @@ class DTO implements DtoAnnotationInterface
 {
     private const DTO_SUFFIX = 'Dto';
 
-    /** @var string */
-    private $class;
+    private string $class;
 
     /**
      * @param mixed[] $options

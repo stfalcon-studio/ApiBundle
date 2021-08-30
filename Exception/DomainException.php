@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Error;
+namespace StfalconStudio\ApiBundle\Exception;
 
 /**
- * ErrorNames.
+ * DomainException.
  */
-final class ErrorNames
+class DomainException extends \DomainException implements ExceptionInterface
 {
-    public const UNAUTHORISED_USER = 'unauthorised_user';
 }

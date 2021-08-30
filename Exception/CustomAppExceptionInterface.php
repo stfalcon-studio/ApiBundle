@@ -12,13 +12,20 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Exception;
 
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+
 /**
  * CustomAppExceptionInterface.
  */
-interface CustomAppExceptionInterface
+interface CustomAppExceptionInterface extends HttpExceptionInterface
 {
     /**
      * @return bool
      */
     public function loggable(): bool;
+
+    /**
+     * @return string
+     */
+    public function getErrorName(): string;
 }

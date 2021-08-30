@@ -22,15 +22,14 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
 {
-    /** @var PasswordRequirementsValidator */
-    private $passwordValidator;
+    private PasswordRequirementsValidator $passwordRequirementsValidator;
 
     /**
-     * @param PasswordRequirementsValidator $passwordValidator
+     * @param PasswordRequirementsValidator $passwordRequirementsValidator
      */
-    public function __construct(PasswordRequirementsValidator $passwordValidator)
+    public function __construct(PasswordRequirementsValidator $passwordRequirementsValidator)
     {
-        $this->passwordValidator = $passwordValidator;
+        $this->passwordRequirementsValidator = $passwordRequirementsValidator;
     }
 
     /**
@@ -45,7 +44,7 @@ class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
             throw new UnexpectedConstraintException($constraint, PasswordMeetSpecialRequirements::class);
         }
 
-        if (!empty($password) && !$this->passwordValidator->isValid($password)) {
+        if (!empty($password) && !$this->passwordRequirementsValidator->isValid($password)) {
             $this->context
                 ->buildViolation($constraint->message)
                 ->setCode(PasswordMeetSpecialRequirements::PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS)

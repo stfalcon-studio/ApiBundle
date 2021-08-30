@@ -26,8 +26,7 @@ class JsonSchema implements JsonSchemaAnnotationInterface
 {
     private const JSON_FILE_EXTENSION = '.json';
 
-    /** @var string */
-    private $jsonSchemaName;
+    private string $jsonSchemaName;
 
     /**
      * @param mixed[] $options

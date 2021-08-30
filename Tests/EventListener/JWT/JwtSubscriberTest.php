@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\EventListener\Jwt;
+namespace StfalconStudio\ApiBundle\Tests\EventListener\JWT;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationFailureEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
@@ -19,7 +19,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use StfalconStudio\ApiBundle\EventListener\Jwt\JwtSubscriber;
+use StfalconStudio\ApiBundle\EventListener\JWT\JwtSubscriber;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -28,8 +28,7 @@ final class JwtSubscriberTest extends TestCase
     /** @var TranslatorInterface|MockObject */
     private $translator;
 
-    /** @var JwtSubscriber */
-    private $subscriber;
+    private JwtSubscriber $subscriber;
 
     protected function setUp(): void
     {

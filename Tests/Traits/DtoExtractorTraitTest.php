@@ -24,8 +24,7 @@ final class DtoExtractorTraitTest extends TestCase
     /** @var DtoExtractor|MockObject */
     private $dtoExtractor;
 
-    /** @var DummyClass */
-    private $dummyClass;
+    private DummyClass $dummyClass;
 
     protected function setUp(): void
     {

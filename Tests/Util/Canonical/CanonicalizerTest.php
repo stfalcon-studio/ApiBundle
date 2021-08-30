@@ -22,8 +22,7 @@ final class CanonicalizerTest extends TestCase
     /** @var EncodingDetector|MockObject */
     private $encodingDetector;
 
-    /** @var Canonicalizer */
-    private $canonicalizer;
+    private Canonicalizer $canonicalizer;
 
     protected function setUp(): void
     {

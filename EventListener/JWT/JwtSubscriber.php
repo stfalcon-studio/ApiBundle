@@ -10,14 +10,14 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\EventListener\Jwt;
+namespace StfalconStudio\ApiBundle\EventListener\JWT;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationFailureEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTInvalidEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
-use StfalconStudio\ApiBundle\Error\ErrorNames;
+use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -29,8 +29,7 @@ class JwtSubscriber implements EventSubscriberInterface
 {
     private const ON_AUTHENTICATION_FAILURE_RESPONSE_FUNCTION = 'onAuthenticationFailureResponse';
 
-    /** @var TranslatorInterface */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     /**
      * @param TranslatorInterface $translator
@@ -63,22 +62,19 @@ class JwtSubscriber implements EventSubscriberInterface
         switch (true) {
             case $event instanceof JWTInvalidEvent:
                 $message = 'invalid_jwt_token_message';
-
                 break;
             case $event instanceof JWTNotFoundEvent:
                 $message = 'not_found_jwt_token_message';
-
                 break;
             case $event instanceof JWTExpiredEvent:
                 $message = 'expired_jwt_token_message';
-
                 break;
             default:
                 $message = 'unauthorised_user_message';
         }
 
         $data = [
-            'error' => ErrorNames::UNAUTHORISED_USER,
+            'error' => BaseErrorNames::UNAUTHORISED_USER,
             'errorDescription' => $this->translator->trans($message),
         ];
 

@@ -30,8 +30,7 @@ final class PasswordMeetSpecialRequirementsValidatorTest extends TestCase
     /** @var PasswordRequirementsValidator|MockObject */
     private $passwordValidator;
 
-    /** @var PasswordMeetSpecialRequirementsValidator */
-    private $validator;
+    private PasswordMeetSpecialRequirementsValidator $validator;
 
     protected function setUp(): void
     {

@@ -17,8 +17,7 @@ namespace StfalconStudio\ApiBundle\DTO;
  */
 trait DtoWithRelationToEntityTrait
 {
-    /** @var string */
-    private $entityId;
+    private ?string $entityId = null;
 
     /**
      * @return string|null

@@ -29,8 +29,7 @@ final class ExceptionResponseProcessorTest extends TestCase
     /** @var CustomAppExceptionResponseProcessorInterface|MockObject */
     private $errorResponseProcessor;
 
-    /** @var ExceptionResponseProcessor */
-    private $exceptionResponseProcessor;
+    private ExceptionResponseProcessor $exceptionResponseProcessor;
 
     protected function setUp(): void
     {

@@ -4,8 +4,16 @@ services:
         autoconfigure: true
         public: false
         bind:
+            $apiHost: "%stfalcon_api.api_host%"
             $jsonSchemaDir: "%stfalcon_api.json_schema_dir%"
+            $environment: '%env(APP_ENV)%'
             iterable $errorResponseProcessors: !tagged_iterator 'stfalcon_api.exception_response_processor'
 
     StfalconStudio\ApiBundle\:
-        resource: '../../{EventListener,Request,Serializer,Service,Util,Validator}/'
+        resource: '../../{EventListener,Request,Security,Serializer,Service,Util,Validator}/'
+
+    Predis\Client:
+        class: Predis\Client
+
+    JsonSchema\Validator:
+        class: JsonSchema\Validator

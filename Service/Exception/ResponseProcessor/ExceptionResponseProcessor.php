@@ -20,7 +20,7 @@ use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
 class ExceptionResponseProcessor implements ExceptionResponseProcessorInterface
 {
     /** @var CustomAppExceptionResponseProcessorInterface[]|iterable */
-    private $errorResponseProcessors;
+    private iterable $errorResponseProcessors;
 
     /**
      * @param iterable|CustomAppExceptionResponseProcessorInterface[] $errorResponseProcessors

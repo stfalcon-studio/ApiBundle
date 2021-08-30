@@ -27,5 +27,5 @@ interface DtoWithRelationToEntityInterface extends DtoInterface
      *
      * @return self
      */
-    public function setEntityId(string $entityId);
+    public function setEntityId(string $entityId): self;
 }

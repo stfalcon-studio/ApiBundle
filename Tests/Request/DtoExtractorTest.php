@@ -32,8 +32,7 @@ final class DtoExtractorTest extends TestCase
     /** @var DtoAnnotationProcessor|MockObject */
     private $dtoAnnotationProcessor;
 
-    /** @var DtoExtractor */
-    private $dtoExtractor;
+    private DtoExtractor $dtoExtractor;
 
     protected function setUp(): void
     {

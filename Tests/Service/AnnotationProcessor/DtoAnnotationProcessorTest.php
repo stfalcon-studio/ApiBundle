@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Service\AnnotationProcessor;
 
-use StfalconStudio\ApiBundle\Annotation\DTO;
-use StfalconStudio\ApiBundle\Annotation\DtoAnnotationInterface;
-use StfalconStudio\ApiBundle\Service\AnnotationProcessor\DtoAnnotationProcessor;
 use Doctrine\Common\Annotations\Reader;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use StfalconStudio\ApiBundle\Annotation\DTO;
+use StfalconStudio\ApiBundle\Annotation\DtoAnnotationInterface;
+use StfalconStudio\ApiBundle\Service\AnnotationProcessor\DtoAnnotationProcessor;
 
 /**
  * DtoAnnotationProcessorTest.
@@ -27,8 +27,7 @@ final class DtoAnnotationProcessorTest extends TestCase
     /** @var Reader|MockObject */
     private $annotationReader;
 
-    /** @var DtoAnnotationProcessor */
-    private $dtoAnnotationProcessor;
+    private DtoAnnotationProcessor $dtoAnnotationProcessor;
 
     protected function setUp(): void
     {

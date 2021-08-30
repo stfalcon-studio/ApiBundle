@@ -23,8 +23,7 @@ class PasswordMeetSpecialRequirements extends Constraint
 {
     public const PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS = 'PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS';
 
-    /** @var string */
-    public $message = 'password_does_not_meet_special_requirements';
+    public string $message = 'password_does_not_meet_special_requirements';
 
     /** @var string[] */
     protected static $errorNames = [

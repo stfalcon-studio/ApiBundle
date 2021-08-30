@@ -35,6 +35,7 @@ class StfalconApiExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
 
+        $container->setParameter('stfalcon_api.api_host', $config['api_host']);
         $container->setParameter('stfalcon_api.json_schema_dir', $config['json_schema_dir']);
         $container->registerForAutoconfiguration(CustomAppExceptionResponseProcessorInterface::class)->addTag('stfalcon_api.exception_response_processor');
     }

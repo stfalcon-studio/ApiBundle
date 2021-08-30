@@ -19,8 +19,7 @@ use StfalconStudio\ApiBundle\Serializer\Serializer;
  */
 trait SerializerTrait
 {
-    /** @var Serializer */
-    protected $serializer;
+    protected Serializer $serializer;
 
     /**
      * @param Serializer $serializer

@@ -24,11 +24,8 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class DtoExtractor
 {
-    /** @var DtoAnnotationProcessor */
-    private $dtoAnnotationProcessor;
-
-    /** @var SerializerInterface */
-    private $serializer;
+    private DtoAnnotationProcessor $dtoAnnotationProcessor;
+    private SerializerInterface $serializer;
 
     /**
      * @param DtoAnnotationProcessor $dtoAnnotationProcessor
@@ -47,7 +44,7 @@ class DtoExtractor
      *
      * @return DtoInterface
      */
-    public function getDtoFromRequestForControllerClass(Request $request, string $controllerClassName, object $objectToPopulate = null): DtoInterface
+    public function getDtoFromRequestForControllerClass(Request $request, string $controllerClassName, ?object $objectToPopulate = null): DtoInterface
     {
         $dtoClassName = $this->dtoAnnotationProcessor->processAnnotationForClass($controllerClassName);
 
@@ -63,7 +60,7 @@ class DtoExtractor
      *
      * @return DtoInterface
      */
-    public function getDtoFromRequestForDtoClass(Request $request, string $dtoClassName, object $objectToPopulate = null): DtoInterface
+    public function getDtoFromRequestForDtoClass(Request $request, string $dtoClassName, ?object $objectToPopulate = null): DtoInterface
     {
         $context = [];
         if (null !== $objectToPopulate) {

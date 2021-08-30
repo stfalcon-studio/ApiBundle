@@ -19,4 +19,8 @@ use StfalconStudio\ApiBundle\Exception\AbstractCustomHttpAppException;
  */
 class DummyCustomHttpAppException extends AbstractCustomHttpAppException
 {
+    public function getErrorName(): string
+    {
+        return 'dummy';
+    }
 }
