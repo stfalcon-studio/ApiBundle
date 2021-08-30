@@ -44,7 +44,6 @@ class StfalconApiExtension extends Extension
 
         $container->setParameter('stfalcon_api.api_host', $config['api_host']);
         $container->setParameter('stfalcon_api.json_schema_dir', $config['json_schema_dir']);
-        $container->setParameter('stfalcon_api.redis_client_jwt_black_list', $redisClient);
         $container->registerForAutoconfiguration(CustomAppExceptionResponseProcessorInterface::class)->addTag('stfalcon_api.exception_response_processor');
     }
 }
