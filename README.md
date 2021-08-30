@@ -12,7 +12,7 @@
 
 ## Installation
 
-```composer req stfalcon-studio/api-bundle='0.7.0'```
+```composer req stfalcon-studio/api-bundle='0.8.0'```
 
 #### Check the `config/bundles.php` file
 
@@ -48,7 +48,8 @@ The default directory is `./src/Json/Schema/`. Or you can change it via bundle c
 
 ```yaml
 stfalcon_api:
-     json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
+    api_host: '%env(APP_API_HOST)%'
+    json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
 ```
 
 ## Contributing
