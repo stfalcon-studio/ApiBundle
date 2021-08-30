@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 /**
  * JsonDecoderListener.
  */
-class JsonDecoderListener implements EventSubscriberInterface
+final class JsonDecoderListener implements EventSubscriberInterface
 {
     public const HEADER_CONTENT_TYPE = 'Content-Type';
 
@@ -28,7 +28,7 @@ class JsonDecoderListener implements EventSubscriberInterface
      */
     public function __invoke(RequestEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 

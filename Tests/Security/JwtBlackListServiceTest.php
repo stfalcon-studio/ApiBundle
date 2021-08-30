@@ -50,10 +50,10 @@ final class JwtBlackListServiceTest extends TestCase
 
         $this->jwtBlackListService = new JwtBlackListService(
             $this->jwsProvider,
-            $this->redisClientJwtBlackList,
             $this->jwtTokenHelper,
             $this->jwtCacheHelper,
         );
+        $this->jwtBlackListService->setRedisClientJwtBlackList($this->redisClientJwtBlackList);
     }
 
     protected function tearDown(): void

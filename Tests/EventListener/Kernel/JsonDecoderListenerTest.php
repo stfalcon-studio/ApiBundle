@@ -71,7 +71,7 @@ final class JsonDecoderListenerTest extends TestCase
     {
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(false)
         ;
 
@@ -91,7 +91,7 @@ final class JsonDecoderListenerTest extends TestCase
 
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(true)
         ;
 
@@ -119,7 +119,7 @@ final class JsonDecoderListenerTest extends TestCase
 
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(true)
         ;
 
@@ -147,7 +147,7 @@ final class JsonDecoderListenerTest extends TestCase
 
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(true)
         ;
 
@@ -182,7 +182,7 @@ final class JsonDecoderListenerTest extends TestCase
 
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(true)
         ;
 
@@ -212,7 +212,7 @@ final class JsonDecoderListenerTest extends TestCase
 
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(true)
         ;
 
@@ -240,7 +240,7 @@ final class JsonDecoderListenerTest extends TestCase
 
         $this->requestEvent
             ->expects(self::once())
-            ->method('isMasterRequest')
+            ->method('isMainRequest')
             ->willReturn(true)
         ;
 
