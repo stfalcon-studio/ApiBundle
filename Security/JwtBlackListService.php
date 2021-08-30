@@ -31,16 +31,24 @@ class JwtBlackListService
 
     /**
      * @param JWSProviderInterface $jwsProvider
-     * @param Client               $redisClientJwtBlackList
      * @param JwtTokenHelper       $jwtTokenHelper
      * @param JwtCacheHelper       $jwtCacheHelper
      */
-    public function __construct(JWSProviderInterface $jwsProvider, Client $redisClientJwtBlackList, JwtTokenHelper $jwtTokenHelper, JwtCacheHelper $jwtCacheHelper)
+    public function __construct(JWSProviderInterface $jwsProvider, JwtTokenHelper $jwtTokenHelper, JwtCacheHelper $jwtCacheHelper)
     {
         $this->jwsProvider = $jwsProvider;
-        $this->redisClientJwtBlackList = $redisClientJwtBlackList;
         $this->jwtTokenHelper = $jwtTokenHelper;
         $this->jwtCacheHelper = $jwtCacheHelper;
+    }
+
+    /**
+     * @param Client $redisClientJwtBlackList
+     *
+     * @required
+     */
+    public function setRedisClientJwtBlackList(Client $redisClientJwtBlackList): void
+    {
+        $this->redisClientJwtBlackList = $redisClientJwtBlackList;
     }
 
     /**
