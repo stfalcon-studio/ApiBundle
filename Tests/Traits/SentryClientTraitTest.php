@@ -14,18 +14,18 @@ namespace StfalconStudio\ApiBundle\Tests\Traits;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Sentry\FlushableClientInterface;
+use Sentry\ClientInterface;
 
 final class SentryClientTraitTest extends TestCase
 {
-    /** @var FlushableClientInterface|MockObject */
+    /** @var ClientInterface|MockObject */
     private $sentryClient;
 
     private DummyClass $dummyClass;
 
     protected function setUp(): void
     {
-        $this->sentryClient = $this->createMock(FlushableClientInterface::class);
+        $this->sentryClient = $this->createMock(ClientInterface::class);
         $this->dummyClass = new DummyClass();
     }
 

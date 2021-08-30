@@ -12,11 +12,10 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Traits;
 
-use Sentry\FlushableClientInterface;
+use Sentry\ClientInterface;
 use StfalconStudio\ApiBundle\Request\DtoExtractor;
 use StfalconStudio\ApiBundle\Serializer\Serializer;
 use StfalconStudio\ApiBundle\Traits;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -40,7 +39,7 @@ final class DummyClass
         return $this->serializer;
     }
 
-    public function getSentryClient(): FlushableClientInterface
+    public function getSentryClient(): ClientInterface
     {
         return $this->sentryClient;
     }

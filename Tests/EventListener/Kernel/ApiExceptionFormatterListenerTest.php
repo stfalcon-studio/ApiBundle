@@ -15,7 +15,7 @@ namespace StfalconStudio\ApiBundle\Tests\EventListener\Kernel;
 use Doctrine\ORM\OptimisticLockException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Sentry\FlushableClientInterface;
+use Sentry\ClientInterface;
 use StfalconStudio\ApiBundle\EventListener\Kernel\ApiExceptionFormatterListener;
 use StfalconStudio\ApiBundle\Service\Exception\ExceptionResponseFactory;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessor;
@@ -39,7 +39,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
     /** @var SerializerInterface|MockObject */
     private $serializer;
 
-    /** @var FlushableClientInterface|MockObject */
+    /** @var ClientInterface|MockObject */
     private $sentryClient;
 
     /** @var TranslatorInterface|MockObject */
@@ -65,7 +65,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
     protected function setUp(): void
     {
         $this->serializer = $this->createMock(SerializerInterface::class);
-        $this->sentryClient = $this->createMock(FlushableClientInterface::class);
+        $this->sentryClient = $this->createMock(ClientInterface::class);
         $this->translator = $this->createMock(Translator::class);
         $this->request = $this->createMock(Request::class);
         $this->kernel = $this->createMock(HttpKernelInterface::class);
