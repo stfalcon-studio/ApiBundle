@@ -112,26 +112,23 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                     $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
                 }
 
+                $message = $e->getMessage();
+
                 switch ($statusCode) {
                     case Response::HTTP_BAD_REQUEST:
                         $errorName = BaseErrorNames::INVALID_REQUEST;
-                        $message = 'Invalid Request.';
                         break;
                     case Response::HTTP_FORBIDDEN:
                         $errorName = BaseErrorNames::ACCESS_DENIED;
-                        $message = 'access_denied_exception_message';
                         break;
                     case Response::HTTP_INTERNAL_SERVER_ERROR:
                         $errorName = BaseErrorNames::INTERNAL_SERVER_ERROR;
 
                         if (self::PROD_ENV === $this->environment) {
                             $message = 'internal_server_error_error_message';
-                        } else {
-                            $message = $e->getMessage();
                         }
                         break;
                     default:
-                        $message = $e->getMessage();
                         $errorName = 'Error code is not yet specified for this case. Please contact to developer about this case.';
                 }
         }

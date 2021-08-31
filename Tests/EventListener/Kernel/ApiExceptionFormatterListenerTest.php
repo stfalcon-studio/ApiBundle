@@ -149,7 +149,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 
     public function testOnKernelExceptionOnBadRequest(): void
     {
-        $httpException = new HttpException(Response::HTTP_BAD_REQUEST);
+        $httpException = new HttpException(Response::HTTP_BAD_REQUEST, 'bad_request');
 
         $exceptionEvent = new ExceptionEvent(
             $this->kernel,
@@ -167,7 +167,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with('Invalid Request.')
+            ->with('bad_request')
             ->willReturn('Invalid Request.')
         ;
 
