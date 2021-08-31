@@ -147,7 +147,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertNull($exceptionEvent->getResponse());
     }
 
-    public function testOnKernelExceptionWhenHttpException(): void
+    public function testOnKernelExceptionOnBadRequest(): void
     {
         $httpException = new HttpException(Response::HTTP_BAD_REQUEST);
 
@@ -164,18 +164,17 @@ final class ApiExceptionFormatterListenerTest extends TestCase
             ->willReturn(self::API_HOST)
         ;
 
-
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with('internal_server_error_error_message')
-            ->willReturn('test')
+            ->with('Invalid Request.')
+            ->willReturn('Invalid Request.')
         ;
 
         $this->serializer
             ->expects(self::once())
             ->method('serialize')
-            ->willReturn('{"error":"internal_server_error", "error_description":"test"}')
+            ->willReturn('{"error":"invalid_request", "error_description":"test"}')
         ;
 
         $this->exceptionResponseProcessor
@@ -183,7 +182,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
             ->method('processResponseForException')
         ;
 
-        $json = '{"error":"internal_server_error", "error_description":"test"}';
+        $json = '{"error":"invalid_request", "error_description":"test"}';
         $this->exceptionResponseFactory
             ->expects(self::once())
             ->method('createJsonResponse')
