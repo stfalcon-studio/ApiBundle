@@ -12,7 +12,7 @@
 
 ## Installation
 
-```composer req stfalcon-studio/api-bundle='0.9'```
+```composer req stfalcon-studio/api-bundle='0.10'```
 
 #### Check the `config/bundles.php` file
 
