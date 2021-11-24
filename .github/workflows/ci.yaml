@@ -15,7 +15,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: 'Validate composer.json'
-              run: composer validate --no-check-all --strict --no-check-lock
+              run: composer validate --no-check-all --no-check-lock
 
     composer-install:
         needs: composer-validate

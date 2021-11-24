@@ -91,9 +91,9 @@ class JsonSchemaValidator
     /**
      * @param Request $request
      *
-     * @return mixed
-     *
      * @throws MalformedJsonException
+     *
+     * @return mixed
      */
     private function decodeJsonFromRequest(Request $request)
     {
