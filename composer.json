@@ -57,6 +57,7 @@
         "symfony/workflow": "^5.3",
         "twig/twig": "^v3.3"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "StfalconStudio\\ApiBundle\\": ""
