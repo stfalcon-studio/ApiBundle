@@ -45,7 +45,7 @@
         "symfony/filesystem": "^5.3",
         "symfony/http-client": "^5.3",
         "symfony/http-kernel": "^5.3",
-        "symfony/message": "^5.3",
+        "symfony/messenger": "^5.3",
         "symfony/routing": "^5.3",
         "symfony/security-bundle": "^5.3",
         "symfony/security-core": "^5.3",
