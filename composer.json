@@ -10,8 +10,8 @@
     },
     "require": {
         "php": ">=7.4",
-        "doctrine/common": "^3.1.2",
-        "doctrine/orm": "^2.9.5",
+        "doctrine/common": "^3.2.0",
+        "doctrine/orm": "^2.10.2",
         "egulias/email-validator": "^2.1.24",
         "gesdinet/jwt-refresh-token-bundle": "^v0.12.0",
         "ircmaxell/password-compat": "^v1.0.4",
@@ -31,6 +31,7 @@
         "symfony/yaml": "^5.3"
     },
     "require-dev": {
+        "doctrine/annotations": "^1.13.2",
         "escapestudios/symfony2-coding-standard": "^3.12",
         "phpstan/phpstan": "^0.12",
         "phpstan/phpstan-deprecation-rules": "^0.12",
