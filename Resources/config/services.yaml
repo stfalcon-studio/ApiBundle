@@ -12,6 +12,11 @@ services:
     StfalconStudio\ApiBundle\:
         resource: '../../{EventListener,Request,Security,Serializer,Service,Util,Validator}/'
 
+    StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener:
+        class: StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+
     Predis\Client:
         class: Predis\Client
 
