@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Controller;
 
-use App\Controller\API\Core\AbstractDtoBasedAction;
+use StfalconStudio\ApiBundle\Controller\AbstractDtoBasedAction;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraint;
