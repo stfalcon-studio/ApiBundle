@@ -9,7 +9,7 @@
         "issues": "https://github.com/stfalcon-studio/ApiBundle/issues"
     },
     "require": {
-        "php": "^7.4",
+        "php": ">=7.4",
         "doctrine/common": "^3.2.0",
         "doctrine/orm": "^2.10.2",
         "egulias/email-validator": "^2.1.24",
