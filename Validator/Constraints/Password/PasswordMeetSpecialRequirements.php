@@ -25,7 +25,7 @@ class PasswordMeetSpecialRequirements extends Constraint
 
     public string $message = 'password_does_not_meet_special_requirements';
 
-    /** @var string[] */
+    /** @var array<string, string> */
     protected static $errorNames = [
         self::PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS => self::PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS,
     ];
