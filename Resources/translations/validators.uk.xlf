@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="uk" datatype="plaintext" original="messages.uk.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>Пароль не відповідає вимогам. Він повинен містити мінімум одну малу літеру, мінімум одну велику літеру і мінімум одну цифру.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="ar" datatype="plaintext" original="messages.ar.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>كلمة المرور ضعيفة. يجب أن تحتوي على حرف واحد صغير وآخر كبير بالإضافة إلى رقم واحد على الأقل.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

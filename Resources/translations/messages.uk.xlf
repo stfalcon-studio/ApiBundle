@@ -19,38 +19,34 @@
                 <target>Невірні облікові дані. Спробуйте зайти в акаунт ще раз.</target>
             </trans-unit>
             <trans-unit id="5">
-                <source>password_does_not_meet_special_requirements</source>
-                <target>Пароль не відповідає вимогам. Він повинен містити мінімум одну малу літеру, мінімум одну велику літеру і мінімум одну цифру.</target>
-            </trans-unit>
-            <trans-unit id="6">
                 <source>invalid_refresh_token_exception_message</source>
                 <target>Токен невалідний.</target>
             </trans-unit>
-            <trans-unit id="7">
+            <trans-unit id="6">
                 <source>optimistic_lock_exception_message</source>
                 <target>Ресурс був модифікований іншим користувачем. Ваші зміни не прийняті.\nБудь ласка, загрузіть актуальну версію даних і внесіть зміни повторно.</target>
             </trans-unit>
-            <trans-unit id="8">
+            <trans-unit id="7">
                 <source>access_denied_exception_message</source>
                 <target>У доступі відмовлено.</target>
             </trans-unit>
-            <trans-unit id="9">
+            <trans-unit id="8">
                 <source>method_not_allowed_exception_message</source>
                 <target>Не дозволений HTTP метод.</target>
             </trans-unit>
-            <trans-unit id="10">
+            <trans-unit id="9">
                 <source>resource_not_found_exception_message</source>
                 <target>Ресурс не знайдено.</target>
             </trans-unit>
-            <trans-unit id="11">
+            <trans-unit id="10">
                 <source>invalid_json_schema_exception_message</source>
                 <target>Ваш запит не відповідає опису JSON схеми для цього ресурсу.</target>
             </trans-unit>
-            <trans-unit id="12">
+            <trans-unit id="11">
                 <source>invalid_entity_exception_message</source>
                 <target>Невалідні дані.</target>
             </trans-unit>
-            <trans-unit id="13">
+            <trans-unit id="12">
                 <source>internal_server_error_error_message</source>
                 <target>Внутрішня помилка сервера.</target>
             </trans-unit>
