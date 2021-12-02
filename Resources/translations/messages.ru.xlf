@@ -19,38 +19,34 @@
                 <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
             </trans-unit>
             <trans-unit id="5">
-                <source>password_does_not_meet_special_requirements</source>
-                <target>Пароль не отвечает требованиям. Он должен иметь минимум одну строчную букву, минимум одну прописную букву и минимум одну цифру.</target>
-            </trans-unit>
-            <trans-unit id="6">
                 <source>invalid_refresh_token_exception_message</source>
                 <target>Токен невалидный.</target>
             </trans-unit>
-            <trans-unit id="7">
+            <trans-unit id="6">
                 <source>optimistic_lock_exception_message</source>
                 <target>Рерус был модифицирован другим пользователем. Ваши изменения не приняты.\nПожалуйста, загрузите актуальную версию данных и внесите изменения повторно.</target>
             </trans-unit>
-            <trans-unit id="8">
+            <trans-unit id="7">
                 <source>access_denied_exception_message</source>
                 <target>В доступе отказано.</target>
             </trans-unit>
-            <trans-unit id="9">
+            <trans-unit id="8">
                 <source>method_not_allowed_exception_message</source>
                 <target>Не разрешенный HTTP метод.</target>
             </trans-unit>
-            <trans-unit id="10">
+            <trans-unit id="9">
                 <source>resource_not_found_exception_message</source>
                 <target>Ресурс не найден.</target>
             </trans-unit>
-            <trans-unit id="11">
+            <trans-unit id="10">
                 <source>invalid_json_schema_exception_message</source>
                 <target>Ваш запрос не отвечает описанию JSON схемы для этого ресурса.</target>
             </trans-unit>
-            <trans-unit id="12">
+            <trans-unit id="11">
                 <source>invalid_entity_exception_message</source>
                 <target>Невалидные данные.</target>
             </trans-unit>
-            <trans-unit id="13">
+            <trans-unit id="12">
                 <source>internal_server_error_error_message</source>
                 <target>Внутренняя ошибка сервера.</target>
             </trans-unit>

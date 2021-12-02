@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="messages.en.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>password_does_not_meet_special_requirements</source>
+                <target>Le mot de passe ne répond pas aux exigences. Il doit contenir une lettre minuscule, une lettre majuscule et un chiffre.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

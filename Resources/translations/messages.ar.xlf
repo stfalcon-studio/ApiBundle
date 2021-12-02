@@ -19,38 +19,34 @@
                 <target>البيانات المدخلة غير صحيحة. الرجاء محاولة تسجيل الدخول مرة اخرى.</target>
             </trans-unit>
             <trans-unit id="5">
-                <source>password_does_not_meet_special_requirements</source>
-                <target>كلمة المرور ضعيفة. يجب أن تحتوي على حرف واحد صغير وآخر كبير بالإضافة إلى رقم واحد على الأقل.</target>
-            </trans-unit>
-            <trans-unit id="6">
                 <source>invalid_refresh_token_exception_message</source>
                 <target>البيانات المدخلة غير صحيحة. الرجاء محاولة تسجيل الدخول مرة اخرى.</target>
             </trans-unit>
-            <trans-unit id="7">
+            <trans-unit id="6">
                 <source>optimistic_lock_exception_message</source>
                 <target>تم تحديث البيانات من قبل، الرجاء التحديث اذا كان لديك بيانات جديدة للتحديث ومن ثم الحفظ.</target>
             </trans-unit>
-            <trans-unit id="8">
+            <trans-unit id="7">
                 <source>access_denied_exception_message</source>
                 <target>تم رفض الوصول.</target>
             </trans-unit>
-            <trans-unit id="9">
+            <trans-unit id="8">
                 <source>method_not_allowed_exception_message</source>
                 <target>Not allowed HTTP method.</target>
             </trans-unit>
-            <trans-unit id="10">
+            <trans-unit id="9">
                 <source>resource_not_found_exception_message</source>
                 <target>لم يتم العثور على المصدر.</target>
             </trans-unit>
-            <trans-unit id="11">
+            <trans-unit id="10">
                 <source>invalid_json_schema_exception_message</source>
                 <target>Your request does not match specified JSON Schema.</target>
             </trans-unit>
-            <trans-unit id="12">
+            <trans-unit id="11">
                 <source>invalid_entity_exception_message</source>
                 <target>.لمدخلات لاتتوافق مع الشروط.</target>
             </trans-unit>
-            <trans-unit id="13">
+            <trans-unit id="12">
                 <source>internal_server_error_error_message</source>
                 <target>خطأ في الخادم الداخلي.</target>
             </trans-unit>
