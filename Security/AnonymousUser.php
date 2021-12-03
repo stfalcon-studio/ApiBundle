@@ -26,7 +26,7 @@ class AnonymousUser implements UserInterface
      */
     public function getRoles(): array
     {
-        return [];
+        return [Role::ANONYMOUS];
     }
 
     /**

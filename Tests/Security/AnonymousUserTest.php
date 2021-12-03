@@ -14,6 +14,7 @@ namespace StfalconStudio\ApiBundle\Tests\Security;
 
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Security\AnonymousUser;
+use StfalconStudio\ApiBundle\Security\Role;
 
 final class AnonymousUserTest extends TestCase
 {
@@ -31,7 +32,7 @@ final class AnonymousUserTest extends TestCase
 
     public function testConstructor(): void
     {
-        self::assertSame([], $this->anonymousUser->getRoles());
+        self::assertSame([Role::ANONYMOUS], $this->anonymousUser->getRoles());
         self::assertNull($this->anonymousUser->getPassword());
         self::assertNull($this->anonymousUser->getSalt());
         self::assertSame('anonymous', $this->anonymousUser->getUserIdentifier());
