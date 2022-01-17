@@ -18,7 +18,7 @@
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.11",
         "lexik/jwt-authentication-bundle": "^v2.14.4",
-        "predis/predis": "^v1.1.7",
+        "predis/predis": "^v1.1.10",
         "sentry/sentry-symfony": "^4.2.0",
         "symfony/config": "^5.4",
         "symfony/dependency-injection": "^5.4",
