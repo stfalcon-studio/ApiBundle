@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Entity\JWT;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gesdinet\JWTRefreshTokenBundle\Entity\AbstractRefreshToken;
+use Gesdinet\JWTRefreshTokenBundle\Entity\RefreshToken as BaseRefreshToken;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,15 +30,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  */
-class RefreshToken extends AbstractRefreshToken
+class RefreshToken extends BaseRefreshToken
 {
-    /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected ?int $id = null;
-
     /**
      * @ORM\Column(type="datetimetz_immutable")
      *
@@ -52,14 +45,6 @@ class RefreshToken extends AbstractRefreshToken
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable('now');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**
