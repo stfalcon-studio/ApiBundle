@@ -25,11 +25,11 @@ trait CredentialsTrait
     protected ?\DateTime $credentialsLastChangedAt = null;
 
     /**
-     * @param \DateTime $credentialsLastChangedAt
+     * @param \DateTime|null $credentialsLastChangedAt
      *
      * @return self
      */
-    public function setCredentialsLastChangedAt(\DateTime $credentialsLastChangedAt): self
+    public function setCredentialsLastChangedAt(?\DateTime $credentialsLastChangedAt): self
     {
         $this->credentialsLastChangedAt = $credentialsLastChangedAt;
 
