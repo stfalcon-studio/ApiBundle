@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Entity\JWT;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gesdinet\JWTRefreshTokenBundle\Entity\RefreshToken as BaseRefreshToken;
+use Gesdinet\JWTRefreshTokenBundle\Model\AbstractRefreshToken;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,8 +30,36 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  */
-class RefreshToken extends BaseRefreshToken
+class RefreshToken extends AbstractRefreshToken
 {
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="refresh_token", type="string", unique=true, length=128)
+     */
+    protected $refreshToken;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $username;
+
+    /**
+     * @var \DateTimeInterface|null
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $valid;
+
     /**
      * @ORM\Column(type="datetimetz_immutable")
      *
