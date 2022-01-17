@@ -39,7 +39,7 @@ final class JwtRefreshSubscriber implements EventSubscriberInterface
      */
     public function processRefreshToken(RefreshEvent $event): void
     {
-        $user = $event->getPreAuthenticatedToken()->getUser();
+        $user = $event->getToken()->getUser();
 
         if ($user instanceof CredentialsInterface) {
             $refreshToken = $event->getRefreshToken();
