@@ -27,7 +27,7 @@ final class JwtRefreshSubscriberTest extends TestCase
     private $refreshEvent;
 
     /** @var PostAuthenticationGuardToken|MockObject */
-    private $preAuthenticatedToken;
+    private $token;
 
     /** @var RefreshToken|MockObject */
     private $refreshToken;
@@ -35,14 +35,13 @@ final class JwtRefreshSubscriberTest extends TestCase
     /** @var CredentialsInterface|MockObject */
     private $user;
 
-    /** @var JwtRefreshSubscriber */
-    private $subscriber;
+    private JwtRefreshSubscriber $subscriber;
 
     protected function setUp(): void
     {
         $this->refreshEvent = $this->createMock(RefreshEvent::class);
         $this->user = $this->createMock(CredentialsInterface::class);
-        $this->preAuthenticatedToken = $this->createMock(PostAuthenticationGuardToken::class);
+        $this->token = $this->createMock(PostAuthenticationGuardToken::class);
         $this->refreshToken = $this->createMock(RefreshToken::class);
         $this->subscriber = new JwtRefreshSubscriber();
     }
@@ -52,7 +51,7 @@ final class JwtRefreshSubscriberTest extends TestCase
         unset(
             $this->refreshEvent,
             $this->user,
-            $this->preAuthenticatedToken,
+            $this->token,
             $this->refreshToken,
             $this->subscriber,
         );
@@ -76,8 +75,8 @@ final class JwtRefreshSubscriberTest extends TestCase
     {
         $this->refreshEvent
             ->expects(self::once())
-            ->method('getPreAuthenticatedToken')
-            ->willReturn($this->preAuthenticatedToken)
+            ->method('getToken')
+            ->willReturn($this->token)
         ;
         $this->refreshEvent
             ->expects(self::once())
@@ -91,7 +90,7 @@ final class JwtRefreshSubscriberTest extends TestCase
             ->willReturn(new \DateTime('2030-01-01 00:00:01'))
         ;
 
-        $this->preAuthenticatedToken
+        $this->token
             ->expects(self::once())
             ->method('getUser')
             ->willReturn($this->user)
@@ -112,8 +111,8 @@ final class JwtRefreshSubscriberTest extends TestCase
     {
         $this->refreshEvent
             ->expects(self::once())
-            ->method('getPreAuthenticatedToken')
-            ->willReturn($this->preAuthenticatedToken)
+            ->method('getToken')
+            ->willReturn($this->token)
         ;
         $this->refreshEvent
             ->expects(self::once())
@@ -127,7 +126,7 @@ final class JwtRefreshSubscriberTest extends TestCase
             ->willReturn(new \DateTime('2030-01-01 00:00:01'))
         ;
 
-        $this->preAuthenticatedToken
+        $this->token
             ->expects(self::once())
             ->method('getUser')
             ->willReturn($this->user)
