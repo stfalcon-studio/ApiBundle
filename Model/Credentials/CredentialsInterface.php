@@ -18,11 +18,11 @@ namespace StfalconStudio\ApiBundle\Model\Credentials;
 interface CredentialsInterface
 {
     /**
-     * @param \DateTime $credentialsLastChangedAt
+     * @param \DateTime|null $credentialsLastChangedAt
      *
      * @return self
      */
-    public function setCredentialsLastChangedAt(\DateTime $credentialsLastChangedAt);
+    public function setCredentialsLastChangedAt(?\DateTime $credentialsLastChangedAt);
 
     /**
      * @return \DateTime|null
