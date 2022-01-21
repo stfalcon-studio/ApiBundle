@@ -23,6 +23,7 @@ trait TimestampableTrait
     /**
      * @ORM\Column(type="datetimetz_immutable")
      */
+    #[ORM\Column(type: 'datetimetz_immutable')]
     protected \DateTimeImmutable $createdAt;
 
     /**
@@ -30,6 +31,7 @@ trait TimestampableTrait
      *
      * @Gedmo\Timestampable(on="update")
      */
+    #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $updatedAt;
 
     /**
