@@ -42,7 +42,7 @@ class DtoAttributeProcessor
         if (\count($attributes) > 1) {
             throw new RuntimeException(\sprintf('Detected more than one DTO attribute for class %s. Only one DTO attribute allowed per class.', $className));
         }
-        if (\count($attributes) !== 1) {
+        if (1 !== \count($attributes)) {
             throw new RuntimeException(\sprintf('Missing DTO attribute for class %s.', $className));
         }
 

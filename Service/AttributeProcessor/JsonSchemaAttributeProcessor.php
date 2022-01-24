@@ -76,7 +76,7 @@ class JsonSchemaAttributeProcessor
         if (\count($attributes) > 1) {
             throw new RuntimeException(\sprintf('Detected more than one DTO attribute for class %s. Only one DTO attribute allowed per class', $dtoClassName));
         }
-        if (\count($attributes) !== 1) {
+        if (1 !== \count($attributes)) {
             throw new RuntimeException(\sprintf('Missing Json Schema annotation for class %s', $dtoClassName));
         }
 

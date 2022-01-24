@@ -49,7 +49,7 @@ class DTO
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getClass(): string
     {
