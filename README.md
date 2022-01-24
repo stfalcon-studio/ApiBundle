@@ -37,9 +37,7 @@ return [
 doctrine:
     orm:
         mappings:
-            StfalconApiBundle:
-                is_bundle: true
-                type: annotation
+            StfalconApiBundle: ~
 ```
 
 #### Setup a directory for JSON schemas
