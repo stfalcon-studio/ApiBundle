@@ -20,18 +20,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 trait TimestampableTrait
 {
-    /**
-     * @ORM\Column(type="datetimetz_immutable")
-     */
     #[ORM\Column(type: 'datetimetz_immutable')]
     protected \DateTimeImmutable $createdAt;
 
-    /**
-     * @ORM\Column(type="datetimetz")
-     *
-     * @Gedmo\Timestampable(on="update")
-     */
     #[ORM\Column(type: 'datetimetz')]
+    #[Gedmo\Timestampable(on: 'update')]
     protected \DateTime $updatedAt;
 
     /**

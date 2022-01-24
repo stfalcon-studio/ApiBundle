@@ -19,9 +19,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait CredentialsTrait
 {
-    /**
-     * @ORM\Column(type="datetimetz", nullable=true)
-     */
     #[ORM\Column(type: 'datetimetz', nullable: true)]
     protected ?\DateTime $credentialsLastChangedAt = null;
 

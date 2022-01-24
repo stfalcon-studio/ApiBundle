@@ -10,10 +10,10 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\Annotation;
+namespace StfalconStudio\ApiBundle\Tests\Attribute;
 
 use PHPUnit\Framework\TestCase;
-use StfalconStudio\ApiBundle\Annotation\DTO;
+use StfalconStudio\ApiBundle\Attribute\DTO;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 
 /**
@@ -21,20 +21,12 @@ use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
  */
 final class DTOTest extends TestCase
 {
-    public function testMissingValue(): void
-    {
-        $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('DTO class must be set.');
-
-        new DTO([]);
-    }
-
     public function testNotExistingClass(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Class SomeDummyClass does not exist.');
 
-        new DTO(['value' => 'SomeDummyClass']);
+        new DTO(class: 'SomeDummyClass');
     }
 
     public function testClassIsNotChildOfDtoInterface(): void
@@ -42,28 +34,20 @@ final class DTOTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Class stdClass does not implement StfalconStudio\ApiBundle\DTO\DtoInterface interface.');
 
-        new DTO(['value' => \stdClass::class]);
+        new DTO(class: \stdClass::class);
     }
 
     public function testClassnameSuffix(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Class name StfalconStudio\ApiBundle\Tests\Annotation\DummyDtoClass must be suffixed with "Dto".');
+        $this->expectExceptionMessage('Class name StfalconStudio\ApiBundle\Tests\Attribute\DummyDtoClass must be suffixed with "Dto".');
 
-        new DTO(['value' => DummyDtoClass::class]);
-    }
-
-    public function testNotStringValue(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value should be string');
-
-        new DTO(['value' => 123]);
+        new DTO(class: DummyDtoClass::class);
     }
 
     public function testSuccessfulConstructor(): void
     {
-        $annotation = new DTO(['value' => DummyDto::class]);
+        $annotation = new DTO(class: DummyDto::class);
         self::assertSame(DummyDto::class, $annotation->getClass());
     }
 }

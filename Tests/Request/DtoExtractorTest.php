@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use StfalconStudio\ApiBundle\Request\DtoExtractor;
-use StfalconStudio\ApiBundle\Service\AnnotationProcessor\DtoAnnotationProcessor;
+use StfalconStudio\ApiBundle\Service\AttributeProcessor\DtoAttributeProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -29,24 +29,24 @@ final class DtoExtractorTest extends TestCase
     /** @var SerializerInterface|MockObject */
     private $serializer;
 
-    /** @var DtoAnnotationProcessor|MockObject */
-    private $dtoAnnotationProcessor;
+    /** @var DtoAttributeProcessor|MockObject */
+    private $dtoAttributeProcessor;
 
     private DtoExtractor $dtoExtractor;
 
     protected function setUp(): void
     {
         $this->serializer = $this->createMock(SerializerInterface::class);
-        $this->dtoAnnotationProcessor = $this->createMock(DtoAnnotationProcessor::class);
+        $this->dtoAttributeProcessor = $this->createMock(DtoAttributeProcessor::class);
 
-        $this->dtoExtractor = new DtoExtractor($this->dtoAnnotationProcessor, $this->serializer);
+        $this->dtoExtractor = new DtoExtractor($this->dtoAttributeProcessor, $this->serializer);
     }
 
     protected function tearDown(): void
     {
         unset(
             $this->serializer,
-            $this->dtoAnnotationProcessor,
+            $this->dtoAttributeProcessor,
             $this->dtoExtractor,
         );
     }
@@ -62,9 +62,9 @@ final class DtoExtractorTest extends TestCase
         $className = 'TestClassName';
         $dtoClassName = 'DtoTestClassName';
 
-        $this->dtoAnnotationProcessor
+        $this->dtoAttributeProcessor
             ->expects(self::once())
-            ->method('processAnnotationForClass')
+            ->method('processAttributeForClass')
             ->with($className)
             ->willReturn($dtoClassName)
         ;
@@ -103,9 +103,9 @@ final class DtoExtractorTest extends TestCase
         $className = 'TestClassName';
         $dtoClassName = 'DtoTestClassName';
 
-        $this->dtoAnnotationProcessor
+        $this->dtoAttributeProcessor
             ->expects(self::once())
-            ->method('processAnnotationForClass')
+            ->method('processAttributeForClass')
             ->with($className)
             ->willReturn($dtoClassName)
         ;

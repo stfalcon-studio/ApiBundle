@@ -10,39 +10,36 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Service\AnnotationProcessor;
+namespace StfalconStudio\ApiBundle\Service\AttributeProcessor;
 
-use Doctrine\Common\Annotations\Reader;
-use StfalconStudio\ApiBundle\Annotation\JsonSchema;
-use StfalconStudio\ApiBundle\Annotation\JsonSchemaAnnotationInterface;
+use StfalconStudio\ApiBundle\Attribute\JsonSchema;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use StfalconStudio\ApiBundle\Exception\RuntimeException;
 use StfalconStudio\ApiBundle\Util\File\FileReader;
 
 /**
- * JsonSchemaAnnotationProcessor.
+ * JsonSchemaAttributeProcessor.
  */
-class JsonSchemaAnnotationProcessor
+class JsonSchemaAttributeProcessor
 {
-    private DtoAnnotationProcessor $dtoAnnotationProcessor;
-    private Reader $annotationReader;
+    private const JSON_FILE_EXTENSION = '.json';
+
+    private DtoAttributeProcessor $dtoAttributeProcessor;
     private FileReader $fileReader;
     private string $jsonSchemaDir;
 
-    /** @var array<string> */
+    /** @var string[] */
     private array $cachedClasses = [];
 
     /**
-     * @param DtoAnnotationProcessor $dtoAnnotationProcessor
-     * @param FileReader             $fileReader
-     * @param Reader                 $annotationReader
-     * @param string                 $jsonSchemaDir
+     * @param DtoAttributeProcessor $dtoAttributeProcessor
+     * @param FileReader            $fileReader
+     * @param string                $jsonSchemaDir
      */
-    public function __construct(DtoAnnotationProcessor $dtoAnnotationProcessor, FileReader $fileReader, Reader $annotationReader, string $jsonSchemaDir)
+    public function __construct(DtoAttributeProcessor $dtoAttributeProcessor, FileReader $fileReader, string $jsonSchemaDir)
     {
-        $this->dtoAnnotationProcessor = $dtoAnnotationProcessor;
+        $this->dtoAttributeProcessor = $dtoAttributeProcessor;
         $this->fileReader = $fileReader;
-        $this->annotationReader = $annotationReader;
         $this->jsonSchemaDir = $jsonSchemaDir;
     }
 
@@ -53,7 +50,7 @@ class JsonSchemaAnnotationProcessor
      */
     public function processAnnotationForControllerClass(string $controllerClassName)
     {
-        $dtoClass = $this->dtoAnnotationProcessor->processAnnotationForClass($controllerClassName);
+        $dtoClass = $this->dtoAttributeProcessor->processAttributeForClass($controllerClassName);
 
         return $this->processAnnotationForDtoClass($dtoClass);
     }
@@ -73,9 +70,13 @@ class JsonSchemaAnnotationProcessor
             return $this->cachedClasses[$dtoClassName];
         }
 
-        $classAnnotation = $this->annotationReader->getClassAnnotation(new \ReflectionClass($dtoClassName), JsonSchema::class);
+        $reflector = new \ReflectionClass($dtoClassName);
+        $attributes = $reflector->getAttributes(JsonSchema::class, \ReflectionAttribute::IS_INSTANCEOF);
 
-        if (!$classAnnotation instanceof JsonSchemaAnnotationInterface) {
+        if (\count($attributes) > 1) {
+            throw new RuntimeException(\sprintf('Detected more than one DTO attribute for class %s. Only one DTO attribute allowed per class', $dtoClassName));
+        }
+        if (1 !== \count($attributes)) {
             throw new RuntimeException(\sprintf('Missing Json Schema annotation for class %s', $dtoClassName));
         }
 
@@ -84,7 +85,9 @@ class JsonSchemaAnnotationProcessor
             throw new RuntimeException(\sprintf('Directory for json Schema files "%s" is not found.', $this->jsonSchemaDir));
         }
 
-        $path = $jsonSchemaDirPath.\DIRECTORY_SEPARATOR.$classAnnotation->getJsonSchemaFilename();
+        $jsonSchemaFilename = $this->getJsonSchemaFilename($attributes[0]->getArguments()['jsonSchemaName']);
+
+        $path = $jsonSchemaDirPath.\DIRECTORY_SEPARATOR.$jsonSchemaFilename;
         $realPathToJsonSchemaFile = \realpath($path);
         if (false === $realPathToJsonSchemaFile) {
             throw new RuntimeException(\sprintf('Json Schema file "%s" is not found.', $path));
@@ -100,5 +103,21 @@ class JsonSchemaAnnotationProcessor
         $this->cachedClasses[$dtoClassName] = $decodedSchema;
 
         return $decodedSchema;
+    }
+
+    /**
+     * @param string $jsonSchemaName
+     *
+     * @return string
+     */
+    private function getJsonSchemaFilename(string $jsonSchemaName): string
+    {
+        $result = $jsonSchemaName;
+
+        if (self::JSON_FILE_EXTENSION !== \mb_substr($result, -5)) {
+            $result .= self::JSON_FILE_EXTENSION;
+        }
+
+        return $result;
     }
 }

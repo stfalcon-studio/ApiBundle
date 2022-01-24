@@ -10,44 +10,29 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Annotation;
+namespace StfalconStudio\ApiBundle\Attribute;
 
-use Doctrine\Common\Annotations\Annotation;
+use Attribute;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
-use StfalconStudio\ApiBundle\Exception\LogicException;
 
 /**
  * Data Transfer Object Annotation.
- *
- * @Annotation
- *
- * @Target({"CLASS"})
  */
-class DTO implements DtoAnnotationInterface
+#[Attribute(Attribute::TARGET_CLASS)]
+class DTO
 {
     private const DTO_SUFFIX = 'Dto';
 
     private string $class;
 
     /**
-     * @param mixed[] $options
+     * @param string $class
      *
-     * @throws LogicException
      * @throws InvalidArgumentException
      */
-    public function __construct(array $options)
+    public function __construct(string $class)
     {
-        if (!\array_key_exists('value', $options)) {
-            throw new LogicException('DTO class must be set.');
-        }
-
-        $class = $options['value'];
-
-        if (!\is_string($class)) {
-            throw new InvalidArgumentException('Value should be string');
-        }
-
         if (!\class_exists($class)) {
             throw new InvalidArgumentException(\sprintf('Class %s does not exist.', $class));
         }
@@ -64,7 +49,7 @@ class DTO implements DtoAnnotationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getClass(): string
     {
