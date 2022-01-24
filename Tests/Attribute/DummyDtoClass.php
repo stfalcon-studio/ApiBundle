@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\Annotation;
+namespace StfalconStudio\ApiBundle\Tests\Attribute;
 
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 

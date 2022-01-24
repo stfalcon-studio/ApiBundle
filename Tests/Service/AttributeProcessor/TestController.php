@@ -10,13 +10,14 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\Annotation;
+namespace StfalconStudio\ApiBundle\Tests\Service\AttributeProcessor;
 
-use StfalconStudio\ApiBundle\DTO\DtoInterface;
+use StfalconStudio\ApiBundle\Attribute\DTO;
 
 /**
- * DummyDto.
+ * TestController.
  */
-final class DummyDto implements DtoInterface
+#[DTO(class: TestDto::class)]
+class TestController
 {
 }

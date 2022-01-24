@@ -17,7 +17,7 @@ use JsonSchema\Validator;
 use StfalconStudio\ApiBundle\Exception\Http\Json\InvalidJsonSchemaException;
 use StfalconStudio\ApiBundle\Exception\Http\Json\MalformedJsonException;
 use StfalconStudio\ApiBundle\Exception\RuntimeException;
-use StfalconStudio\ApiBundle\Service\AnnotationProcessor\JsonSchemaAnnotationProcessor;
+use StfalconStudio\ApiBundle\Service\AttributeProcessor\JsonSchemaAttributeProcessor;
 use StfalconStudio\ApiBundle\Traits;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
@@ -31,16 +31,16 @@ class JsonSchemaValidator
     use Traits\SymfonySerializerTrait;
 
     private Validator $validator;
-    private JsonSchemaAnnotationProcessor $jsonSchemaAnnotationProcessor;
+    private JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor;
 
     /**
-     * @param Validator                     $validator
-     * @param JsonSchemaAnnotationProcessor $dtoAnnotationProcessor
+     * @param Validator                    $validator
+     * @param JsonSchemaAttributeProcessor $dtoAttributeProcessor
      */
-    public function __construct(Validator $validator, JsonSchemaAnnotationProcessor $dtoAnnotationProcessor)
+    public function __construct(Validator $validator, JsonSchemaAttributeProcessor $dtoAttributeProcessor)
     {
         $this->validator = $validator;
-        $this->jsonSchemaAnnotationProcessor = $dtoAnnotationProcessor;
+        $this->jsonSchemaAttributeProcessor = $dtoAttributeProcessor;
     }
 
     /**
@@ -50,7 +50,7 @@ class JsonSchemaValidator
     public function validateRequestForControllerClass(Request $request, string $controllerClassName): void
     {
         $data = $this->decodeJsonFromRequest($request);
-        $jsonSchema = $this->jsonSchemaAnnotationProcessor->processAnnotationForControllerClass($controllerClassName);
+        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass($controllerClassName);
         $this->doValidateRequestData($data, $jsonSchema);
     }
 
@@ -61,7 +61,7 @@ class JsonSchemaValidator
     public function validateRequestDataForDtoClass(Request $request, string $dtoClassName): void
     {
         $data = $this->decodeJsonFromRequest($request);
-        $jsonSchema = $this->jsonSchemaAnnotationProcessor->processAnnotationForDtoClass($dtoClassName);
+        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForDtoClass($dtoClassName);
         $this->doValidateRequestData($data, $jsonSchema);
     }
 

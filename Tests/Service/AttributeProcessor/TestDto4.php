@@ -10,15 +10,14 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Annotation;
+namespace StfalconStudio\ApiBundle\Tests\Service\AttributeProcessor;
+
+use StfalconStudio\ApiBundle\Attribute\JsonSchema;
 
 /**
- * JsonSchemaAnnotationInterface.
+ * TestDto4.
  */
-interface JsonSchemaAnnotationInterface
+#[JsonSchema(jsonSchemaName: 'Dummy.json')]
+class TestDto4
 {
-    /**
-     * @return string
-     */
-    public function getJsonSchemaFilename(): string;
 }

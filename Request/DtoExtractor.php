@@ -14,7 +14,7 @@ namespace StfalconStudio\ApiBundle\Request;
 
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
-use StfalconStudio\ApiBundle\Service\AnnotationProcessor\DtoAnnotationProcessor;
+use StfalconStudio\ApiBundle\Service\AttributeProcessor\DtoAttributeProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -24,16 +24,16 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class DtoExtractor
 {
-    private DtoAnnotationProcessor $dtoAnnotationProcessor;
+    private DtoAttributeProcessor $dtoAttributeProcessor;
     private SerializerInterface $serializer;
 
     /**
-     * @param DtoAnnotationProcessor $dtoAnnotationProcessor
-     * @param SerializerInterface    $serializer
+     * @param DtoAttributeProcessor $dtoAttributeProcessor
+     * @param SerializerInterface   $serializer
      */
-    public function __construct(DtoAnnotationProcessor $dtoAnnotationProcessor, SerializerInterface $serializer)
+    public function __construct(DtoAttributeProcessor $dtoAttributeProcessor, SerializerInterface $serializer)
     {
-        $this->dtoAnnotationProcessor = $dtoAnnotationProcessor;
+        $this->dtoAttributeProcessor = $dtoAttributeProcessor;
         $this->serializer = $serializer;
     }
 
@@ -46,7 +46,7 @@ class DtoExtractor
      */
     public function getDtoFromRequestForControllerClass(Request $request, string $controllerClassName, ?object $objectToPopulate = null): DtoInterface
     {
-        $dtoClassName = $this->dtoAnnotationProcessor->processAnnotationForClass($controllerClassName);
+        $dtoClassName = $this->dtoAttributeProcessor->processAttributeForClass($controllerClassName);
 
         return $this->getDtoFromRequestForDtoClass($request, $dtoClassName, $objectToPopulate);
     }

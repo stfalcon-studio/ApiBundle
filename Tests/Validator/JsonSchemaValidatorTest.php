@@ -19,7 +19,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\Http\Json\InvalidJsonSchemaException;
 use StfalconStudio\ApiBundle\Exception\Http\Json\MalformedJsonException;
-use StfalconStudio\ApiBundle\Service\AnnotationProcessor\JsonSchemaAnnotationProcessor;
+use StfalconStudio\ApiBundle\Service\AttributeProcessor\JsonSchemaAttributeProcessor;
 use StfalconStudio\ApiBundle\Validator\JsonSchemaValidator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
@@ -30,8 +30,8 @@ final class JsonSchemaValidatorTest extends TestCase
     /** @var Validator|MockObject */
     private $validator;
 
-    /** @var JsonSchemaAnnotationProcessor|MockObject */
-    private $jsonSchemaAnnotationProcessor;
+    /** @var JsonSchemaAttributeProcessor|MockObject */
+    private $jsonSchemaAttributeProcessor;
 
     /** @var Reader|MockObject */
     private $annotationReader;
@@ -44,11 +44,11 @@ final class JsonSchemaValidatorTest extends TestCase
     protected function setUp(): void
     {
         $this->validator = $this->createMock(Validator::class);
-        $this->jsonSchemaAnnotationProcessor = $this->createMock(JsonSchemaAnnotationProcessor::class);
+        $this->jsonSchemaAttributeProcessor = $this->createMock(JsonSchemaAttributeProcessor::class);
         $this->annotationReader = $this->createMock(Reader::class);
         $this->serializer = $this->createMock(Serializer::class);
 
-        $this->jsonSchemaValidator = new JsonSchemaValidator($this->validator, $this->jsonSchemaAnnotationProcessor);
+        $this->jsonSchemaValidator = new JsonSchemaValidator($this->validator, $this->jsonSchemaAttributeProcessor);
         $this->jsonSchemaValidator->setAnnotationReader($this->annotationReader);
         $this->jsonSchemaValidator->setSymfonySerializer($this->serializer);
     }
@@ -57,7 +57,7 @@ final class JsonSchemaValidatorTest extends TestCase
     {
         unset(
             $this->validator,
-            $this->jsonSchemaAnnotationProcessor,
+            $this->jsonSchemaAttributeProcessor,
             $this->annotationReader,
             $this->serializer,
             $this->jsonSchemaValidator,
@@ -90,7 +90,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $dummyJsonSchema = new \stdClass();
 
-        $this->jsonSchemaAnnotationProcessor
+        $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
             ->method('processAnnotationForControllerClass')
             ->willReturn($dummyJsonSchema)
@@ -141,7 +141,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $dummyJsonSchema = new \stdClass();
 
-        $this->jsonSchemaAnnotationProcessor
+        $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
             ->method('processAnnotationForControllerClass')
             ->willReturn($dummyJsonSchema)
@@ -176,7 +176,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $dummyJsonSchema = new \stdClass();
 
-        $this->jsonSchemaAnnotationProcessor
+        $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
             ->method('processAnnotationForControllerClass')
             ->willReturn($dummyJsonSchema)
@@ -213,7 +213,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $dummyJsonSchema = new \stdClass();
 
-        $this->jsonSchemaAnnotationProcessor
+        $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
             ->method('processAnnotationForDtoClass')
             ->willReturn($dummyJsonSchema)
