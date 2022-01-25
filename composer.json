@@ -14,7 +14,7 @@
         "doctrine/orm": "^2.11",
         "egulias/email-validator": "^2.1.24",
         "fresh/datetime": "^v1.7.0",
-        "gesdinet/jwt-refresh-token-bundle": "^v1.0.0",
+        "gesdinet/jwt-refresh-token-bundle": "^v1.0.1",
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.11",
         "lexik/jwt-authentication-bundle": "^v2.14.4",
