@@ -24,10 +24,10 @@ use StfalconStudio\ApiBundle\Util\File\FileReader;
  */
 class JsonSchemaAnnotationProcessor
 {
-    private DtoAnnotationProcessor $dtoAnnotationProcessor;
-    private Reader $annotationReader;
-    private FileReader $fileReader;
-    private string $jsonSchemaDir;
+    private readonly DtoAnnotationProcessor $dtoAnnotationProcessor;
+    private readonly Reader $annotationReader;
+    private readonly FileReader $fileReader;
+    private readonly string $jsonSchemaDir;
 
     /** @var array<string> */
     private array $cachedClasses = [];
@@ -51,7 +51,7 @@ class JsonSchemaAnnotationProcessor
      *
      * @return mixed
      */
-    public function processAnnotationForControllerClass(string $controllerClassName)
+    public function processAnnotationForControllerClass(string $controllerClassName): mixed
     {
         $dtoClass = $this->dtoAnnotationProcessor->processAnnotationForClass($controllerClassName);
 
@@ -66,7 +66,7 @@ class JsonSchemaAnnotationProcessor
      *
      * @return mixed
      */
-    public function processAnnotationForDtoClass(string $dtoClassName)
+    public function processAnnotationForDtoClass(string $dtoClassName): mixed
     {
         /** @var class-string<object> $dtoClassName */
         if (\array_key_exists($dtoClassName, $this->cachedClasses)) {

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use StfalconStudio\ApiBundle\Validator\JsonSchemaValidator;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * JsonSchemaValidatorTrait.
@@ -23,9 +24,8 @@ trait JsonSchemaValidatorTrait
 
     /**
      * @param JsonSchemaValidator $jsonSchemaValidator
-     *
-     * @required
      */
+    #[Required]
     public function setJsonSchemaValidator(JsonSchemaValidator $jsonSchemaValidator): void
     {
         $this->jsonSchemaValidator = $jsonSchemaValidator;

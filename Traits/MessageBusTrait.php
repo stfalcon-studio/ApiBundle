@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * MessageBusTrait.
@@ -23,9 +24,8 @@ trait MessageBusTrait
 
     /**
      * @param MessageBusInterface $bus
-     *
-     * @required
      */
+    #[Required]
     public function setBus(MessageBusInterface $bus): void
     {
         $this->bus = $bus;

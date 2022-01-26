@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * FormFactoryTrait.
@@ -23,9 +24,8 @@ trait FormFactoryTrait
 
     /**
      * @param FormFactoryInterface $formFactory
-     *
-     * @required
      */
+    #[Required]
     public function setFormFactory(FormFactoryInterface $formFactory): void
     {
         $this->formFactory = $formFactory;

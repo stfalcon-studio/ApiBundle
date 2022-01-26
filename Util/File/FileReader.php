@@ -22,7 +22,7 @@ class FileReader
      *
      * @return false|string
      */
-    public function getFileContents(string $filename)
+    public function getFileContents(string $filename): bool|string
     {
         return \file_get_contents($filename);
     }

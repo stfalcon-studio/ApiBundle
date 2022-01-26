@@ -21,8 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class InvalidJsonSchemaException extends AbstractCustomHttpAppException
 {
-    private array $violations;
-    private array $jsonSchema;
+    private readonly array $violations;
+    private readonly array $jsonSchema;
 
     /**
      * {@inheritdoc}

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use StfalconStudio\ApiBundle\Validator\EntityValidator;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * EntityValidatorTrait.
@@ -23,9 +24,8 @@ trait EntityValidatorTrait
 
     /**
      * @param EntityValidator $entityValidator
-     *
-     * @required
      */
+    #[Required]
     public function setEntityValidator(EntityValidator $entityValidator): void
     {
         $this->entityValidator = $entityValidator;

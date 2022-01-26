@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Doctrine\Common\Annotations\Reader;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * AnnotationReaderTrait.
@@ -23,9 +24,8 @@ trait AnnotationReaderTrait
 
     /**
      * @param Reader $annotationReader
-     *
-     * @required
      */
+    #[Required]
     public function setAnnotationReader(Reader $annotationReader): void
     {
         $this->annotationReader = $annotationReader;

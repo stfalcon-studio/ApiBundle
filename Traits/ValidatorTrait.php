@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * ValidatorTrait.
@@ -23,9 +24,8 @@ trait ValidatorTrait
 
     /**
      * @param ValidatorInterface $validator
-     *
-     * @required
      */
+    #[Required]
     public function setValidator(ValidatorInterface $validator): void
     {
         $this->validator = $validator;

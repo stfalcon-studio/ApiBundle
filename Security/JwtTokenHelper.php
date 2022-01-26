@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class JwtTokenHelper
 {
-    private TokenStorageInterface $tokenStorage;
+    private readonly TokenStorageInterface $tokenStorage;
 
     /**
      * @param TokenStorageInterface $tokenStorage

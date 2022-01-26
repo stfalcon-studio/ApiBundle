@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * HttpKernelTrait.
@@ -23,9 +24,8 @@ trait HttpKernelTrait
 
     /**
      * @param HttpKernelInterface $httpKernel
-     *
-     * @required
      */
+    #[Required]
     public function setHttpKernel(HttpKernelInterface $httpKernel): void
     {
         $this->httpKernel = $httpKernel;

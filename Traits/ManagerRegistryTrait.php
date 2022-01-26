@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * ManagerRegistryTrait.
@@ -23,9 +24,8 @@ trait ManagerRegistryTrait
 
     /**
      * @param ManagerRegistry $managerRegistry
-     *
-     * @required
      */
+    #[Required]
     public function setManagerRegistry(ManagerRegistry $managerRegistry): void
     {
         $this->managerRegistry = $managerRegistry;

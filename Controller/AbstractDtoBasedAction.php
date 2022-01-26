@@ -46,7 +46,7 @@ abstract class AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    protected function validateDto(DtoInterface $dto, $constraints = null, array $groups = null): void
+    protected function validateDto(DtoInterface $dto, array|Constraint $constraints = null, array $groups = null): void
     {
         $this->entityValidator->validate($dto, $constraints, $groups);
     }
@@ -56,7 +56,7 @@ abstract class AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    protected function validateEntity($entity, $constraints = null, array $groups = null): void
+    protected function validateEntity(mixed $entity, array|Constraint $constraints = null, array $groups = null): void
     {
         $this->entityValidator->validate($entity, $constraints, $groups);
     }

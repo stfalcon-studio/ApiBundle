@@ -15,6 +15,7 @@ namespace StfalconStudio\ApiBundle\Traits;
 use StfalconStudio\ApiBundle\Exception\RuntimeException;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * SymfonySerializerTrait.
@@ -26,9 +27,8 @@ trait SymfonySerializerTrait
 
     /**
      * @param SerializerInterface|Serializer $symfonySerializer
-     *
-     * @required
      */
+    #[Required]
     public function setSymfonySerializer(SerializerInterface $symfonySerializer): void
     {
         $this->symfonySerializer = $symfonySerializer;

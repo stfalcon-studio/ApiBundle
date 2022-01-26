@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * AuthenticationUtilsTrait.
@@ -23,9 +24,8 @@ trait AuthenticationUtilsTrait
 
     /**
      * @param AuthenticationUtils $utils
-     *
-     * @required
      */
+    #[Required]
     public function setAuthenticationUtils(AuthenticationUtils $utils): void
     {
         $this->authenticationUtils = $utils;

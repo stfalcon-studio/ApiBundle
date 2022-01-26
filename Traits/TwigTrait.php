@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Traits;
 
+use Symfony\Contracts\Service\Attribute\Required;
 use Twig\Environment;
 
 /**
@@ -23,9 +24,8 @@ trait TwigTrait
 
     /**
      * @param Environment $twig
-     *
-     * @required
      */
+    #[Required]
     public function setTwigEnvironment(Environment $twig): void
     {
         $this->twig = $twig;

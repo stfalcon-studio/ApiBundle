@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * AuthorizationCheckerTrait.
@@ -23,9 +24,8 @@ trait AuthorizationCheckerTrait
 
     /**
      * @param AuthorizationCheckerInterface $authorizationChecker
-     *
-     * @required
      */
+    #[Required]
     public function setAuthorizationChecker(AuthorizationCheckerInterface $authorizationChecker): void
     {
         $this->authorizationChecker = $authorizationChecker;

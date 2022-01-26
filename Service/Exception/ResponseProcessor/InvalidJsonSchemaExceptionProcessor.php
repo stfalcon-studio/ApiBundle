@@ -21,7 +21,7 @@ use StfalconStudio\ApiBundle\Exception\RuntimeException;
  */
 class InvalidJsonSchemaExceptionProcessor implements CustomAppExceptionResponseProcessorInterface
 {
-    private string $environment;
+    private readonly string $environment;
 
     /**
      * @param string $environment

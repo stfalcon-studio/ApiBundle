@@ -22,7 +22,7 @@ class EncodingDetector
      *
      * @return string|false
      */
-    public function detectEncoding(string $string)
+    public function detectEncoding(string $string): bool|string
     {
         return \mb_detect_encoding($string);
     }

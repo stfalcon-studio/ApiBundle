@@ -22,7 +22,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 class InvalidEntityException extends AbstractCustomHttpAppException
 {
-    private ConstraintViolationListInterface $errors;
+    private readonly ConstraintViolationListInterface $errors;
 
     /**
      * {@inheritdoc}

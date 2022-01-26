@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * RouterTrait.
@@ -23,9 +24,8 @@ trait RouterTrait
 
     /**
      * @param RouterInterface $router
-     *
-     * @required
      */
+    #[Required]
     public function setRouter(RouterInterface $router): void
     {
         $this->router = $router;

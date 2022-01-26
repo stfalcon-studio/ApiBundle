@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * FilesystemTrait.
@@ -23,9 +24,8 @@ trait FilesystemTrait
 
     /**
      * @param Filesystem $filesystem
-     *
-     * @required
      */
+    #[Required]
     public function setFilesystem(Filesystem $filesystem): void
     {
         $this->filesystem = $filesystem;
