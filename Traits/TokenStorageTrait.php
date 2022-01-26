@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * TokenStorageTrait.
@@ -23,9 +24,8 @@ trait TokenStorageTrait
 
     /**
      * @param TokenStorageInterface $tokenStorage
-     *
-     * @required
      */
+    #[Required]
     public function setTokenStorage(TokenStorageInterface $tokenStorage): void
     {
         $this->tokenStorage = $tokenStorage;

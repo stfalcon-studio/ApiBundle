@@ -22,7 +22,7 @@ class CircularReferenceHandler
      *
      * @return callable
      */
-    public function __invoke($object): callable
+    public function __invoke(mixed $object): callable
     {
         return static function () use ($object) {
             return $object->getId();

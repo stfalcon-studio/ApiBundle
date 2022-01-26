@@ -24,10 +24,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class JwtBlackListService
 {
-    private JWSProviderInterface $jwsProvider;
-    private Client $redisClientJwtBlackList;
-    private JwtTokenHelper $jwtTokenHelper;
-    private JwtCacheHelper $jwtCacheHelper;
+    private readonly JWSProviderInterface $jwsProvider;
+    private readonly Client $redisClientJwtBlackList;
+    private readonly JwtTokenHelper $jwtTokenHelper;
+    private readonly JwtCacheHelper $jwtCacheHelper;
 
     /**
      * @param JWSProviderInterface $jwsProvider

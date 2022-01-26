@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * EntityManagerTrait.
@@ -23,9 +24,8 @@ trait EntityManagerTrait
 
     /**
      * @param EntityManager $em
-     *
-     * @required
      */
+    #[Required]
     public function setEntityManager(EntityManager $em): void
     {
         $this->em = $em;

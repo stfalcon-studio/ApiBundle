@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use StfalconStudio\ApiBundle\Serializer\Serializer;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * SerializerTrait.
@@ -23,9 +24,8 @@ trait SerializerTrait
 
     /**
      * @param Serializer $serializer
-     *
-     * @required
      */
+    #[Required]
     public function setSerializer(Serializer $serializer): void
     {
         $this->serializer = $serializer;

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Psr\Log\LoggerInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * LoggerTrait.
@@ -23,9 +24,8 @@ trait LoggerTrait
 
     /**
      * @param LoggerInterface $logger
-     *
-     * @required
      */
+    #[Required]
     public function setLogger(LoggerInterface $logger): void
     {
         $this->logger = $logger;

@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Traits;
 
-use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
@@ -44,7 +43,6 @@ use Twig\Environment;
  */
 final class DummyClass
 {
-    use Traits\AnnotationReaderTrait;
     use Traits\AuthenticationUtilsTrait;
     use Traits\AuthorizationCheckerTrait;
     use Traits\DtoExtractorTrait;
@@ -89,11 +87,6 @@ final class DummyClass
     public function getTranslator(): TranslatorInterface
     {
         return $this->translator;
-    }
-
-    public function getAnnotationReader(): Reader
-    {
-        return $this->annotationReader;
     }
 
     public function getAuthenticationUtils(): AuthenticationUtils

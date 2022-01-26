@@ -17,6 +17,6 @@ namespace StfalconStudio\ApiBundle\Security;
  */
 class Role
 {
-    public const ANONYMOUS = 'ROLE_ANONYMOUS';
-    public const USER = 'ROLE_USER';
+    public final const ANONYMOUS = 'ROLE_ANONYMOUS';
+    public final const USER = 'ROLE_USER';
 }

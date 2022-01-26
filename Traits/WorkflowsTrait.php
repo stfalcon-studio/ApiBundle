@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\Workflow\Registry;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * WorkflowsTrait.
@@ -23,9 +24,8 @@ trait WorkflowsTrait
 
     /**
      * @param Registry $workflows
-     *
-     * @required
      */
+    #[Required]
     public function setWorkflows(Registry $workflows): void
     {
         $this->workflows = $workflows;

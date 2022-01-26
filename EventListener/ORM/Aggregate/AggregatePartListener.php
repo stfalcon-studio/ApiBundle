@@ -24,7 +24,7 @@ final class AggregatePartListener
 {
     /** @var array<AggregateRootInterface> */
     private array $aggregateRoots = [];
-    private DateTimeHelper $dateTimeHelper;
+    private readonly DateTimeHelper $dateTimeHelper;
 
     /**
      * @param DateTimeHelper $dateTimeHelper

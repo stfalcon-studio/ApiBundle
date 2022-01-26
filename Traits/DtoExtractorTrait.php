@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use StfalconStudio\ApiBundle\Request\DtoExtractor;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * DtoExtractorTrait.
@@ -23,9 +24,8 @@ trait DtoExtractorTrait
 
     /**
      * @param DtoExtractor $dtoExtractor
-     *
-     * @required
      */
+    #[Required]
     public function setDtoExtractor(DtoExtractor $dtoExtractor): void
     {
         $this->dtoExtractor = $dtoExtractor;

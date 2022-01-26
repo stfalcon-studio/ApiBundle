@@ -28,7 +28,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class JwtTokenAuthenticator extends BaseJWTTokenAuthenticator
 {
-    private JwtBlackListService $tokenBlackListService;
+    private readonly JwtBlackListService $tokenBlackListService;
 
     /**
      * @param JWTTokenManagerInterface $jwtManager

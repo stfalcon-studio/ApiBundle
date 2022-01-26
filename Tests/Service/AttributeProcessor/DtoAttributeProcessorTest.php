@@ -35,7 +35,7 @@ final class DtoAttributeProcessorTest extends TestCase
         );
     }
 
-    public function testProcessAnnotationForClass(): void
+    public function testProcessAttributeForClass(): void
     {
         $dtoClass = $this->dtoAttributeProcessor->processAttributeForClass(TestClass::class);
         self::assertSame(DummyDto::class, $dtoClass);
@@ -50,7 +50,7 @@ final class DtoAttributeProcessorTest extends TestCase
         self::assertSame(DummyDto::class, $dtoClass);
     }
 
-    public function testExceptionOnMoreThanOneDtoAnnotation(): void
+    public function testExceptionOnMoreThanOneDtoAttribute(): void
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Detected more than one DTO attribute for class StfalconStudio\ApiBundle\Tests\Service\AttributeProcessor\TestClass2. Only one DTO attribute allowed per class.');

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * EventDispatcherTrait.
@@ -23,9 +24,8 @@ trait EventDispatcherTrait
 
     /**
      * @param EventDispatcherInterface $eventDispatcher
-     *
-     * @required
      */
+    #[Required]
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): void
     {
         $this->eventDispatcher = $eventDispatcher;

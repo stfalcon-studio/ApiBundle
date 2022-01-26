@@ -54,7 +54,7 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
         );
     }
 
-    public function testProcessAnnotationForControllerClass(): void
+    public function testProcessAttributeForControllerClass(): void
     {
         $this->dtoAttributeProcessor
             ->expects(self::once())
@@ -70,7 +70,7 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
             ->willReturn('[1, 2, 3]')
         ;
 
-        $decodedSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $decodedSchema = $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
         self::assertSame([1, 2, 3], $decodedSchema);
     }
 
@@ -92,7 +92,7 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Directory for json Schema files "/bla-bla-bla" is not found.');
 
-        $jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
     }
 
     public function testExceptionOnMissingAttribute(): void
@@ -105,9 +105,9 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
         ;
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Missing Json Schema annotation for class StfalconStudio\ApiBundle\Tests\Service\AttributeProcessor\TestDto2');
+        $this->expectExceptionMessage('Missing JsonSchema attribute for class StfalconStudio\ApiBundle\Tests\Service\AttributeProcessor\TestDto2');
 
-        $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
     }
 
     public function testExceptionOnNotFoundJsonSchema(): void
@@ -124,7 +124,7 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(\sprintf('Json Schema file "%s" is not found.', $jsonSchemaPath));
 
-        $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
     }
 
     public function testExceptionOnUnreadableFile(): void
@@ -149,7 +149,7 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(\sprintf('Cannot read content of file %s', $realPathToFile));
 
-        $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
     }
 
     public function testCachedProcessedClasses(): void
@@ -168,10 +168,10 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
             ->willReturn('[1, 2, 3]')
         ;
 
-        $decodedSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $decodedSchema = $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
         self::assertSame([1, 2, 3], $decodedSchema);
 
-        $decodedSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass(TestController::class);
+        $decodedSchema = $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
         self::assertSame([1, 2, 3], $decodedSchema);
     }
 }

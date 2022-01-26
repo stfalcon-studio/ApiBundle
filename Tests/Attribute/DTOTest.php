@@ -47,7 +47,7 @@ final class DTOTest extends TestCase
 
     public function testSuccessfulConstructor(): void
     {
-        $annotation = new DTO(class: DummyDto::class);
-        self::assertSame(DummyDto::class, $annotation->getClass());
+        $attribute = new DTO(class: DummyDto::class);
+        self::assertSame(DummyDto::class, $attribute->getClass());
     }
 }

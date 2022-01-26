@@ -34,7 +34,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class ApiExceptionFormatterListenerTest extends TestCase
 {
-    private const API_HOST = 'http://test.com';
+    private const API_HOST = 'https://test.com';
 
     /** @var SerializerInterface|MockObject */
     private $serializer;
@@ -139,7 +139,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->request
             ->expects(self::once())
             ->method('getHost')
-            ->willReturn('http://not-api-host.com')
+            ->willReturn('https://not-api-host.com')
         ;
 
         $this->exceptionFormatterListener->__invoke($exceptionEvent);

@@ -24,9 +24,9 @@ class JsonSchemaAttributeProcessor
 {
     private const JSON_FILE_EXTENSION = '.json';
 
-    private DtoAttributeProcessor $dtoAttributeProcessor;
-    private FileReader $fileReader;
-    private string $jsonSchemaDir;
+    private readonly DtoAttributeProcessor $dtoAttributeProcessor;
+    private readonly FileReader $fileReader;
+    private readonly string $jsonSchemaDir;
 
     /** @var string[] */
     private array $cachedClasses = [];
@@ -48,11 +48,11 @@ class JsonSchemaAttributeProcessor
      *
      * @return mixed
      */
-    public function processAnnotationForControllerClass(string $controllerClassName)
+    public function processAttributeForControllerClass(string $controllerClassName): mixed
     {
         $dtoClass = $this->dtoAttributeProcessor->processAttributeForClass($controllerClassName);
 
-        return $this->processAnnotationForDtoClass($dtoClass);
+        return $this->processAttributeForDtoClass($dtoClass);
     }
 
     /**
@@ -63,7 +63,7 @@ class JsonSchemaAttributeProcessor
      *
      * @return mixed
      */
-    public function processAnnotationForDtoClass(string $dtoClassName)
+    public function processAttributeForDtoClass(string $dtoClassName): mixed
     {
         /** @var class-string<object> $dtoClassName */
         if (\array_key_exists($dtoClassName, $this->cachedClasses)) {
@@ -77,7 +77,7 @@ class JsonSchemaAttributeProcessor
             throw new RuntimeException(\sprintf('Detected more than one DTO attribute for class %s. Only one DTO attribute allowed per class', $dtoClassName));
         }
         if (1 !== \count($attributes)) {
-            throw new RuntimeException(\sprintf('Missing Json Schema annotation for class %s', $dtoClassName));
+            throw new RuntimeException(\sprintf('Missing JsonSchema attribute for class %s', $dtoClassName));
         }
 
         $jsonSchemaDirPath = \realpath($this->jsonSchemaDir);

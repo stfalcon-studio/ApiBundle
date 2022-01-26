@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Validator;
 
-use Doctrine\Common\Annotations\Reader;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -33,9 +32,6 @@ final class JsonSchemaValidatorTest extends TestCase
     /** @var JsonSchemaAttributeProcessor|MockObject */
     private $jsonSchemaAttributeProcessor;
 
-    /** @var Reader|MockObject */
-    private $annotationReader;
-
     /** @var Serializer|MockObject */
     private $serializer;
 
@@ -45,11 +41,9 @@ final class JsonSchemaValidatorTest extends TestCase
     {
         $this->validator = $this->createMock(Validator::class);
         $this->jsonSchemaAttributeProcessor = $this->createMock(JsonSchemaAttributeProcessor::class);
-        $this->annotationReader = $this->createMock(Reader::class);
         $this->serializer = $this->createMock(Serializer::class);
 
         $this->jsonSchemaValidator = new JsonSchemaValidator($this->validator, $this->jsonSchemaAttributeProcessor);
-        $this->jsonSchemaValidator->setAnnotationReader($this->annotationReader);
         $this->jsonSchemaValidator->setSymfonySerializer($this->serializer);
     }
 
@@ -58,7 +52,6 @@ final class JsonSchemaValidatorTest extends TestCase
         unset(
             $this->validator,
             $this->jsonSchemaAttributeProcessor,
-            $this->annotationReader,
             $this->serializer,
             $this->jsonSchemaValidator,
         );
@@ -92,7 +85,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
-            ->method('processAnnotationForControllerClass')
+            ->method('processAttributeForControllerClass')
             ->willReturn($dummyJsonSchema)
         ;
 
@@ -143,7 +136,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
-            ->method('processAnnotationForControllerClass')
+            ->method('processAttributeForControllerClass')
             ->willReturn($dummyJsonSchema)
         ;
 
@@ -178,7 +171,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
-            ->method('processAnnotationForControllerClass')
+            ->method('processAttributeForControllerClass')
             ->willReturn($dummyJsonSchema)
         ;
 
@@ -215,7 +208,7 @@ final class JsonSchemaValidatorTest extends TestCase
 
         $this->jsonSchemaAttributeProcessor
             ->expects(self::once())
-            ->method('processAnnotationForDtoClass')
+            ->method('processAttributeForDtoClass')
             ->willReturn($dummyJsonSchema)
         ;
 

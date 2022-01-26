@@ -27,11 +27,10 @@ use Symfony\Component\Serializer\Serializer;
  */
 class JsonSchemaValidator
 {
-    use Traits\AnnotationReaderTrait;
     use Traits\SymfonySerializerTrait;
 
-    private Validator $validator;
-    private JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor;
+    private readonly Validator $validator;
+    private readonly JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor;
 
     /**
      * @param Validator                    $validator
@@ -50,7 +49,7 @@ class JsonSchemaValidator
     public function validateRequestForControllerClass(Request $request, string $controllerClassName): void
     {
         $data = $this->decodeJsonFromRequest($request);
-        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass($controllerClassName);
+        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass($controllerClassName);
         $this->doValidateRequestData($data, $jsonSchema);
     }
 
@@ -61,7 +60,7 @@ class JsonSchemaValidator
     public function validateRequestDataForDtoClass(Request $request, string $dtoClassName): void
     {
         $data = $this->decodeJsonFromRequest($request);
-        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForDtoClass($dtoClassName);
+        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAttributeForDtoClass($dtoClassName);
         $this->doValidateRequestData($data, $jsonSchema);
     }
 
@@ -72,7 +71,7 @@ class JsonSchemaValidator
      * @throws RuntimeException
      * @throws InvalidJsonSchemaException
      */
-    private function doValidateRequestData($requestData, $jsonSchema): void
+    private function doValidateRequestData(mixed $requestData, mixed $jsonSchema): void
     {
         $this->validator->validate($requestData, $jsonSchema, Constraint::CHECK_MODE_NORMAL);
 
@@ -95,7 +94,7 @@ class JsonSchemaValidator
      *
      * @return mixed
      */
-    private function decodeJsonFromRequest(Request $request)
+    private function decodeJsonFromRequest(Request $request): mixed
     {
         $data = json_decode((string) $request->getContent());
 

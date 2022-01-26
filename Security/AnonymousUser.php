@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AnonymousUser implements UserInterface
 {
-    public const USERNAME = 'anonymous';
+    public final const USERNAME = 'anonymous';
 
     /**
      * {@inheritdoc}

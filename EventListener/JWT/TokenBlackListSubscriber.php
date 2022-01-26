@@ -22,7 +22,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 final class TokenBlackListSubscriber implements EventSubscriberInterface
 {
-    private JwtBlackListService $jwtBlackListService;
+    private readonly JwtBlackListService $jwtBlackListService;
 
     /**
      * @param JwtBlackListService $tokenBlackListService

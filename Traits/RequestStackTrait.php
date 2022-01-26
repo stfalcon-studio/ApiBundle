@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * RequestStackTrait.
@@ -23,9 +24,8 @@ trait RequestStackTrait
 
     /**
      * @param RequestStack $requestStack
-     *
-     * @required
      */
+    #[Required]
     public function setRequestStack(RequestStack $requestStack): void
     {
         $this->requestStack = $requestStack;

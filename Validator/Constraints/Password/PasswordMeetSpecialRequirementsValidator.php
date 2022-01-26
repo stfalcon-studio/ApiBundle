@@ -22,7 +22,7 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
 {
-    private PasswordRequirementsValidator $passwordRequirementsValidator;
+    private readonly PasswordRequirementsValidator $passwordRequirementsValidator;
 
     /**
      * @param PasswordRequirementsValidator $passwordRequirementsValidator
@@ -33,12 +33,12 @@ class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
     }
 
     /**
-     * @param string|null $password
-     * @param Constraint  $constraint
+     * @param string|null                                $password
+     * @param Constraint|PasswordMeetSpecialRequirements $constraint
      *
      * @throws UnexpectedConstraintException
      */
-    public function validate($password, Constraint $constraint): void
+    public function validate($password, Constraint|PasswordMeetSpecialRequirements $constraint): void
     {
         if (!$constraint instanceof PasswordMeetSpecialRequirements) {
             throw new UnexpectedConstraintException($constraint, PasswordMeetSpecialRequirements::class);

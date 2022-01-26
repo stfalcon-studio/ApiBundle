@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Sentry\ClientInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * SentryClientTrait.
@@ -23,9 +24,8 @@ trait SentryClientTrait
 
     /**
      * @param ClientInterface $sentryClient
-     *
-     * @required
      */
+    #[Required]
     public function setSentryClient(ClientInterface $sentryClient): void
     {
         $this->sentryClient = $sentryClient;

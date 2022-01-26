@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Traits;
 
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * SessionTrait.
@@ -23,9 +24,8 @@ trait SessionTrait
 
     /**
      * @param Session $session
-     *
-     * @required
      */
+    #[Required]
     public function setSession(Session $session): void
     {
         $this->session = $session;

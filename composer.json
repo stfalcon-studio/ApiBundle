@@ -32,8 +32,8 @@
         "symfony/yaml": "^5.4"
     },
     "require-dev": {
-        "doctrine/annotations": "^1.13.2",
         "escapestudios/symfony2-coding-standard": "^3.12",
+        "jetbrains/phpstorm-attributes": "^1.0",
         "phpstan/phpstan": "^0.12",
         "phpstan/phpstan-deprecation-rules": "^0.12",
         "phpstan/phpstan-doctrine": "^0.12",

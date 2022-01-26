@@ -39,10 +39,10 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
 
     private const PROD_ENV = 'prod';
 
-    private string $apiHost;
-    private string $environment;
-    private ExceptionResponseProcessorInterface $exceptionResponseProcessor;
-    private ExceptionResponseFactory $exceptionResponseFactory;
+    private readonly string $apiHost;
+    private readonly string $environment;
+    private readonly ExceptionResponseProcessorInterface $exceptionResponseProcessor;
+    private readonly ExceptionResponseFactory $exceptionResponseFactory;
 
     /**
      * @param string                              $apiHost

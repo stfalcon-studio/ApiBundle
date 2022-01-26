@@ -42,7 +42,7 @@ class DummyAction extends AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    public function doValidateEntity($entity, $constraints = null, array $groups = null): void
+    public function doValidateEntity(mixed $entity, $constraints = null, array $groups = null): void
     {
         $this->validateEntity($entity, $constraints, $groups);
     }

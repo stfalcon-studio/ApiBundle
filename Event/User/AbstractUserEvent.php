@@ -20,7 +20,7 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 abstract class AbstractUserEvent extends Event
 {
-    private UserInterface $user;
+    private readonly UserInterface $user;
 
     /**
      * @param UserInterface $user
