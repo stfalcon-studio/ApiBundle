@@ -12,7 +12,7 @@
 
 ## Installation
 
-```composer req stfalcon-studio/api-bundle='0.12'```
+```composer req stfalcon-studio/api-bundle='0.16'```
 
 #### Check the `config/bundles.php` file
 
@@ -37,9 +37,7 @@ return [
 doctrine:
     orm:
         mappings:
-            StfalconApiBundle:
-                is_bundle: true
-                type: annotation
+            StfalconApiBundle: ~
 ```
 
 #### Setup a directory for JSON schemas

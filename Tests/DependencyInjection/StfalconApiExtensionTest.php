@@ -14,7 +14,7 @@ namespace StfalconStudio\ApiBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\DependencyInjection\StfalconApiExtension;
-use StfalconStudio\ApiBundle\Service\AnnotationProcessor\DtoAnnotationProcessor;
+use StfalconStudio\ApiBundle\Service\AttributeProcessor\DtoAttributeProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
@@ -50,8 +50,8 @@ final class StfalconApiExtensionTest extends TestCase
         self::assertSame('/tmp/src/Json/Schema/', $this->container->getParameter('stfalcon_api.json_schema_dir'));
         self::assertSame('foo', $this->container->getParameter('stfalcon_api.api_host'));
 
-        self::assertArrayHasKey(DtoAnnotationProcessor::class, $this->container->getRemovedIds());
-        self::assertArrayNotHasKey(DtoAnnotationProcessor::class, $this->container->getDefinitions());
+        self::assertArrayHasKey(DtoAttributeProcessor::class, $this->container->getRemovedIds());
+        self::assertArrayNotHasKey(DtoAttributeProcessor::class, $this->container->getDefinitions());
 
         $childDefinitions = $this->container->getAutoconfiguredInstanceof();
         foreach ($childDefinitions as $childDefinition) {
@@ -65,6 +65,6 @@ final class StfalconApiExtensionTest extends TestCase
         $this->container->compile();
 
         $this->expectException(ServiceNotFoundException::class);
-        $this->container->get(DtoAnnotationProcessor::class);
+        $this->container->get(DtoAttributeProcessor::class);
     }
 }

@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Validator\Constraints\Password;
 
+use Attribute;
 use Symfony\Component\Validator\Constraint;
 
 /**
  * PasswordMeetSpecialRequirements.
- *
- * @Annotation
  */
+#[Attribute]
 class PasswordMeetSpecialRequirements extends Constraint
 {
     public const PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS = 'PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS';
