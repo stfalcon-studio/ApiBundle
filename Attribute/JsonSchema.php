@@ -15,7 +15,7 @@ namespace StfalconStudio\ApiBundle\Attribute;
 use Attribute;
 
 /**
- * JsonSchema Annotation.
+ * JsonSchema Attribute.
  */
 #[Attribute(Attribute::TARGET_CLASS)]
 class JsonSchema

@@ -27,11 +27,10 @@ use Symfony\Component\Serializer\Serializer;
  */
 class JsonSchemaValidator
 {
-    use Traits\AnnotationReaderTrait;
     use Traits\SymfonySerializerTrait;
 
     private readonly Validator $validator;
-    private readonly JsonSchemaAnnotationProcessor $jsonSchemaAnnotationProcessor;
+    private readonly JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor;
 
     /**
      * @param Validator                    $validator
@@ -50,7 +49,7 @@ class JsonSchemaValidator
     public function validateRequestForControllerClass(Request $request, string $controllerClassName): void
     {
         $data = $this->decodeJsonFromRequest($request);
-        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForControllerClass($controllerClassName);
+        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass($controllerClassName);
         $this->doValidateRequestData($data, $jsonSchema);
     }
 
@@ -61,7 +60,7 @@ class JsonSchemaValidator
     public function validateRequestDataForDtoClass(Request $request, string $dtoClassName): void
     {
         $data = $this->decodeJsonFromRequest($request);
-        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAnnotationForDtoClass($dtoClassName);
+        $jsonSchema = $this->jsonSchemaAttributeProcessor->processAttributeForDtoClass($dtoClassName);
         $this->doValidateRequestData($data, $jsonSchema);
     }
 

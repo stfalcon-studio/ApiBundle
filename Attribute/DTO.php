@@ -17,7 +17,7 @@ use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 
 /**
- * Data Transfer Object Annotation.
+ * DTO Attribute.
  */
 #[Attribute(Attribute::TARGET_CLASS)]
 class DTO

@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class DtoExtractor
 {
-    private readonly DtoAnnotationProcessor $dtoAnnotationProcessor;
+    private readonly DtoAttributeProcessor $dtoAttributeProcessor;
     private readonly SerializerInterface $serializer;
 
     /**

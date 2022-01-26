@@ -22,7 +22,7 @@ final class JsonSchemaTest extends TestCase
 {
     public function testGetJsonSchemaName(): void
     {
-        $annotation = new JsonSchema(jsonSchemaName: 'Device/IosDevice');
-        self::assertEquals('Device/IosDevice', $annotation->getJsonSchemaName());
+        $attribute = new JsonSchema(jsonSchemaName: 'Device/IosDevice');
+        self::assertEquals('Device/IosDevice', $attribute->getJsonSchemaName());
     }
 }
