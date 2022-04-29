@@ -63,7 +63,7 @@ class JwtTokenAuthenticator extends BaseJWTTokenAuthenticator
             }
         }
 
-        if ($result && $user instanceof UserInterface) {
+        if ($result && $user instanceof UserInterface && $credentials instanceof PreAuthenticationJWTUserToken) {
             $result = $this->tokenBlackListService->tokenIsNotInBlackList($user, $credentials);
         }
 
