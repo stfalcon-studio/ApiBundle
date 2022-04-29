@@ -19,7 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 final class EventDispatcherTraitTest extends TestCase
 {
     /** @var EventDispatcherInterface|MockObject */
-    private $eventDispatcher;
+    private EventDispatcherInterface|MockObject $eventDispatcher;
 
     private DummyClass $dummyClass;
 

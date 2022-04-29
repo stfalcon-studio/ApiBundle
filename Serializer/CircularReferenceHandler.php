@@ -12,17 +12,19 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Serializer;
 
+use StfalconStudio\ApiBundle\Model\UUID\UuidInterface;
+
 /**
  * CircularReferenceHandler.
  */
 class CircularReferenceHandler
 {
     /**
-     * @param mixed $object
+     * @param UuidInterface $object
      *
      * @return callable
      */
-    public function __invoke(mixed $object): callable
+    public function __invoke(UuidInterface $object): callable
     {
         return static function () use ($object) {
             return $object->getId();

@@ -22,7 +22,7 @@ use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 final class TokenBlackListSubscriberTest extends TestCase
 {
     /** @var JwtBlackListService|MockObject */
-    private $tokenBlackListService;
+    private JwtBlackListService|MockObject $tokenBlackListService;
 
     private TokenBlackListSubscriber $subscriber;
 

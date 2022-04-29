@@ -27,28 +27,28 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 abstract class AbstractDtoBasedActionTest extends TestCase
 {
     /** @var AuthorizationCheckerInterface|MockObject */
-    protected $authorizationChecker;
+    protected AuthorizationCheckerInterface|MockObject $authorizationChecker;
 
     /** @var EntityManager|MockObject */
-    protected $em;
+    protected EntityManager|MockObject $em;
 
     /** @var EntityValidator|MockObject */
-    protected $entityValidator;
+    protected EntityValidator|MockObject $entityValidator;
 
     /** @var JsonSchemaValidator|MockObject */
-    protected $jsonSchemaValidator;
+    protected JsonSchemaValidator|MockObject $jsonSchemaValidator;
 
     /** @var Serializer|MockObject */
-    protected $serializer;
+    protected Serializer|MockObject $serializer;
 
     /** @var DtoExtractor|MockObject */
-    protected $dtoExtractor;
+    protected DtoExtractor|MockObject $dtoExtractor;
 
     /** @var EventDispatcherInterface|MockObject */
-    protected $eventDispatcher;
+    protected EventDispatcherInterface|MockObject $eventDispatcher;
 
     /** @var Request|MockObject */
-    protected $request;
+    protected Request|MockObject $request;
 
     /** @var AbstractDtoBasedAction */
     protected $action;

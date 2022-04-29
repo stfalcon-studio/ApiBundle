@@ -28,16 +28,16 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 final class JwtTokenAuthenticatorTest extends TestCase
 {
     /** @var JWTTokenManagerInterface|MockObject */
-    private $jwtManager;
+    private JWTTokenManagerInterface|MockObject $jwtManager;
 
     /** @var EventDispatcherInterface|MockObject */
-    private $eventDispatcher;
+    private EventDispatcherInterface|MockObject $eventDispatcher;
 
     /** @var TokenExtractorInterface|MockObject */
-    private $tokenExtractor;
+    private TokenExtractorInterface|MockObject $tokenExtractor;
 
     /** @var JwtBlackListService|MockObject */
-    private $jwtBlackListService;
+    private JwtBlackListService|MockObject $jwtBlackListService;
 
     private JwtTokenAuthenticator $jwtTokenAuthenticator;
 

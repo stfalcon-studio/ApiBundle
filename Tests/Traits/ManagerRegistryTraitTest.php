@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 final class ManagerRegistryTraitTest extends TestCase
 {
     /** @var ManagerRegistry|MockObject */
-    private $managerRegistry;
+    private ManagerRegistry|MockObject $managerRegistry;
 
     private DummyClass $dummyClass;
 

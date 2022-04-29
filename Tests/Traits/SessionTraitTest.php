@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 final class SessionTraitTest extends TestCase
 {
     /** @var Session|MockObject */
-    private $session;
+    private Session|MockObject $session;
 
     private DummyClass $dummyClass;
 

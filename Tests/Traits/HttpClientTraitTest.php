@@ -19,7 +19,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 final class HttpClientTraitTest extends TestCase
 {
     /** @var HttpClientInterface|MockObject */
-    private $httpClient;
+    private HttpClientInterface|MockObject $httpClient;
 
     private DummyClass $dummyClass;
 

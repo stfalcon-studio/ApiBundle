@@ -19,7 +19,7 @@ use Twig\Environment;
 final class TwigTraitTest extends TestCase
 {
     /** @var Environment|MockObject */
-    private $twig;
+    private Environment|MockObject $twig;
 
     private DummyClass $dummyClass;
 

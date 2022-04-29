@@ -19,7 +19,7 @@ use Symfony\Component\Workflow\Registry;
 final class WorkflowsTraitTest extends TestCase
 {
     /** @var Registry|MockObject */
-    private $registry;
+    private Registry|MockObject $registry;
 
     private DummyClass $dummyClass;
 

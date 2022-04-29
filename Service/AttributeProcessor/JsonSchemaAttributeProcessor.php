@@ -28,7 +28,7 @@ class JsonSchemaAttributeProcessor
     private readonly FileReader $fileReader;
     private readonly string $jsonSchemaDir;
 
-    /** @var string[] */
+    /** @var array */
     private array $cachedClasses = [];
 
     /**

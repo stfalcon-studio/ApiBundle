@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 final class EntityValidatorTest extends TestCase
 {
     /** @var ValidatorInterface|MockObject */
-    private $validator;
+    private ValidatorInterface|MockObject $validator;
 
     private EntityValidator $entityValidator;
 

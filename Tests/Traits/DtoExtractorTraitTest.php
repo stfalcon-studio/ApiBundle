@@ -22,7 +22,7 @@ use StfalconStudio\ApiBundle\Request\DtoExtractor;
 final class DtoExtractorTraitTest extends TestCase
 {
     /** @var DtoExtractor|MockObject */
-    private $dtoExtractor;
+    private DtoExtractor|MockObject $dtoExtractor;
 
     private DummyClass $dummyClass;
 
