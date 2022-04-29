@@ -85,7 +85,6 @@ final class JwtBlackListServiceTest extends TestCase
         ;
 
         $token
-            ->expects(self::once())
             ->method('getCredentials')
             ->willReturn('test')
         ;
