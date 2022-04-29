@@ -80,7 +80,6 @@ final class JwtBlackListServiceTest extends TestCase
         $user = $this->createMock(DummyUser::class);
 
         $token
-            ->expects(self::once())
             ->method('getUser')
             ->willReturn($user)
         ;
