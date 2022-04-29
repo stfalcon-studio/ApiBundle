@@ -12,12 +12,12 @@ class DummyUuidEntity
     use UuidTrait;
 
     /** @var Uuid|string */
-    private $id;
+    private Uuid|string $id;
 
     /**
      * @param Uuid|string $id
      */
-    public function setId($id): void
+    public function setId(Uuid|string $id): void
     {
         $this->id = $id;
     }

@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class SymfonySerializerTraitTest extends TestCase
 {
     /** @var SerializerInterface|MockObject */
-    private $symfonySerializer;
+    private SerializerInterface|MockObject $symfonySerializer;
 
     private DummyClass $dummyClass;
 

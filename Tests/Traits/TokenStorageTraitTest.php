@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 final class TokenStorageTraitTest extends TestCase
 {
     /** @var TokenStorageInterface|MockObject */
-    private $tokenStorage;
+    private TokenStorageInterface|MockObject $tokenStorage;
 
     private DummyClass $dummyClass;
 

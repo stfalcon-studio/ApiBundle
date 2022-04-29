@@ -24,16 +24,16 @@ use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 final class JwtRefreshSubscriberTest extends TestCase
 {
     /** @var RefreshEvent|MockObject */
-    private $refreshEvent;
+    private RefreshEvent|MockObject $refreshEvent;
 
     /** @var PostAuthenticationGuardToken|MockObject */
-    private $token;
+    private PostAuthenticationGuardToken|MockObject $token;
 
     /** @var RefreshToken|MockObject */
-    private $refreshToken;
+    private RefreshToken|MockObject $refreshToken;
 
     /** @var CredentialsInterface|MockObject */
-    private $user;
+    private CredentialsInterface|MockObject $user;
 
     private JwtRefreshSubscriber $subscriber;
 

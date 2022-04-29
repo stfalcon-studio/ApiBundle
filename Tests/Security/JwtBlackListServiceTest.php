@@ -28,16 +28,16 @@ use StfalconStudio\ApiBundle\Security\JwtTokenHelper;
 final class JwtBlackListServiceTest extends TestCase
 {
     /** @var JWSProviderInterface|MockObject */
-    private $jwsProvider;
+    private JWSProviderInterface|MockObject $jwsProvider;
 
     /** @var Client|MockObject */
-    private $redisClientJwtBlackList;
+    private Client|MockObject $redisClientJwtBlackList;
 
     /** @var JwtTokenHelper|MockObject */
-    private $jwtTokenHelper;
+    private JwtTokenHelper|MockObject $jwtTokenHelper;
 
     /** @var JwtCacheHelper|MockObject */
-    private $jwtCacheHelper;
+    private JwtCacheHelper|MockObject $jwtCacheHelper;
 
     private JwtBlackListService $jwtBlackListService;
 
@@ -80,13 +80,11 @@ final class JwtBlackListServiceTest extends TestCase
         $user = $this->createMock(DummyUser::class);
 
         $token
-            ->expects(self::once())
             ->method('getUser')
             ->willReturn($user)
         ;
 
         $token
-            ->expects(self::once())
             ->method('getCredentials')
             ->willReturn('test')
         ;

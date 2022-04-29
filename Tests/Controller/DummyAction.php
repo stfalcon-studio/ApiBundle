@@ -32,7 +32,7 @@ class DummyAction extends AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    public function doValidateDto(DtoInterface $dto, $constraints = null, array $groups = null): void
+    public function doValidateDto(DtoInterface $dto, Constraint|array|null $constraints = null, array $groups = null): void
     {
         $this->validateDto($dto, $constraints, $groups);
     }
@@ -42,7 +42,7 @@ class DummyAction extends AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    public function doValidateEntity(mixed $entity, $constraints = null, array $groups = null): void
+    public function doValidateEntity(mixed $entity, Constraint|array|null $constraints = null, array $groups = null): void
     {
         $this->validateEntity($entity, $constraints, $groups);
     }

@@ -16,6 +16,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\PreAuthen
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface;
 use Predis\Client;
 use StfalconStudio\ApiBundle\Exception\DomainException;
+use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use StfalconStudio\ApiBundle\Exception\LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -25,9 +26,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class JwtBlackListService
 {
     private readonly JWSProviderInterface $jwsProvider;
-    private readonly Client $redisClientJwtBlackList;
     private readonly JwtTokenHelper $jwtTokenHelper;
     private readonly JwtCacheHelper $jwtCacheHelper;
+    private Client $redisClientJwtBlackList;
 
     /**
      * @param JWSProviderInterface $jwsProvider
@@ -53,6 +54,7 @@ class JwtBlackListService
 
     /**
      * @throws LogicException
+     * @throws InvalidArgumentException
      */
     public function addCurrentTokenToBlackList(): void
     {
@@ -63,7 +65,11 @@ class JwtBlackListService
             throw new LogicException(sprintf('Current user is not instance of %s', UserInterface::class));
         }
 
-        $this->addTokenToBlackList($token->getCredentials());
+        if (!\is_scalar($token->getCredentials())) {
+            throw new InvalidArgumentException('Token cannot be casted to string');
+        }
+
+        $this->addTokenToBlackList((string) $token->getCredentials());
     }
 
     /**
@@ -98,7 +104,11 @@ class JwtBlackListService
      */
     public function tokenIsNotInBlackList(UserInterface $user, PreAuthenticationJWTUserToken $preAuthenticationJwtUserToken): bool
     {
-        $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), $preAuthenticationJwtUserToken->getCredentials());
+        if (!\is_scalar($preAuthenticationJwtUserToken->getCredentials())) {
+            throw new InvalidArgumentException('Token cannot be casted to string');
+        }
+
+        $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), (string) $preAuthenticationJwtUserToken->getCredentials());
         $tokenIsInBlackList = (bool) $this->redisClientJwtBlackList->exists($key);
 
         return !$tokenIsInBlackList;

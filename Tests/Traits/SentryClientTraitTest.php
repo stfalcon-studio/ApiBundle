@@ -19,7 +19,7 @@ use Sentry\ClientInterface;
 final class SentryClientTraitTest extends TestCase
 {
     /** @var ClientInterface|MockObject */
-    private $sentryClient;
+    private ClientInterface|MockObject $sentryClient;
 
     private DummyClass $dummyClass;
 

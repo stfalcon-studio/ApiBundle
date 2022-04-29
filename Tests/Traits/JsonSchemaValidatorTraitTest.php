@@ -19,7 +19,7 @@ use StfalconStudio\ApiBundle\Validator\JsonSchemaValidator;
 final class JsonSchemaValidatorTraitTest extends TestCase
 {
     /** @var JsonSchemaValidator|MockObject */
-    private $jsonSchemaValidator;
+    private JsonSchemaValidator|MockObject $jsonSchemaValidator;
 
     private DummyClass $dummyClass;
 

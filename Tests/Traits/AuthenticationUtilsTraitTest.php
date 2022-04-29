@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 final class AuthenticationUtilsTraitTest extends TestCase
 {
     /** @var AuthenticationUtils|MockObject */
-    private $authenticationUtils;
+    private AuthenticationUtils|MockObject $authenticationUtils;
 
     private DummyClass $dummyClass;
 

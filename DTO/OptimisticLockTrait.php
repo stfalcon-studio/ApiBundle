@@ -19,11 +19,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 trait OptimisticLockTrait
 {
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Type("int")
-     * @Assert\GreaterThan(0)
-     */
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'int')]
+    #[Assert\GreaterThan(value: 0)]
     private int $editVersion;
 
     /**

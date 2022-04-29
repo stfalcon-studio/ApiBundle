@@ -35,6 +35,7 @@ final class JsonDecoderListener implements EventSubscriberInterface
         $request = $event->getRequest();
 
         if ($request->headers->has(self::HEADER_CONTENT_TYPE)) {
+            /** @var string[] $contentType */
             $contentType = $request->headers->all(self::HEADER_CONTENT_TYPE);
 
             if (\is_array($contentType)) {

@@ -21,7 +21,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 final class ConstraintViolationListNormalizerTest extends TestCase
 {
     /** @var SymfonyConstraintViolationListNormalizer|MockObject */
-    private $symfonyNormalizer;
+    private SymfonyConstraintViolationListNormalizer|MockObject $symfonyNormalizer;
 
     private ConstraintViolationListNormalizer $normalizer;
 

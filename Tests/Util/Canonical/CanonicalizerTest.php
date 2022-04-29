@@ -20,7 +20,7 @@ use StfalconStudio\ApiBundle\Util\Canonical\EncodingDetector;
 final class CanonicalizerTest extends TestCase
 {
     /** @var EncodingDetector|MockObject */
-    private $encodingDetector;
+    private EncodingDetector|MockObject $encodingDetector;
 
     private Canonicalizer $canonicalizer;
 

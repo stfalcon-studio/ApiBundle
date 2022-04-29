@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 final class HttpKernelTraitTest extends TestCase
 {
     /** @var HttpKernelInterface|MockObject */
-    private $httpKernel;
+    private HttpKernelInterface|MockObject $httpKernel;
 
     private DummyClass $dummyClass;
 

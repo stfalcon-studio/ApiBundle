@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
 final class EntityManagerTraitTest extends TestCase
 {
     /** @var EntityManager|MockObject */
-    private $entityManager;
+    private EntityManager|MockObject $entityManager;
 
     private DummyClass $dummyClass;
 

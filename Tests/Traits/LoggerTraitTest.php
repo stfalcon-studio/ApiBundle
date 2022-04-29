@@ -19,7 +19,7 @@ use Psr\Log\LoggerInterface;
 final class LoggerTraitTest extends TestCase
 {
     /** @var LoggerInterface|MockObject */
-    private $logger;
+    private LoggerInterface|MockObject $logger;
 
     private DummyClass $dummyClass;
 

@@ -23,12 +23,12 @@ class Serializer
     public const DEFAULT_FORMAT = 'json';
 
     /** @var SerializerInterface|BaseSerializer */
-    protected readonly SerializerInterface $symfonySerializer;
+    protected readonly SerializerInterface|BaseSerializer $symfonySerializer;
 
     /**
      * @param SerializerInterface|BaseSerializer $serializer
      */
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(SerializerInterface|BaseSerializer $serializer)
     {
         $this->symfonySerializer = $serializer;
     }
@@ -61,7 +61,7 @@ class Serializer
      *
      * @return object|array
      */
-    public function deserialize($data, string $type, string $format, array $context = []): object|array
+    public function deserialize(mixed $data, string $type, string $format, array $context = []): object|array
     {
         return $this->symfonySerializer->deserialize($data, $type, $format, $context);
     }

@@ -27,13 +27,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class JsonSchemaValidatorTest extends TestCase
 {
     /** @var Validator|MockObject */
-    private $validator;
+    private Validator|MockObject $validator;
 
     /** @var JsonSchemaAttributeProcessor|MockObject */
-    private $jsonSchemaAttributeProcessor;
+    private JsonSchemaAttributeProcessor|MockObject $jsonSchemaAttributeProcessor;
 
     /** @var Serializer|MockObject */
-    private $serializer;
+    private Serializer|MockObject $serializer;
 
     private JsonSchemaValidator $jsonSchemaValidator;
 

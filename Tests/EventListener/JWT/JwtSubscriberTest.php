@@ -26,7 +26,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class JwtSubscriberTest extends TestCase
 {
     /** @var TranslatorInterface|MockObject */
-    private $translator;
+    private TranslatorInterface|MockObject $translator;
 
     private JwtSubscriber $subscriber;
 
@@ -70,7 +70,7 @@ final class JwtSubscriberTest extends TestCase
      *
      * @dataProvider dataProviderForTestOnAuthenticationFailureResponse
      */
-    public function testOnAuthenticationFailureResponse($event, string $message): void
+    public function testOnAuthenticationFailureResponse(MockObject|AuthenticationFailureEvent|string $event, string $message): void
     {
         $this->translator
             ->expects(self::once())

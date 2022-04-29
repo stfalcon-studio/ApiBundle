@@ -5,12 +5,13 @@ includes:
     - 'vendor/phpstan/phpstan-symfony/extension.neon'
     - 'vendor/slam/phpstan-extensions/conf/slam-rules.neon'
 parameters:
-    level: 8
+    level: 9
     checkMissingIterableValueType: false
-    excludes_analyse:
+    excludePaths:
         - '%rootDir%/../../../DependencyInjection/Configuration'
         - '%rootDir%/../../../Tests/*'
         - '%rootDir%/../../../tests/*'
         - '%rootDir%/../../../vendor/*'
     fileExtensions:
         - 'php'
+    checkGenericClassInNonGenericObjectType: false

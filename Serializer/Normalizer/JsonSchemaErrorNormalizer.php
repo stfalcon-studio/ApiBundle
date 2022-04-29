@@ -30,9 +30,11 @@ class JsonSchemaErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param JsonSchemaValidator|mixed $object
-     * @param string|null               $format
-     * @param array                     $context
+     * @param JsonSchemaValidator|object $object
+     * @param string|null                $format
+     * @param array                      $context
+     *
+     * @throws RuntimeException
      *
      * @return array
      */

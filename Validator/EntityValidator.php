@@ -30,7 +30,7 @@ class EntityValidator
      *
      * @throws InvalidEntityException
      */
-    public function validate($entity, $constraints = null, array $groups = null): void
+    public function validate(mixed $entity, Constraint|array|null $constraints = null, array $groups = null): void
     {
         $errors = $this->validator->validate($entity, $constraints, $groups);
 
