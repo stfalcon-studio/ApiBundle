@@ -7,4 +7,3 @@
 /.styleci.yml       export-ignore
 /phpstan.neon       export-ignore
 /phpunit.xml.dist   export-ignore
-/Tests              export-ignore
