@@ -54,8 +54,8 @@ class JwtTokenAuthenticator extends BaseJWTTokenAuthenticator
         $result = true;
 
         if ($user instanceof CredentialsInterface && $user->getCredentialsLastChangedAt() instanceof \DateTime) {
-            if ($credentials instanceof PreAuthenticationJWTUserToken && isset($credentials->getPayload()['iat'])) {
-                if ((int) $credentials->getPayload()['iat'] < (int) $user->getCredentialsLastChangedAt()->getTimestamp()) {
+            if ($credentials instanceof PreAuthenticationJWTUserToken && \is_array($credentials->getPayload()) &&  isset($credentials->getPayload()['iat'])) {
+                if ((int) $credentials->getPayload()['iat'] < $user->getCredentialsLastChangedAt()->getTimestamp()) {
                     $result = false;
                 }
             } else {

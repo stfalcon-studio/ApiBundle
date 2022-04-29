@@ -25,9 +25,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class JwtBlackListService
 {
     private readonly JWSProviderInterface $jwsProvider;
-    private readonly Client $redisClientJwtBlackList;
     private readonly JwtTokenHelper $jwtTokenHelper;
     private readonly JwtCacheHelper $jwtCacheHelper;
+    private Client $redisClientJwtBlackList;
 
     /**
      * @param JWSProviderInterface $jwsProvider
@@ -63,7 +63,7 @@ class JwtBlackListService
             throw new LogicException(sprintf('Current user is not instance of %s', UserInterface::class));
         }
 
-        $this->addTokenToBlackList($token->getCredentials());
+        $this->addTokenToBlackList((string) $token->getCredentials());
     }
 
     /**
@@ -98,7 +98,7 @@ class JwtBlackListService
      */
     public function tokenIsNotInBlackList(UserInterface $user, PreAuthenticationJWTUserToken $preAuthenticationJwtUserToken): bool
     {
-        $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), $preAuthenticationJwtUserToken->getCredentials());
+        $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), (string) $preAuthenticationJwtUserToken->getCredentials());
         $tokenIsInBlackList = (bool) $this->redisClientJwtBlackList->exists($key);
 
         return !$tokenIsInBlackList;
