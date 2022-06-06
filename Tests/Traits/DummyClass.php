@@ -25,7 +25,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -61,7 +60,6 @@ final class DummyClass
     use Traits\RouterTrait;
     use Traits\SentryClientTrait;
     use Traits\SerializerTrait;
-    use Traits\SessionTrait;
     use Traits\SymfonySerializerTrait;
     use Traits\TokenStorageTrait;
     use Traits\TranslatorTrait;
@@ -162,11 +160,6 @@ final class DummyClass
     public function getRouter(): RouterInterface
     {
         return $this->router;
-    }
-
-    public function getSession(): Session
-    {
-        return $this->session;
     }
 
     public function getTokenStorage(): TokenStorageInterface
