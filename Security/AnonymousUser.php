@@ -48,14 +48,6 @@ class AnonymousUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getUsername(): string
-    {
-        return self::USERNAME;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function eraseCredentials(): void
     {
     }
@@ -65,6 +57,6 @@ class AnonymousUser implements UserInterface
      */
     public function getUserIdentifier(): string
     {
-        return $this->getUsername();
+        return self::USERNAME;
     }
 }

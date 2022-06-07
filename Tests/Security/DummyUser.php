@@ -40,13 +40,8 @@ class DummyUser implements UserInterface, CredentialsInterface
         // noop
     }
 
-    public function getUsername(): string
-    {
-        return 'dummy';
-    }
-
     public function getUserIdentifier(): string
     {
-        return $this->getUsername();
+        return 'dummy';
     }
 }
