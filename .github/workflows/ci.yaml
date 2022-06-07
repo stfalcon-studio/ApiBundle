@@ -96,7 +96,6 @@ jobs:
         php-version:
           - '8.1'
         symfony-version:
-          - '6.0'
           - '6.1'
     steps:
       - name: 'Checkout Code'
