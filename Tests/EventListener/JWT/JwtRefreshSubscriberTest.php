@@ -12,9 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\EventListener\JWT;
 
-use App\Entity\ApplicationUser\ApplicationUser;
 use Gesdinet\JWTRefreshTokenBundle\Event\RefreshEvent;
-use Gesdinet\JWTRefreshTokenBundle\Model\RefreshTokenInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
@@ -31,8 +29,8 @@ final class JwtRefreshSubscriberTest extends TestCase
     /** @var TokenInterface|MockObject */
     private TokenInterface|MockObject $token;
 
-    /** @var RefreshTokenInterface|MockObject */
-    private RefreshTokenInterface|MockObject $refreshToken;
+    /** @var RefreshToken|MockObject */
+    private RefreshToken|MockObject $refreshToken;
 
     /** @var CredentialsInterface|MockObject */
     private CredentialsInterface|MockObject $user;
@@ -42,7 +40,7 @@ final class JwtRefreshSubscriberTest extends TestCase
     protected function setUp(): void
     {
         $this->refreshEvent = $this->createMock(RefreshEvent::class);
-        $this->user = $this->createMock(ApplicationUser::class);
+        $this->user = $this->createMock(DummyUser::class);
         $this->token = $this->createMock(TokenInterface::class);
         $this->refreshToken = $this->createMock(RefreshToken::class);
         $this->subscriber = new JwtRefreshSubscriber();
