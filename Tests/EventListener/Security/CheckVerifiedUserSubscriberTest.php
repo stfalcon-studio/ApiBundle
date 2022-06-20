@@ -72,7 +72,7 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
 
         $this->jwtBlackListService
             ->expects(self::once())
-            ->method('tokenIsNotInBlackList')
+            ->method('tokenIsInBlackList')
             ->with($user, 'qwerty')
             ->willReturn(false)
         ;
@@ -111,7 +111,7 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
 
         $this->jwtBlackListService
             ->expects(self::never())
-            ->method('tokenIsNotInBlackList')
+            ->method('tokenIsInBlackList')
         ;
 
         $this->expectErrorMessage('Credentials were changed.');
@@ -151,7 +151,7 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
 
         $this->jwtBlackListService
             ->expects(self::once())
-            ->method('tokenIsNotInBlackList')
+            ->method('tokenIsInBlackList')
             ->with($user, 'qwerty')
             ->willReturn(true)
         ;

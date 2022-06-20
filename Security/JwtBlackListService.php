@@ -101,11 +101,10 @@ class JwtBlackListService
      *
      * @return bool
      */
-    public function tokenIsNotInBlackList(UserInterface $user, string $token): bool
+    public function tokenIsInBlackList(UserInterface $user, string $token): bool
     {
         $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), $token);
-        $tokenIsInBlackList = (bool) $this->redisClientJwtBlackList->exists($key);
 
-        return !$tokenIsInBlackList;
+        return (bool) $this->redisClientJwtBlackList->exists($key);
     }
 }

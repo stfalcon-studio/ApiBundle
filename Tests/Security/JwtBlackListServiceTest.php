@@ -227,7 +227,7 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn(0)
         ;
 
-        self::assertTrue($this->jwtBlackListService->tokenIsNotInBlackList($user, 'test_credentials'));
+        self::assertFalse($this->jwtBlackListService->tokenIsInBlackList($user, 'test_credentials'));
     }
 
     public function testTokenIsInBlackList(): void
@@ -253,6 +253,6 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn(1)
         ;
 
-        self::assertFalse($this->jwtBlackListService->tokenIsNotInBlackList($user, 'test_credentials'));
+        self::assertTrue($this->jwtBlackListService->tokenIsInBlackList($user, 'test_credentials'));
     }
 }

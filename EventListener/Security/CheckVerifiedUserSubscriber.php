@@ -59,7 +59,7 @@ final class CheckVerifiedUserSubscriber implements EventSubscriberInterface
         }
 
         $token = $passport->getAttribute('token');
-        if (\is_string($token) && $this->tokenBlackListService->tokenIsNotInBlackList($user, $token)) {
+        if (\is_string($token) && $this->tokenBlackListService->tokenIsInBlackList($user, $token)) {
             throw new BadCredentialsException('Token in the black list.');
         }
     }
