@@ -19,15 +19,15 @@ use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 use StfalconStudio\ApiBundle\EventListener\JWT\JwtRefreshSubscriber;
 use StfalconStudio\ApiBundle\Exception\JWT\InvalidRefreshTokenException;
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
-use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 final class JwtRefreshSubscriberTest extends TestCase
 {
     /** @var RefreshEvent|MockObject */
     private RefreshEvent|MockObject $refreshEvent;
 
-    /** @var PostAuthenticationGuardToken|MockObject */
-    private PostAuthenticationGuardToken|MockObject $token;
+    /** @var TokenInterface|MockObject */
+    private TokenInterface|MockObject $token;
 
     /** @var RefreshToken|MockObject */
     private RefreshToken|MockObject $refreshToken;
@@ -40,8 +40,8 @@ final class JwtRefreshSubscriberTest extends TestCase
     protected function setUp(): void
     {
         $this->refreshEvent = $this->createMock(RefreshEvent::class);
-        $this->user = $this->createMock(CredentialsInterface::class);
-        $this->token = $this->createMock(PostAuthenticationGuardToken::class);
+        $this->user = $this->createMock(DummyUser::class);
+        $this->token = $this->createMock(TokenInterface::class);
         $this->refreshToken = $this->createMock(RefreshToken::class);
         $this->subscriber = new JwtRefreshSubscriber();
     }

@@ -10,53 +10,38 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Security;
+namespace StfalconStudio\ApiBundle\Tests\EventListener\Security;
 
+use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
+use StfalconStudio\ApiBundle\Model\Credentials\CredentialsTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * AnonymousUser.
- */
-class AnonymousUser implements UserInterface
+class DummyUser implements UserInterface, CredentialsInterface
 {
-    public final const USERNAME = 'anonymous';
+    use CredentialsTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRoles(): array
     {
-        return [Role::ANONYMOUS];
+        return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPassword(): ?string
     {
         return null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSalt(): ?string
     {
         return null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function eraseCredentials(): void
     {
+        // noop
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUserIdentifier(): string
     {
-        return self::USERNAME;
+        return 'dummy';
     }
 }

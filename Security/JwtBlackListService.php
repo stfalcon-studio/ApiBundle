@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Security;
 
-use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\PreAuthenticationJWTUserToken;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface;
 use Predis\Client;
 use StfalconStudio\ApiBundle\Exception\DomainException;
@@ -97,18 +96,14 @@ class JwtBlackListService
     }
 
     /**
-     * @param UserInterface                 $user
-     * @param PreAuthenticationJWTUserToken $preAuthenticationJwtUserToken
+     * @param UserInterface $user
+     * @param string        $token
      *
      * @return bool
      */
-    public function tokenIsNotInBlackList(UserInterface $user, PreAuthenticationJWTUserToken $preAuthenticationJwtUserToken): bool
+    public function tokenIsNotInBlackList(UserInterface $user, string $token): bool
     {
-        if (!\is_scalar($preAuthenticationJwtUserToken->getCredentials())) {
-            throw new InvalidArgumentException('Token cannot be casted to string');
-        }
-
-        $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), (string) $preAuthenticationJwtUserToken->getCredentials());
+        $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($user->getUserIdentifier(), $token);
         $tokenIsInBlackList = (bool) $this->redisClientJwtBlackList->exists($key);
 
         return !$tokenIsInBlackList;

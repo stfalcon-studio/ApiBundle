@@ -10,34 +10,29 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Tests\Security;
+namespace StfalconStudio\ApiBundle\Tests\EventListener\JWT;
 
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
-use StfalconStudio\ApiBundle\Model\Credentials\CredentialsTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class DummyUser implements UserInterface, CredentialsInterface
 {
-    use CredentialsTrait;
+    public function setCredentialsLastChangedAt(?\DateTime $credentialsLastChangedAt): void
+    {
+    }
+
+    public function getCredentialsLastChangedAt(): ?\DateTime
+    {
+        return null;
+    }
 
     public function getRoles(): array
     {
-        return [];
-    }
-
-    public function getPassword(): ?string
-    {
-        return null;
-    }
-
-    public function getSalt(): ?string
-    {
-        return null;
+        return ['ROLE_USER'];
     }
 
     public function eraseCredentials(): void
     {
-        // noop
     }
 
     public function getUserIdentifier(): string
