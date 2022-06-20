@@ -53,4 +53,4 @@ stfalcon_api:
 
 ## Contributing
 
-Read the [CONTRIBUTING](https://github.com/stfalcon-studio/ApiBundle/blob/master/.github/CONTRIBUTING.md) file.
+Read the [CONTRIBUTING](https://github.com/stfalcon-studio/ApiBundle/blob/main/.github/CONTRIBUTING.md) file.
