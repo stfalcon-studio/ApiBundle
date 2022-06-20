@@ -44,25 +44,22 @@ final class CheckVerifiedUserSubscriber implements EventSubscriberInterface
     /**
      * @param CheckPassportEvent $event
      *
+     * @throws BadCredentialsException
+     *
      * @return void
      */
     public function onCheckPassport(CheckPassportEvent $event): void
     {
         $passport = $event->getPassport();
-
         $user = $passport->getUser();
+
         $payload = $passport->getAttribute('payload');
-        $token = $passport->getAttribute('token');
-
         if ($user instanceof CredentialsInterface && $user->getCredentialsLastChangedAt() instanceof \DateTime && is_array($payload) && (int) $payload['iat'] < $user->getCredentialsLastChangedAt()->getTimestamp()) {
-            $event->stopPropagation();
-
-            throw new BadCredentialsException('The presented password cannot be empty.');
+            throw new BadCredentialsException('Credentials were changed.');
         }
 
-        if (!empty($token) && \is_string($token) && $this->tokenBlackListService->tokenIsNotInBlackList($user, $token)) {
-            $event->stopPropagation();
-
+        $token = $passport->getAttribute('token');
+        if (\is_string($token) && $this->tokenBlackListService->tokenIsNotInBlackList($user, $token)) {
             throw new BadCredentialsException('Token in the black list.');
         }
     }

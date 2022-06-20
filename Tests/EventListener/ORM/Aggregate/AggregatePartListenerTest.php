@@ -39,6 +39,7 @@ final class AggregatePartListenerTest extends TestCase
     protected function tearDown(): void
     {
         unset(
+            $this->dateTimeHelper,
             $this->listener,
         );
     }
