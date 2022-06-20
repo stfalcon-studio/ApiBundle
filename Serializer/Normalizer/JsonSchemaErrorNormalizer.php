@@ -24,7 +24,7 @@ class JsonSchemaErrorNormalizer implements NormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
         return $data instanceof JsonSchemaValidator;
     }
@@ -38,7 +38,7 @@ class JsonSchemaErrorNormalizer implements NormalizerInterface
      *
      * @return array
      */
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, string $format = null, array $context = []): array
     {
         if (!$object instanceof JsonSchemaValidator) {
             throw new RuntimeException(sprintf('Object of class %s is not instance of %s', \get_class($object), JsonSchemaValidator::class));
