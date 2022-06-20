@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\Http\Validation\InvalidEntityException;
 use StfalconStudio\ApiBundle\Validator\EntityValidator;
 use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class EntityValidatorTest extends TestCase
@@ -52,7 +53,7 @@ final class EntityValidatorTest extends TestCase
             ->expects(self::once())
             ->method('validate')
             ->with($entity, $constraints, $groups)
-            ->willReturn([])
+            ->willReturn($this->createStub(ConstraintViolationListInterface::class))
         ;
 
         $this->entityValidator->validate($entity, $constraints, $groups);

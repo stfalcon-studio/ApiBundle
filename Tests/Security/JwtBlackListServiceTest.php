@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Tests\Security;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
-use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\PreAuthenticationJWTUserToken;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Signature\LoadedJWS;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -24,6 +23,7 @@ use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Security\JwtCacheHelper;
 use StfalconStudio\ApiBundle\Security\JwtTokenHelper;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class JwtBlackListServiceTest extends TestCase
 {
@@ -114,7 +114,7 @@ final class JwtBlackListServiceTest extends TestCase
         $token
             ->expects(self::once())
             ->method('getUser')
-            ->willReturn(new \stdClass())
+            ->willReturn(null)
         ;
 
         $this->expectException(LogicException::class);
@@ -213,8 +213,6 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn('test_username')
         ;
 
-        $jwtUserToken = new PreAuthenticationJWTUserToken('test_credentials');
-
         $this->jwtCacheHelper
             ->expects(self::once())
             ->method('getRedisKeyForUserRawToken')
@@ -229,7 +227,7 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn(0)
         ;
 
-        self::assertTrue($this->jwtBlackListService->tokenIsNotInBlackList($user, $jwtUserToken));
+        self::assertTrue($this->jwtBlackListService->tokenIsNotInBlackList($user, 'test_credentials'));
     }
 
     public function testTokenIsInBlackList(): void
@@ -240,8 +238,6 @@ final class JwtBlackListServiceTest extends TestCase
             ->method('getUserIdentifier')
             ->willReturn('test_username')
         ;
-
-        $jwtUserToken = new PreAuthenticationJWTUserToken('test_credentials');
 
         $this->jwtCacheHelper
             ->expects(self::once())
@@ -257,6 +253,6 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn(1)
         ;
 
-        self::assertFalse($this->jwtBlackListService->tokenIsNotInBlackList($user, $jwtUserToken));
+        self::assertFalse($this->jwtBlackListService->tokenIsNotInBlackList($user, 'test_credentials'));
     }
 }
