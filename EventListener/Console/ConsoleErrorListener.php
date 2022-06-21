@@ -16,13 +16,24 @@ use StfalconStudio\ApiBundle\Exception\Console\CustomConsoleExceptionInterface;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * ConsoleErrorListener.
+ */
 final class ConsoleErrorListener implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): \Generator
+    /**
+     * @return iterable
+     */
+    public static function getSubscribedEvents(): iterable
     {
         yield ConsoleErrorEvent::class => 'onConsoleError';
     }
 
+    /**
+     * @param ConsoleErrorEvent $event
+     *
+     * @return void
+     */
     public function onConsoleError(ConsoleErrorEvent $event): void
     {
         if ($event->getError() instanceof CustomConsoleExceptionInterface) {

@@ -19,12 +19,19 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * AbstractBaseCommand.
+ */
 abstract class AbstractBaseCommand extends Command
 {
     private const DEFAULT_CURRENT_DATE_VALUE = 'now';
 
+    /** @var \DateTime */
     protected \DateTime $currentDate;
 
+    /**
+     * @return void
+     */
     protected function configure(): void
     {
         parent::configure();
@@ -34,6 +41,12 @@ abstract class AbstractBaseCommand extends Command
         ;
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return void
+     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         parent::initialize($input, $output);
