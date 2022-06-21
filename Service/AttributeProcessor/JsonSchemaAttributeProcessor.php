@@ -74,7 +74,7 @@ class JsonSchemaAttributeProcessor
         $attributes = $reflector->getAttributes(JsonSchema::class, \ReflectionAttribute::IS_INSTANCEOF);
 
         if (\count($attributes) > 1) {
-            throw new RuntimeException(\sprintf('Detected more than one DTO attribute for class %s. Only one DTO attribute allowed per class', $dtoClassName));
+            throw new RuntimeException(\sprintf('Detected more than one JsonSchema attribute for class %s. Only one JsonSchema attribute allowed per class.', $dtoClassName));
         }
         if (1 !== \count($attributes)) {
             throw new RuntimeException(\sprintf('Missing JsonSchema attribute for class %s', $dtoClassName));

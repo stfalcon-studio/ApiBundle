@@ -26,6 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -401,6 +402,56 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
 
         self::assertInstanceOf(AccessDeniedException::class, $exceptionEvent->getThrowable());
+    }
+
+    public function testOnKernelExceptionMethodNotAllowedHttpException(): void
+    {
+        $exceptionMessage = 'method_not_allowed_exception_message';
+        $httpException = new MethodNotAllowedHttpException(['POST'], $exceptionMessage);
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with($exceptionMessage)
+            ->willReturn($exceptionMessage)
+        ;
+
+        $message = 'Not allowed HTTP method.';
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn(sprintf('{"error":"method_not_allowed", "error_description":"%s"}', $message))
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"method_not_allowed", "error_description":"Not allowed HTTP method."}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_METHOD_NOT_ALLOWED)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
     }
 
     public function testOnKernelExceptionWhenUnknownExceptionAndProd(): void

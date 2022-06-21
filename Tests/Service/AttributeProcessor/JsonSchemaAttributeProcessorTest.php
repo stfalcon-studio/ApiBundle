@@ -174,4 +174,12 @@ final class JsonSchemaAttributeProcessorTest extends TestCase
         $decodedSchema = $this->jsonSchemaAttributeProcessor->processAttributeForControllerClass(TestController::class);
         self::assertSame([1, 2, 3], $decodedSchema);
     }
+
+    public function testExceptionOnMoreThanOneJsonSchemaAttribute(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Detected more than one JsonSchema attribute for class StfalconStudio\ApiBundle\Tests\Service\AttributeProcessor\TestDto5. Only one JsonSchema attribute allowed per class.');
+
+        $this->jsonSchemaAttributeProcessor->processAttributeForDtoClass(TestDto5::class);
+    }
 }
