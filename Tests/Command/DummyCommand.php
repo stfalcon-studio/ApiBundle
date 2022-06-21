@@ -19,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * DummyCommand.
  */
-class DummyCommand extends AbstractBaseCommand
+final class DummyCommand extends AbstractBaseCommand
 {
     public function runConfigure(): void
     {
