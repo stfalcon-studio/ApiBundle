@@ -38,7 +38,7 @@ class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
      *
      * @throws UnexpectedConstraintException
      */
-    public function validate($password, Constraint|PasswordMeetSpecialRequirements $constraint): void
+    public function validate(mixed $password, Constraint|PasswordMeetSpecialRequirements $constraint): void
     {
         if (!$constraint instanceof PasswordMeetSpecialRequirements) {
             throw new UnexpectedConstraintException($constraint, PasswordMeetSpecialRequirements::class);

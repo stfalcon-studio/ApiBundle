@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * PasswordMeetSpecialRequirements.
  */
-#[Attribute]
+#[Attribute(Attribute::TARGET_PROPERTY)]
 class PasswordMeetSpecialRequirements extends Constraint
 {
     public const PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS = 'PASSWORD_DOES_NOT_MEET_SPECIAL_REQUIREMENTS';

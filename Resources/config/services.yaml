@@ -10,7 +10,7 @@ services:
             iterable $errorResponseProcessors: !tagged_iterator 'stfalcon_api.exception_response_processor'
 
     StfalconStudio\ApiBundle\:
-        resource: '../../{EventListener,Request,Security,Serializer,Service,Util,Validator}/'
+        resource: '../../{Asset,EventListener,Request,Security,Serializer,Service,Util,Validator}/'
 
     StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener:
         class: StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener
