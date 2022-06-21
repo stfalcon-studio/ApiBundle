@@ -454,6 +454,55 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
     }
 
+    public function testOnKernelExceptionDomainException(): void
+    {
+        $exceptionMessage = 'exception_message';
+        $httpException = new DummyHttpException($exceptionMessage);
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with($exceptionMessage)
+            ->willReturn($exceptionMessage)
+        ;
+
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn('{"error":"method_not_allowed", "error_description":"exception_message"}')
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"method_not_allowed", "error_description":"exception_message"}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_FORBIDDEN)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(DummyHttpException::class, $exceptionEvent->getThrowable());
+    }
+
     public function testOnKernelExceptionWhenUnknownExceptionAndProd(): void
     {
         $exceptionEvent = new ExceptionEvent(

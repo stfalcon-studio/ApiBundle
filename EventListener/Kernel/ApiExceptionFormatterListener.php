@@ -162,7 +162,7 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents(): \Generator
+    public static function getSubscribedEvents(): iterable
     {
         yield ExceptionEvent::class => '__invoke';
     }
