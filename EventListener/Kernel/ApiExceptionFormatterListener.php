@@ -125,7 +125,7 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                         $errorName = BaseErrorNames::INTERNAL_SERVER_ERROR;
 
                         if (self::PROD_ENV === $this->environment) {
-                            $message = 'internal_server_error_error_message';
+                            $message = 'internal_server_error_exception_message';
                         }
                         break;
                     default:
@@ -162,7 +162,7 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents(): \Generator
+    public static function getSubscribedEvents(): iterable
     {
         yield ExceptionEvent::class => '__invoke';
     }

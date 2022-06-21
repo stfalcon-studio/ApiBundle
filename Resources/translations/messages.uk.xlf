@@ -47,7 +47,7 @@
                 <target>Невалідні дані.</target>
             </trans-unit>
             <trans-unit id="12">
-                <source>internal_server_error_error_message</source>
+                <source>internal_server_error_exception_message</source>
                 <target>Внутрішня помилка сервера.</target>
             </trans-unit>
         </body>
