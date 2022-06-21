@@ -20,14 +20,14 @@ use Doctrine\ORM\Mapping as ORM;
 trait CredentialsTrait
 {
     #[ORM\Column(type: 'datetimetz', nullable: true)]
-    protected ?\DateTime $credentialsLastChangedAt = null;
+    protected ?\DateTimeInterface $credentialsLastChangedAt = null;
 
     /**
-     * @param \DateTime|null $credentialsLastChangedAt
+     * @param \DateTimeInterface|null $credentialsLastChangedAt
      *
      * @return self
      */
-    public function setCredentialsLastChangedAt(?\DateTime $credentialsLastChangedAt): self
+    public function setCredentialsLastChangedAt(?\DateTimeInterface $credentialsLastChangedAt): self
     {
         $this->credentialsLastChangedAt = $credentialsLastChangedAt;
 
@@ -35,9 +35,9 @@ trait CredentialsTrait
     }
 
     /**
-     * @return \DateTime|null
+     * @return \DateTimeInterface|null
      */
-    public function getCredentialsLastChangedAt(): ?\DateTime
+    public function getCredentialsLastChangedAt(): ?\DateTimeInterface
     {
         return $this->credentialsLastChangedAt;
     }
