@@ -16,6 +16,16 @@ use PHPUnit\Framework\TestCase;
 
 final class TimestampableTraitTest extends TestCase
 {
+    public function testInitTimestampableFields(): void
+    {
+        $entity = new DummyTimestampableEntity();
+
+        $entity->initTimestampableFields();
+
+        self::assertInstanceOf(\DateTimeImmutable::class, $entity->getCreatedAt());
+        self::assertInstanceOf(\DateTime::class, $entity->getUpdatedAt());
+    }
+
     public function testCreatedAt(): void
     {
         $createdAt = new \DateTimeImmutable();

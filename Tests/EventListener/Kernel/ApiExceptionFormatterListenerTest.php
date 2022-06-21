@@ -454,7 +454,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
     }
 
-    public function testOnKernelExceptionDomainException(): void
+    public function testOnKernelExceptionDummyHttpException(): void
     {
         $exceptionMessage = 'exception_message';
         $httpException = new DummyHttpException($exceptionMessage);
@@ -503,6 +503,54 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(DummyHttpException::class, $exceptionEvent->getThrowable());
     }
 
+    public function testOnKernelExceptionDomainException(): void
+    {
+        $httpException = new \DomainException('exception_message', 123);
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('internal_server_error_exception_message')
+            ->willReturn('internal_server_error_exception_message')
+        ;
+
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn('{"error":"Error code is not yet specified for this case. Please contact to developer about this case.", "error_description":"internal_server_error_exception_message"}')
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"Error code is not yet specified for this case. Please contact to developer about this case.", "error_description":"internal_server_error_exception_message"}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_INTERNAL_SERVER_ERROR)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(\DomainException::class, $exceptionEvent->getThrowable());
+    }
+
     public function testOnKernelExceptionWhenUnknownExceptionAndProd(): void
     {
         $exceptionEvent = new ExceptionEvent(
@@ -521,7 +569,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with('internal_server_error_error_message')
+            ->with('internal_server_error_exception_message')
             ->willReturn('Internal Server Error')
         ;
 
