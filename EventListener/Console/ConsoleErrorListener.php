@@ -20,10 +20,10 @@ final class ConsoleErrorListener implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): \Generator
     {
-        yield ConsoleErrorEvent::class => '__invoke';
+        yield ConsoleErrorEvent::class => 'onConsoleError';
     }
 
-    public function __invoke(ConsoleErrorEvent $event): void
+    public function onConsoleError(ConsoleErrorEvent $event): void
     {
         if ($event->getError() instanceof CustomConsoleExceptionInterface) {
             $event->setExitCode(0);

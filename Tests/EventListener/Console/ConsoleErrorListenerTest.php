@@ -50,7 +50,7 @@ final class ConsoleErrorListenerTest extends TestCase
     {
         $event = ConsoleErrorListener::getSubscribedEvents();
         self::assertEquals(ConsoleErrorEvent::class, $event->key());
-        self::assertEquals('__invoke', $event->current());
+        self::assertEquals('onConsoleError', $event->current());
         $event->next();
         self::assertFalse($event->valid());
     }
@@ -63,7 +63,7 @@ final class ConsoleErrorListenerTest extends TestCase
             $this->createStub(\Exception::class)
         );
         $event->setExitCode(123);
-        $this->subscriber->__invoke($event);
+        $this->subscriber->onConsoleError($event);
 
         self::assertSame(123, $event->getExitCode());
     }
@@ -76,7 +76,7 @@ final class ConsoleErrorListenerTest extends TestCase
             $this->createStub(CustomConsoleExceptionInterface::class)
         );
         $event->setExitCode(123);
-        $this->subscriber->__invoke($event);
+        $this->subscriber->onConsoleError($event);
 
         self::assertSame(0, $event->getExitCode());
     }
