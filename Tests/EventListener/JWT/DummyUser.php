@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class DummyUser implements UserInterface, CredentialsInterface
 {
-    public function setCredentialsLastChangedAt(?\DateTime $credentialsLastChangedAt): void
+    public function setCredentialsLastChangedAt(?\DateTime $credentialsLastChangedAt)
     {
     }
 
