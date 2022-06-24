@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Security;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authenticator\Token\JWTPostAuthenticationToken;
 use StfalconStudio\ApiBundle\Exception\DomainException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -34,14 +35,14 @@ class JwtTokenHelper
     /**
      * @throws DomainException
      *
-     * @return JWTUserToken
+     * @return JWTUserToken|JWTPostAuthenticationToken
      */
-    public function getJwtUserToken(): JWTUserToken
+    public function getJwtUserToken(): JWTUserToken|JWTPostAuthenticationToken
     {
         $token = $this->tokenStorage->getToken();
 
-        if (!$token instanceof JWTUserToken) {
-            throw new DomainException(sprintf('Token is not instance of %s', JWTUserToken::class));
+        if (!$token instanceof JWTUserToken && !$token instanceof JWTPostAuthenticationToken) {
+            throw new DomainException(sprintf('Token is not instance of %s nor of %s', JWTUserToken::class, JWTPostAuthenticationToken::class));
         }
 
         return $token;
