@@ -22,14 +22,11 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class JwtTokenHelper
 {
-    private readonly TokenStorageInterface $tokenStorage;
-
     /**
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(private readonly TokenStorageInterface $tokenStorage)
     {
-        $this->tokenStorage = $tokenStorage;
     }
 
     /**

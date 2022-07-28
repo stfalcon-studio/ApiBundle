@@ -22,14 +22,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 final class TokenBlackListSubscriber implements EventSubscriberInterface
 {
-    private readonly JwtBlackListService $jwtBlackListService;
-
     /**
      * @param JwtBlackListService $tokenBlackListService
      */
-    public function __construct(JwtBlackListService $tokenBlackListService)
+    public function __construct(private readonly JwtBlackListService $tokenBlackListService)
     {
-        $this->jwtBlackListService = $tokenBlackListService;
     }
 
     /**
@@ -46,6 +43,6 @@ final class TokenBlackListSubscriber implements EventSubscriberInterface
      */
     public function addCurrentJwtTokenToBlackList(): void
     {
-        $this->jwtBlackListService->addCurrentTokenToBlackList();
+        $this->tokenBlackListService->addCurrentTokenToBlackList();
     }
 }

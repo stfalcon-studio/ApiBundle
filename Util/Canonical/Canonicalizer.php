@@ -17,14 +17,11 @@ namespace StfalconStudio\ApiBundle\Util\Canonical;
  */
 class Canonicalizer
 {
-    private readonly EncodingDetector $encodingDetector;
-
     /**
      * @param EncodingDetector $encodingDetector
      */
-    public function __construct(EncodingDetector $encodingDetector)
+    public function __construct(private readonly EncodingDetector $encodingDetector)
     {
-        $this->encodingDetector = $encodingDetector;
     }
 
     /**

@@ -21,14 +21,11 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  */
 class ConstraintViolationListNormalizer implements NormalizerInterface
 {
-    private SymfonyConstraintViolationListNormalizer $symfonyConstraintViolationListNormalizer;
-
     /**
      * @param SymfonyConstraintViolationListNormalizer $symfonyConstraintViolationListNormalizer
      */
-    public function __construct(SymfonyConstraintViolationListNormalizer $symfonyConstraintViolationListNormalizer)
+    public function __construct(private readonly SymfonyConstraintViolationListNormalizer $symfonyConstraintViolationListNormalizer)
     {
-        $this->symfonyConstraintViolationListNormalizer = $symfonyConstraintViolationListNormalizer;
     }
 
     /**

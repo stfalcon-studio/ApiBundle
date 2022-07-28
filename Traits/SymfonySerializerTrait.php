@@ -23,7 +23,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 trait SymfonySerializerTrait
 {
     /** @var SerializerInterface|Serializer */
-    protected SerializerInterface $symfonySerializer;
+    protected SerializerInterface|Serializer $symfonySerializer;
 
     /**
      * @param SerializerInterface|Serializer $symfonySerializer

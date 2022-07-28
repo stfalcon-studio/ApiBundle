@@ -24,10 +24,6 @@ class JsonSchemaAttributeProcessor
 {
     private const JSON_FILE_EXTENSION = '.json';
 
-    private readonly DtoAttributeProcessor $dtoAttributeProcessor;
-    private readonly FileReader $fileReader;
-    private readonly string $jsonSchemaDir;
-
     /** @var array */
     private array $cachedClasses = [];
 
@@ -36,11 +32,8 @@ class JsonSchemaAttributeProcessor
      * @param FileReader            $fileReader
      * @param string                $jsonSchemaDir
      */
-    public function __construct(DtoAttributeProcessor $dtoAttributeProcessor, FileReader $fileReader, string $jsonSchemaDir)
+    public function __construct(private readonly DtoAttributeProcessor $dtoAttributeProcessor, private readonly FileReader $fileReader, private readonly string $jsonSchemaDir)
     {
-        $this->dtoAttributeProcessor = $dtoAttributeProcessor;
-        $this->fileReader = $fileReader;
-        $this->jsonSchemaDir = $jsonSchemaDir;
     }
 
     /**

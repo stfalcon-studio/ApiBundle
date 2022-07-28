@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor;
 
+use JetBrains\PhpStorm\ArrayShape;
 use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
 use StfalconStudio\ApiBundle\Exception\Http\Validation\InvalidEntityException;
 use StfalconStudio\ApiBundle\Exception\RuntimeException;
@@ -32,6 +33,7 @@ class InvalidEntityExceptionProcessor implements CustomAppExceptionResponseProce
     /**
      * {@inheritdoc}
      */
+    #[ArrayShape(['violations' => 'mixed'])]
     public function processResponse(CustomAppExceptionInterface $exception): array
     {
         if (!$exception instanceof InvalidEntityException) {

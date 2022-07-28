@@ -39,23 +39,14 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
 
     private const PROD_ENV = 'prod';
 
-    private readonly string $apiHost;
-    private readonly string $environment;
-    private readonly ExceptionResponseProcessorInterface $exceptionResponseProcessor;
-    private readonly ExceptionResponseFactory $exceptionResponseFactory;
-
     /**
      * @param string                              $apiHost
      * @param string                              $environment
      * @param ExceptionResponseProcessorInterface $exceptionResponseProcessor
      * @param ExceptionResponseFactory            $exceptionResponseFactory
      */
-    public function __construct(string $apiHost, string $environment, ExceptionResponseProcessorInterface $exceptionResponseProcessor, ExceptionResponseFactory $exceptionResponseFactory)
+    public function __construct(private readonly string $apiHost, private readonly string $environment, private readonly ExceptionResponseProcessorInterface $exceptionResponseProcessor, private readonly ExceptionResponseFactory $exceptionResponseFactory)
     {
-        $this->apiHost = $apiHost;
-        $this->environment = $environment;
-        $this->exceptionResponseProcessor = $exceptionResponseProcessor;
-        $this->exceptionResponseFactory = $exceptionResponseFactory;
     }
 
     /**

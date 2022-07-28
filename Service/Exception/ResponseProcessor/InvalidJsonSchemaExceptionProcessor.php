@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor;
 
+use JetBrains\PhpStorm\ArrayShape;
 use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
 use StfalconStudio\ApiBundle\Exception\Http\Json\InvalidJsonSchemaException;
 use StfalconStudio\ApiBundle\Exception\RuntimeException;
@@ -21,14 +22,11 @@ use StfalconStudio\ApiBundle\Exception\RuntimeException;
  */
 class InvalidJsonSchemaExceptionProcessor implements CustomAppExceptionResponseProcessorInterface
 {
-    private readonly string $environment;
-
     /**
      * @param string $environment
      */
-    public function __construct(string $environment)
+    public function __construct(private readonly string $environment)
     {
-        $this->environment = $environment;
     }
 
     /**
@@ -42,6 +40,7 @@ class InvalidJsonSchemaExceptionProcessor implements CustomAppExceptionResponseP
     /**
      * {@inheritdoc}
      */
+    #[ArrayShape(['violations' => 'mixed', 'jsonSchema' => 'mixed'])]
     public function processResponse(CustomAppExceptionInterface $exception): array
     {
         if (!$exception instanceof InvalidJsonSchemaException) {

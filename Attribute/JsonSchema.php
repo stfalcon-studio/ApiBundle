@@ -20,14 +20,11 @@ use Attribute;
 #[Attribute(Attribute::TARGET_CLASS)]
 class JsonSchema
 {
-    private readonly string $jsonSchemaName;
-
     /**
      * @param string $jsonSchemaName
      */
-    public function __construct(string $jsonSchemaName)
+    public function __construct(private readonly string $jsonSchemaName)
     {
-        $this->jsonSchemaName = $jsonSchemaName;
     }
 
     /**

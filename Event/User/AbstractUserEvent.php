@@ -20,14 +20,11 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 abstract class AbstractUserEvent extends Event
 {
-    private readonly UserInterface $user;
-
     /**
      * @param UserInterface $user
      */
-    public function __construct(UserInterface $user)
+    public function __construct(private readonly UserInterface $user)
     {
-        $this->user = $user;
     }
 
     /**
