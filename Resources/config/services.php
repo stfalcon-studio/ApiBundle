@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the StfalconApiBundle.
+ *
+ * (c) Stfalcon LLC <stfalcon.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 declare(strict_types=1);
 
@@ -7,8 +15,6 @@ use Predis\Client;
 use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-
-use function ConfigTransformer202207\Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $containerConfigurator): void
 {
