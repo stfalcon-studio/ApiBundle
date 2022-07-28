@@ -16,8 +16,7 @@ use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void
-{
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services
