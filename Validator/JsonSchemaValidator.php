@@ -31,9 +31,9 @@ class JsonSchemaValidator
 
     /**
      * @param Validator                    $validator
-     * @param JsonSchemaAttributeProcessor $dtoAttributeProcessor
+     * @param JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor
      */
-    public function __construct(private readonly Validator $validator, private readonly JsonSchemaAttributeProcessor $dtoAttributeProcessor)
+    public function __construct(private readonly Validator $validator, private readonly JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor)
     {
     }
 
