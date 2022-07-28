@@ -24,9 +24,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class JwtBlackListService
 {
-    private readonly JWSProviderInterface $jwsProvider;
-    private readonly JwtTokenHelper $jwtTokenHelper;
-    private readonly JwtCacheHelper $jwtCacheHelper;
     private Client $redisClientJwtBlackList;
 
     /**
@@ -34,11 +31,8 @@ class JwtBlackListService
      * @param JwtTokenHelper       $jwtTokenHelper
      * @param JwtCacheHelper       $jwtCacheHelper
      */
-    public function __construct(JWSProviderInterface $jwsProvider, JwtTokenHelper $jwtTokenHelper, JwtCacheHelper $jwtCacheHelper)
+    public function __construct(private readonly JWSProviderInterface $jwsProvider, private readonly JwtTokenHelper $jwtTokenHelper, private readonly JwtCacheHelper $jwtCacheHelper)
     {
-        $this->jwsProvider = $jwsProvider;
-        $this->jwtTokenHelper = $jwtTokenHelper;
-        $this->jwtCacheHelper = $jwtCacheHelper;
     }
 
     /**

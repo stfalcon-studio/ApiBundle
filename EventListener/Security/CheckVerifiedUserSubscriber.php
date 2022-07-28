@@ -23,14 +23,11 @@ use Symfony\Component\Security\Http\Event\CheckPassportEvent;
  */
 final class CheckVerifiedUserSubscriber implements EventSubscriberInterface
 {
-    private readonly JwtBlackListService $tokenBlackListService;
-
     /**
      * @param JwtBlackListService $tokenBlackListService
      */
-    public function __construct(JwtBlackListService $tokenBlackListService)
+    public function __construct(private readonly JwtBlackListService $tokenBlackListService)
     {
-        $this->tokenBlackListService = $tokenBlackListService;
     }
 
     /**

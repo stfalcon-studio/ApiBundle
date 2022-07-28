@@ -22,15 +22,11 @@ class Serializer
 {
     public const DEFAULT_FORMAT = 'json';
 
-    /** @var SerializerInterface|BaseSerializer */
-    protected readonly SerializerInterface|BaseSerializer $symfonySerializer;
-
     /**
-     * @param SerializerInterface|BaseSerializer $serializer
+     * @param SerializerInterface|BaseSerializer $symfonySerializer
      */
-    public function __construct(SerializerInterface|BaseSerializer $serializer)
+    public function __construct(protected readonly SerializerInterface|BaseSerializer $symfonySerializer)
     {
-        $this->symfonySerializer = $serializer;
     }
 
     /**

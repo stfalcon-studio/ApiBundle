@@ -22,14 +22,11 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
 {
-    private readonly PasswordRequirementsValidator $passwordRequirementsValidator;
-
     /**
      * @param PasswordRequirementsValidator $passwordRequirementsValidator
      */
-    public function __construct(PasswordRequirementsValidator $passwordRequirementsValidator)
+    public function __construct(private readonly PasswordRequirementsValidator $passwordRequirementsValidator)
     {
-        $this->passwordRequirementsValidator = $passwordRequirementsValidator;
     }
 
     /**

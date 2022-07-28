@@ -29,17 +29,12 @@ class JsonSchemaValidator
 {
     use Traits\SymfonySerializerTrait;
 
-    private readonly Validator $validator;
-    private readonly JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor;
-
     /**
      * @param Validator                    $validator
-     * @param JsonSchemaAttributeProcessor $dtoAttributeProcessor
+     * @param JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor
      */
-    public function __construct(Validator $validator, JsonSchemaAttributeProcessor $dtoAttributeProcessor)
+    public function __construct(private readonly Validator $validator, private readonly JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor)
     {
-        $this->validator = $validator;
-        $this->jsonSchemaAttributeProcessor = $dtoAttributeProcessor;
     }
 
     /**

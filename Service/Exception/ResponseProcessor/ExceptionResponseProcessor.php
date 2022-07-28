@@ -19,15 +19,11 @@ use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
  */
 class ExceptionResponseProcessor implements ExceptionResponseProcessorInterface
 {
-    /** @var CustomAppExceptionResponseProcessorInterface[]|iterable */
-    private readonly iterable $errorResponseProcessors;
-
     /**
      * @param iterable|CustomAppExceptionResponseProcessorInterface[] $errorResponseProcessors
      */
-    public function __construct(iterable $errorResponseProcessors)
+    public function __construct(private readonly iterable $errorResponseProcessors)
     {
-        $this->errorResponseProcessors = $errorResponseProcessors;
     }
 
     /**

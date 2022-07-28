@@ -24,14 +24,12 @@ final class AggregatePartListener
 {
     /** @var array<AggregateRootInterface> */
     private array $aggregateRoots = [];
-    private readonly DateTimeHelper $dateTimeHelper;
 
     /**
      * @param DateTimeHelper $dateTimeHelper
      */
-    public function __construct(DateTimeHelper $dateTimeHelper)
+    public function __construct(private readonly DateTimeHelper $dateTimeHelper)
     {
-        $this->dateTimeHelper = $dateTimeHelper;
     }
 
     /**
