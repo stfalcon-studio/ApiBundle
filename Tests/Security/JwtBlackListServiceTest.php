@@ -19,6 +19,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Predis\Client;
 use StfalconStudio\ApiBundle\Exception\DomainException;
+use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Security\JwtCacheHelper;
@@ -101,7 +102,7 @@ final class JwtBlackListServiceTest extends TestCase
         $this->jwtBlackListService->addCurrentTokenToBlackList();
     }
 
-    public function testAddCurrentTokenToBlackListWithException(): void
+    public function testAddCurrentTokenToBlackListWithLogicException(): void
     {
         $token = $this->createMock(JWTUserToken::class);
 
@@ -118,6 +119,36 @@ final class JwtBlackListServiceTest extends TestCase
         ;
 
         $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Current user is not instance of Symfony\Component\Security\Core\User\UserInterface');
+
+        $this->jwtBlackListService->addCurrentTokenToBlackList();
+    }
+
+    public function testAddCurrentTokenToBlackListWithInvalidArgumentException(): void
+    {
+        $token = $this->createMock(JWTUserToken::class);
+
+        $this->jwtTokenHelper
+            ->expects(self::once())
+            ->method('getJwtUserToken')
+            ->willReturn($token)
+        ;
+
+        $user = $this->createMock(DummyUser::class);
+
+        $token
+            ->method('getCredentials')
+            ->willReturn([])
+        ;
+
+        $token
+            ->expects(self::once())
+            ->method('getUser')
+            ->willReturn($user)
+        ;
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Token cannot be casted to string');
 
         $this->jwtBlackListService->addCurrentTokenToBlackList();
     }
