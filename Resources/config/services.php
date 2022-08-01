@@ -10,6 +10,7 @@
 
 declare(strict_types=1);
 
+use Fresh\DateTime\DateTimeHelper;
 use JsonSchema\Validator;
 use Predis\Client;
 use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
@@ -33,4 +34,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(AggregatePartListener::class, AggregatePartListener::class)->tag('doctrine.event_listener', ['event' => 'onFlush']);
     $services->set(Client::class, Client::class);
     $services->set(Validator::class, Validator::class);
+    $services->set(DateTimeHelper::class, DateTimeHelper::class);
 };
