@@ -120,7 +120,8 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                         }
                         break;
                     default:
-                        $errorName = 'Error code is not yet specified for this case. Please contact to developer about this case.';
+                        $errorName = 'error_code_is_not_specified';
+                        $message = 'Error code is not yet specified for this case. Please contact to developer about this case.';
                 }
         }
 

@@ -41,6 +41,19 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
         );
     }
 
+    public function testGetSubscribedEvents(): void
+    {
+        $expected = [
+            CheckPassportEvent::class => 'onCheckPassport',
+        ];
+        $actual = [];
+        foreach (CheckVerifiedUserSubscriber::getSubscribedEvents() as $key => $event) {
+            $actual[$key] = $event;
+        }
+
+        self::assertEquals($expected, $actual);
+    }
+
     public function testOnCheckPassportWithoutException(): void
     {
         $user = $this->createMock(DummyUser::class);
