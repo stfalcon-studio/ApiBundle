@@ -196,6 +196,54 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
     }
 
+    public function testOnKernelExceptionOnPaymentRequired(): void
+    {
+        $httpException = new HttpException(Response::HTTP_PAYMENT_REQUIRED, 'payment_required');
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('Error code is not yet specified for this case. Please contact to developer about this case.')
+            ->willReturn('Error code is not yet specified for this case. Please contact to developer about this case.')
+        ;
+
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn('{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}')
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_PAYMENT_REQUIRED)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
+    }
+
     public function testOnKernelExceptionWhenGenericNotFoundHttpException(): void
     {
         $exceptionMessage = 'Exception test message';
