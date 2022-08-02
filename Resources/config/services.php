@@ -16,6 +16,7 @@ use Predis\Client;
 use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\DependencyInjection\Reference;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -28,6 +29,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->bind('$jsonSchemaDir', '%stfalcon_api.json_schema_dir%')
         ->bind('$environment', '%env(APP_ENV)%')
         ->bind('iterable $errorResponseProcessors', new TaggedIteratorArgument('stfalcon_api.exception_response_processor'))
+        ->bind('$symfonyConstraintViolationListNormalizer', new Reference('serializer.normalizer.constraint_violation_list'))
     ;
 
     $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,EventListener,Request,Security,Serializer,Service,Util,Validator}/');

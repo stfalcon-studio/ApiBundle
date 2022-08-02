@@ -51,7 +51,7 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
      *
      * {@inheritdoc}
      */
-    public function normalize(mixed $object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, string $format = null, array $context = [])
     {
         $result = $this->symfonyConstraintViolationListNormalizer->normalize($object, $format, $context);
 
