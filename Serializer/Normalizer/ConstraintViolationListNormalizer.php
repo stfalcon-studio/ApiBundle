@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Serializer\Normalizer;
 
+use Symfony\Component\Serializer\Debug\TraceableNormalizer;
 use Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer as SymfonyConstraintViolationListNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -22,9 +23,9 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 class ConstraintViolationListNormalizer implements NormalizerInterface
 {
     /**
-     * @param SymfonyConstraintViolationListNormalizer $symfonyConstraintViolationListNormalizer
+     * @param SymfonyConstraintViolationListNormalizer|TraceableNormalizer $symfonyConstraintViolationListNormalizer
      */
-    public function __construct(private readonly SymfonyConstraintViolationListNormalizer $symfonyConstraintViolationListNormalizer)
+    public function __construct(private readonly SymfonyConstraintViolationListNormalizer|TraceableNormalizer $symfonyConstraintViolationListNormalizer)
     {
     }
 
