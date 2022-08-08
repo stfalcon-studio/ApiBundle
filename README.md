@@ -14,6 +14,11 @@
 
 ```
 composer req stfalcon-studio/api-bundle
+```
+
+Add next dependencies if you want to use JWT auth
+
+```
 composer req gesdinet/jwt-refresh-token-bundle
 composer req lexik/jwt-authentication-bundle
 ```
@@ -53,6 +58,7 @@ stfalcon_api:
     api_host: '%env(APP_API_HOST)%'
     redis_client_jwt_black_list: "@snc_redis.jwt_black_list"
     json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
+    jwt: true # set false to disable JWT auth 
 ```
 
 ## Contributing
