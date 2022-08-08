@@ -35,7 +35,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('jwt')
                     ->children()
                         ->booleanNode('enabled')->defaultValue(true)->end()
-                        ->scalarNode('redis_client_jwt_black_list')->cannotBeEmpty()->isRequired()->end()
+                        ->scalarNode('redis_client_jwt_black_list')->end()
                     ->end()
                 ->end()
             ->end()
