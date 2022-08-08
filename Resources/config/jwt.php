@@ -15,6 +15,12 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
+    $services
+        ->defaults()
+        ->autowire()
+        ->autoconfigure()
+    ;
+
     $services->load('StfalconStudio\ApiBundle\EventListener\JWT\\', __DIR__.'/../../EventListener/JWT');
     $services->load('StfalconStudio\ApiBundle\Security\\', __DIR__.'/../../Security');
 };
