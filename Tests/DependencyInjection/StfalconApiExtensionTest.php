@@ -44,7 +44,7 @@ final class StfalconApiExtensionTest extends TestCase
 
     public function testLoadExtension(): void
     {
-        $this->container->loadFromExtension($this->extension->getAlias(), ['api_host' => 'foo', 'redis_client_jwt_black_list' => 'bar']);
+        $this->container->loadFromExtension($this->extension->getAlias(), ['api_host' => 'foo', 'jwt' => ['redis_client_jwt_black_list' => 'bar']]);
         $this->container->compile();
 
         self::assertSame('/tmp/src/Json/Schema/', $this->container->getParameter('stfalcon_api.json_schema_dir'));
@@ -61,7 +61,7 @@ final class StfalconApiExtensionTest extends TestCase
 
     public function testExceptionOnGettingPrivateService(): void
     {
-        $this->container->loadFromExtension($this->extension->getAlias(), ['api_host' => 'foo', 'redis_client_jwt_black_list' => 'bar']);
+        $this->container->loadFromExtension($this->extension->getAlias(), ['api_host' => 'foo', 'jwt' => ['redis_client_jwt_black_list' => 'bar']]);
         $this->container->compile();
 
         $this->expectException(ServiceNotFoundException::class);
