@@ -36,7 +36,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->load('StfalconStudio\ApiBundle\EventListener\Console\\', __DIR__.'/../../EventListener/Console');
     $services->load('StfalconStudio\ApiBundle\EventListener\Kernel\\', __DIR__.'/../../EventListener/Kernel');
     $services->load('StfalconStudio\ApiBundle\EventListener\ORM\\', __DIR__.'/../../EventListener/ORM');
-    $services->load('StfalconStudio\ApiBundle\EventListener\Security\\', __DIR__.'/../../EventListener/Security');
 
     $services->set(AggregatePartListener::class, AggregatePartListener::class)->tag('doctrine.event_listener', ['event' => 'onFlush']);
     $services->set(Client::class, Client::class);
