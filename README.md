@@ -12,7 +12,11 @@
 
 ## Installation
 
-```composer req stfalcon-studio/api-bundle```
+```
+composer req stfalcon-studio/api-bundle
+composer req gesdinet/jwt-refresh-token-bundle
+composer req lexik/jwt-authentication-bundle
+```
 
 #### Check the `config/bundles.php` file
 
