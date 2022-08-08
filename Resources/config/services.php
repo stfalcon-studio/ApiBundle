@@ -32,7 +32,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->bind('$symfonyConstraintViolationListNormalizer', new Reference('serializer.normalizer.constraint_violation_list'))
     ;
 
-    $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,EventListener,Request,Serializer,Service,Util,Validator}/');
+    $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,Request,Serializer,Service,Util,Validator}/');
     $services->load('StfalconStudio\ApiBundle\EventListener\Console\\', __DIR__.'/../../EventListener/Console');
     $services->load('StfalconStudio\ApiBundle\EventListener\Kernel\\', __DIR__.'/../../EventListener/Kernel');
     $services->load('StfalconStudio\ApiBundle\EventListener\ORM\\', __DIR__.'/../../EventListener/ORM');
