@@ -21,7 +21,6 @@
         "fresh/datetime": "^2.0",
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.12",
-        "lexik/jwt-authentication-bundle": "^v2.15.1",
         "predis/predis": "^v1.1.10",
         "sentry/sentry-symfony": "^4.3.0",
         "symfony/config": "^6.1",
