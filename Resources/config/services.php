@@ -32,7 +32,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->bind('$symfonyConstraintViolationListNormalizer', new Reference('serializer.normalizer.constraint_violation_list'))
     ;
 
-    $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,EventListener,Request,Security,Serializer,Service,Util,Validator}/');
+    $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,EventListener,Request,Serializer,Service,Util,Validator}/');
+    $services->load('StfalconStudio\ApiBundle\EventListener\Console\\', __DIR__.'/../../EventListener/Console');
+    $services->load('StfalconStudio\ApiBundle\EventListener\Kernel\\', __DIR__.'/../../EventListener/Kernel');
+    $services->load('StfalconStudio\ApiBundle\EventListener\ORM\\', __DIR__.'/../../EventListener/ORM');
+    $services->load('StfalconStudio\ApiBundle\EventListener\Security\\', __DIR__.'/../../EventListener/Security');
+
     $services->set(AggregatePartListener::class, AggregatePartListener::class)->tag('doctrine.event_listener', ['event' => 'onFlush']);
     $services->set(Client::class, Client::class);
     $services->set(Validator::class, Validator::class);

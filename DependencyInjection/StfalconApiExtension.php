@@ -37,10 +37,14 @@ class StfalconApiExtension extends Extension
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.php');
 
-        $jwtBlackListServiceDefinition = $container->getDefinition(JwtBlackListService::class);
-        $redisClient = [new Reference($config['redis_client_jwt_black_list'])];
+        if ($config['jwt']) {
+            $loader->load('jwt.php');
 
-        $jwtBlackListServiceDefinition->addMethodCall('setRedisClientJwtBlackList', $redisClient);
+            $jwtBlackListServiceDefinition = $container->getDefinition(JwtBlackListService::class);
+            $redisClient = [new Reference($config['redis_client_jwt_black_list'])];
+
+            $jwtBlackListServiceDefinition->addMethodCall('setRedisClientJwtBlackList', $redisClient);
+        }
 
         $container->setParameter('stfalcon_api.api_host', $config['api_host']);
         $container->setParameter('stfalcon_api.json_schema_dir', $config['json_schema_dir']);

@@ -33,6 +33,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('api_host')->cannotBeEmpty()->isRequired()->end()
                 ->scalarNode('redis_client_jwt_black_list')->cannotBeEmpty()->isRequired()->end()
                 ->scalarNode('json_schema_dir')->defaultValue('%kernel.project_dir%/src/Json/Schema/')->cannotBeEmpty()->end()
+                ->booleanNode('jwt')->defaultValue(true)->end()
             ->end()
         ;
 
