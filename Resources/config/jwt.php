@@ -10,10 +10,6 @@
 
 declare(strict_types=1);
 
-use Fresh\DateTime\DateTimeHelper;
-use JsonSchema\Validator;
-use Predis\Client;
-use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
