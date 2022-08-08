@@ -22,5 +22,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->load('StfalconStudio\ApiBundle\EventListener\JWT\\', __DIR__.'/../../EventListener/JWT');
+    $services->load('StfalconStudio\ApiBundle\EventListener\Security\\', __DIR__.'/../../EventListener/Security');
     $services->load('StfalconStudio\ApiBundle\Security\\', __DIR__.'/../../Security');
 };
