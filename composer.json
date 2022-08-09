@@ -35,6 +35,7 @@
     },
     "require-dev": {
         "doctrine/common": "^3.3",
+        "doctrine/mongodb-odm": "^2.4",
         "doctrine/orm": "^2.12",
         "escapestudios/symfony2-coding-standard": "^3.12",
         "gesdinet/jwt-refresh-token-bundle": "^v1.1.1",

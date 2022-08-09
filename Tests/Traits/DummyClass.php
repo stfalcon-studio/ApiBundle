@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Traits;
 
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
@@ -44,6 +45,7 @@ final class DummyClass
 {
     use Traits\AuthenticationUtilsTrait;
     use Traits\AuthorizationCheckerTrait;
+    use Traits\DocumentManagerTrait;
     use Traits\DtoExtractorTrait;
     use Traits\EntityManagerTrait;
     use Traits\EntityValidatorTrait;
@@ -105,6 +107,11 @@ final class DummyClass
     public function getEntityManager(): EntityManager
     {
         return $this->em;
+    }
+
+    public function getDocumentManager(): DocumentManager
+    {
+        return $this->documentManager;
     }
 
     public function getManagerRegistry(): ManagerRegistry
