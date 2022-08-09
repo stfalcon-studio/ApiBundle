@@ -44,6 +44,7 @@ final class DummyClass
 {
     use Traits\AuthenticationUtilsTrait;
     use Traits\AuthorizationCheckerTrait;
+    use Traits\DocumentManagerTrait;
     use Traits\DtoExtractorTrait;
     use Traits\EntityManagerTrait;
     use Traits\EntityValidatorTrait;
@@ -105,6 +106,11 @@ final class DummyClass
     public function getEntityManager(): EntityManager
     {
         return $this->em;
+    }
+
+    public function getDocumentManager(): DocumentManager
+    {
+        return $this->documentManager;
     }
 
     public function getManagerRegistry(): ManagerRegistry
