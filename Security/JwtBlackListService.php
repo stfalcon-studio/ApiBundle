@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Security;
 
+use Fresh\DateTime\DateTimeHelper;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface;
 use Predis\Client;
 use StfalconStudio\ApiBundle\Exception\DomainException;
@@ -30,8 +31,9 @@ class JwtBlackListService
      * @param JWSProviderInterface $jwsProvider
      * @param JwtTokenHelper       $jwtTokenHelper
      * @param JwtCacheHelper       $jwtCacheHelper
+     * @param DateTimeHelper       $dateTimeHelper
      */
-    public function __construct(private readonly JWSProviderInterface $jwsProvider, private readonly JwtTokenHelper $jwtTokenHelper, private readonly JwtCacheHelper $jwtCacheHelper)
+    public function __construct(private readonly JWSProviderInterface $jwsProvider, private readonly JwtTokenHelper $jwtTokenHelper, private readonly JwtCacheHelper $jwtCacheHelper, private readonly DateTimeHelper $dateTimeHelper)
     {
     }
 
@@ -85,7 +87,11 @@ class JwtBlackListService
             }
 
             $key = $this->jwtCacheHelper->getRedisKeyForUserRawToken($payload['username'], $rawToken);
-            $this->redisClientJwtBlackList->setex($key, (int) $payload['exp'], null);
+            $exp = (int) $payload['exp'] - $this->dateTimeHelper->getCurrentTimestamp();
+
+            if ($exp > 0) {
+                $this->redisClientJwtBlackList->setex($key, $exp, null);
+            }
         }
     }
 

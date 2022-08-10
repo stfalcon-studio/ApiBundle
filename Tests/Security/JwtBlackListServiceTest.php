@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Security;
 
+use Fresh\DateTime\DateTimeHelper;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWSProvider\JWSProviderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Signature\LoadedJWS;
@@ -24,7 +25,6 @@ use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Security\JwtCacheHelper;
 use StfalconStudio\ApiBundle\Security\JwtTokenHelper;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 final class JwtBlackListServiceTest extends TestCase
 {
@@ -40,6 +40,9 @@ final class JwtBlackListServiceTest extends TestCase
     /** @var JwtCacheHelper|MockObject */
     private JwtCacheHelper|MockObject $jwtCacheHelper;
 
+    /** @var DateTimeHelper|MockObject */
+    private DateTimeHelper|MockObject $dateTimeHelper;
+
     private JwtBlackListService $jwtBlackListService;
 
     protected function setUp(): void
@@ -48,11 +51,13 @@ final class JwtBlackListServiceTest extends TestCase
         $this->redisClientJwtBlackList = $this->createMock(Client::class);
         $this->jwtTokenHelper = $this->createMock(JwtTokenHelper::class);
         $this->jwtCacheHelper = $this->createMock(JwtCacheHelper::class);
+        $this->dateTimeHelper = $this->createMock(DateTimeHelper::class);
 
         $this->jwtBlackListService = new JwtBlackListService(
             $this->jwsProvider,
             $this->jwtTokenHelper,
             $this->jwtCacheHelper,
+            $this->dateTimeHelper,
         );
         $this->jwtBlackListService->setRedisClientJwtBlackList($this->redisClientJwtBlackList);
     }
@@ -64,6 +69,7 @@ final class JwtBlackListServiceTest extends TestCase
             $this->redisClientJwtBlackList,
             $this->jwtTokenHelper,
             $this->jwtCacheHelper,
+            $this->dateTimeHelper,
             $this->jwtBlackListService,
         );
     }
@@ -164,6 +170,12 @@ final class JwtBlackListServiceTest extends TestCase
             ->willReturn($loadedJWS)
         ;
 
+        $this->dateTimeHelper
+            ->expects(self::once())
+            ->method('getCurrentTimestamp')
+            ->willReturn(148)
+        ;
+
         $this->jwtCacheHelper
             ->expects(self::once())
             ->method('getRedisKeyForUserRawToken')
@@ -174,8 +186,39 @@ final class JwtBlackListServiceTest extends TestCase
         $this->redisClientJwtBlackList
             ->expects(self::once())
             ->method('__call')
-            ->with(self::equalTo('setex'), ['key', 2147483648, null])
-            ->willReturn(0)
+            ->with(self::equalTo('setex'), ['key', 2147483500, null])
+        ;
+
+        $this->jwtBlackListService->addTokenToBlackList('raw token');
+    }
+
+    public function testAddTokenToBlackListWithNegativeExp(): void
+    {
+        $loadedJWS = new LoadedJWS(['exp' => 2147483648, 'username' => 'test_username'], true);
+
+        $this->jwsProvider
+            ->expects(self::once())
+            ->method('load')
+            ->with('raw token')
+            ->willReturn($loadedJWS)
+        ;
+
+        $this->dateTimeHelper
+            ->expects(self::once())
+            ->method('getCurrentTimestamp')
+            ->willReturn(2147483648)
+        ;
+
+        $this->jwtCacheHelper
+            ->expects(self::once())
+            ->method('getRedisKeyForUserRawToken')
+            ->with('test_username', 'raw token')
+            ->willReturn('key')
+        ;
+
+        $this->redisClientJwtBlackList
+            ->expects(self::never())
+            ->method('__call')
         ;
 
         $this->jwtBlackListService->addTokenToBlackList('raw token');
