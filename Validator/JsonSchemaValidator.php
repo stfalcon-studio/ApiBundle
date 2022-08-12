@@ -20,6 +20,7 @@ use StfalconStudio\ApiBundle\Exception\RuntimeException;
 use StfalconStudio\ApiBundle\Service\AttributeProcessor\JsonSchemaAttributeProcessor;
 use StfalconStudio\ApiBundle\Traits;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Debug\TraceableNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 /**
@@ -71,7 +72,7 @@ class JsonSchemaValidator
         $this->validator->validate($requestData, $jsonSchema, Constraint::CHECK_MODE_NORMAL);
 
         if (!$this->validator->isValid()) {
-            if (!$this->symfonySerializer instanceof Serializer) {
+            if (!$this->symfonySerializer instanceof Serializer && !$this->symfonySerializer instanceof TraceableNormalizer) {
                 throw new RuntimeException(sprintf('Serializer is not instance of %s', Serializer::class));
             }
 
