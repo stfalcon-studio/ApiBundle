@@ -109,6 +109,9 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                     case Response::HTTP_BAD_REQUEST:
                         $errorName = BaseErrorNames::INVALID_REQUEST;
                         break;
+                    case Response::HTTP_UNAUTHORIZED:
+                        $errorName = BaseErrorNames::UNAUTHORISED_USER;
+                        break;
                     case Response::HTTP_FORBIDDEN:
                         $errorName = BaseErrorNames::ACCESS_DENIED;
                         break;

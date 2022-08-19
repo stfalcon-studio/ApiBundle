@@ -196,6 +196,54 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
     }
 
+    public function testOnKernelExceptionOnUnauthorized(): void
+    {
+        $httpException = new HttpException(Response::HTTP_UNAUTHORIZED, 'no_auth_header');
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('no_auth_header')
+            ->willReturn('No Auth Header.')
+        ;
+
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn('{"error":"unauthorised_user", "error_description":"test"}')
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"unauthorised_user", "error_description":"test"}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_UNAUTHORIZED)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
+    }
+
     public function testOnKernelExceptionOnPaymentRequired(): void
     {
         $httpException = new HttpException(Response::HTTP_PAYMENT_REQUIRED, 'payment_required');
