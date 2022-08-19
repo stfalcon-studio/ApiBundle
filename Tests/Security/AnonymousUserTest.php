@@ -42,7 +42,7 @@ final class AnonymousUserTest extends TestCase
 
     public function testIsEqualTo(): void
     {
-        $anonymousUser = $this->anonymousUser;
+        $anonymousUser = new AnonymousUser();
         self::assertTrue($this->anonymousUser->isEqualTo($anonymousUser));
         $user = $this->createMock(UserInterface::class);
         $user->method('getUserIdentifier')->willReturn('test');
