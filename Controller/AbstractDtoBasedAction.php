@@ -27,7 +27,6 @@ abstract class AbstractDtoBasedAction
 {
     use Traits\AuthorizationCheckerTrait;
     use Traits\DtoExtractorTrait;
-    use Traits\EntityManagerTrait;
     use Traits\EntityValidatorTrait;
     use Traits\EventDispatcherTrait;
     use Traits\JsonSchemaValidatorTrait;
