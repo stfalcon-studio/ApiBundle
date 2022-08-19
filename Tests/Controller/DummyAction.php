@@ -14,11 +14,14 @@ namespace StfalconStudio\ApiBundle\Tests\Controller;
 
 use StfalconStudio\ApiBundle\Controller\AbstractDtoBasedAction;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
+use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraint;
 
 class DummyAction extends AbstractDtoBasedAction
 {
+    use EntityManagerTrait;
+
     /**
      * @param Request $request
      */
