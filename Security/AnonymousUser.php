@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Security;
 
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * AnonymousUser.
  */
-class AnonymousUser implements UserInterface
+class AnonymousUser implements UserInterface, EquatableInterface, LegacyPasswordAuthenticatedUserInterface
 {
     public final const USERNAME = 'anonymous';
 
@@ -58,5 +60,13 @@ class AnonymousUser implements UserInterface
     public function getUserIdentifier(): string
     {
         return self::USERNAME;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isEqualTo(UserInterface $user): bool
+    {
+        return $user->getUserIdentifier() === $this->getUserIdentifier();
     }
 }

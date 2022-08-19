@@ -15,6 +15,7 @@ namespace StfalconStudio\ApiBundle\Tests\Security;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Security\AnonymousUser;
 use StfalconStudio\ApiBundle\Security\Role;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class AnonymousUserTest extends TestCase
 {
@@ -37,5 +38,14 @@ final class AnonymousUserTest extends TestCase
         self::assertNull($this->anonymousUser->getSalt());
         self::assertSame('anonymous', $this->anonymousUser->getUserIdentifier());
         $this->anonymousUser->eraseCredentials();
+    }
+
+    public function testIsEqualTo(): void
+    {
+        $anonymousUser = $this->anonymousUser;
+        self::assertTrue($this->anonymousUser->isEqualTo($anonymousUser));
+        $user = $this->createMock(UserInterface::class);
+        $user->method('getUserIdentifier')->willReturn('test');
+        self::assertFalse($this->anonymousUser->isEqualTo($user));
     }
 }
