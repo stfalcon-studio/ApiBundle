@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Controller;
 
-use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Controller\AbstractDtoBasedAction;
@@ -28,9 +27,6 @@ abstract class AbstractDtoBasedActionTest extends TestCase
 {
     /** @var AuthorizationCheckerInterface|MockObject */
     protected AuthorizationCheckerInterface|MockObject $authorizationChecker;
-
-    /** @var EntityManager|MockObject */
-    protected EntityManager|MockObject $em;
 
     /** @var EntityValidator|MockObject */
     protected EntityValidator|MockObject $entityValidator;
@@ -56,7 +52,6 @@ abstract class AbstractDtoBasedActionTest extends TestCase
     protected function setUp(): void
     {
         $this->authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
-        $this->em = $this->createMock(EntityManager::class);
         $this->dtoExtractor = $this->createMock(DtoExtractor::class);
         $this->entityValidator = $this->createMock(EntityValidator::class);
         $this->jsonSchemaValidator = $this->createMock(JsonSchemaValidator::class);
@@ -66,7 +61,6 @@ abstract class AbstractDtoBasedActionTest extends TestCase
 
         $this->action->setDtoExtractor($this->dtoExtractor);
         $this->action->setAuthorizationChecker($this->authorizationChecker);
-        $this->action->setEntityManager($this->em);
         $this->action->setEntityValidator($this->entityValidator);
         $this->action->setJsonSchemaValidator($this->jsonSchemaValidator);
         $this->action->setSerializer($this->serializer);
@@ -77,7 +71,6 @@ abstract class AbstractDtoBasedActionTest extends TestCase
     {
         unset(
             $this->authorizationChecker,
-            $this->em,
             $this->dtoExtractor,
             $this->entityValidator,
             $this->jsonSchemaValidator,
