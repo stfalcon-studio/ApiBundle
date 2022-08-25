@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\EventListener\Kernel;
 
+use Doctrine\ODM\MongoDB\LockException;
 use Doctrine\ORM\OptimisticLockException;
 use Sentry\State\Scope;
 use StfalconStudio\ApiBundle\Error\BaseErrorNames;
@@ -75,6 +76,13 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 $statusCode = Response::HTTP_CONFLICT;
                 $errorName = BaseErrorNames::CONFLICT_TARGET_RESOURCE_UPDATE;
                 $scope = (new Scope())->setExtra('entity', $e->getEntity());
+                $this->sentryClient->captureException($e, $scope);
+                break;
+            case $e instanceof LockException:
+                $message = 'optimistic_lock_exception_message';
+                $statusCode = Response::HTTP_CONFLICT;
+                $errorName = BaseErrorNames::CONFLICT_TARGET_RESOURCE_UPDATE;
+                $scope = (new Scope())->setExtra('document', $e->getDocument());
                 $this->sentryClient->captureException($e, $scope);
                 break;
             case $e instanceof AccessDeniedException:
