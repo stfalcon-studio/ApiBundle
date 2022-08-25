@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\EventListener\Kernel;
 
+use Doctrine\ODM\MongoDB\LockException;
 use Doctrine\ORM\OptimisticLockException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -409,9 +410,6 @@ final class ApiExceptionFormatterListenerTest extends TestCase
             ->willReturn(self::API_HOST)
         ;
 
-        $exceptionMessage = 'optimistic_lock_exception_message';
-        $exception = new OptimisticLockException($exceptionMessage, new \stdClass());
-
         $this->translator
             ->expects(self::once())
             ->method('trans')
@@ -448,6 +446,62 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
 
         self::assertInstanceOf(OptimisticLockException::class, $exceptionEvent->getThrowable());
+    }
+
+    public function testOnKernelExceptionLockException(): void
+    {
+        $exceptionMessage = 'optimistic_lock_exception_message';
+        $exception = new LockException($exceptionMessage, new \stdClass());
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $exception
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with($exceptionMessage)
+            ->willReturn($exceptionMessage)
+        ;
+
+        $conflictOptimisticLockMessage = 'Someone else has already changed this entity. Please return back, refresh data and apply the changes again!';
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn(sprintf('{"error":"conflict_target_resource_update", "error_description":"%s"}', $conflictOptimisticLockMessage))
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"conflict_target_resource_update", "error_description":"Someone else has already changed this entity. Please return back, refresh data and apply the changes again!"}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_CONFLICT)
+            ->willReturn($this->response)
+        ;
+
+        $this->sentryClient
+            ->expects(self::once())
+            ->method('captureException')
+            ->with($exception)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(LockException::class, $exceptionEvent->getThrowable());
     }
 
     public function testOnKernelExceptionAccessDeniedException(): void
