@@ -13,7 +13,7 @@
         "doctrine/common": "^3.3",
         "doctrine/orm": "^2.12",
         "egulias/email-validator": "^2.1.25",
-        "fresh/datetime": "^v1.7",
+        "fresh/datetime": "^v2.0",
         "gesdinet/jwt-refresh-token-bundle": "^v1.0.1",
         "ircmaxell/password-compat": "^v1.0.4",
         "justinrainbow/json-schema": "^5.2.11",
