@@ -69,7 +69,7 @@ abstract class AbstractBaseCommand extends Command
                 $date->setTime(0, 0);
                 $this->currentDate = $date;
             } else {
-                $this->currentDate = (new \DateTime('now'))->setTime(0, 0);
+                $this->currentDate = new \DateTime('now');
             }
         } catch (InvalidParameterException $e) {
             $io->write($e->getMessage(), false, SymfonyStyle::OUTPUT_RAW);
