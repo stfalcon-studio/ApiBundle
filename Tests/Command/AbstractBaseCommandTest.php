@@ -110,8 +110,9 @@ final class AbstractBaseCommandTest extends TestCase
         ;
 
         $this->command->runInitialize($this->input, $this->output);
+
         self::assertSame(
-            (new \DateTime('now'))->setTime(0, 0, 0)->format('Y-m-d H:i:s'),
+            (new \DateTime('now'))->format('Y-m-d H:i:s'),
             $this->command->getCurrentDate()->format('Y-m-d H:i:s')
         );
     }
@@ -125,8 +126,9 @@ final class AbstractBaseCommandTest extends TestCase
         ;
 
         $this->command->runInitialize($this->input, $this->output);
+
         self::assertSame(
-            (new \DateTime('2022-01-01'))->setTime(0, 0, 0)->format('Y-m-d H:i:s'),
+            (new \DateTime('2022-01-01'))->format('Y-m-d H:i:s'),
             $this->command->getCurrentDate()->format('Y-m-d H:i:s')
         );
     }
