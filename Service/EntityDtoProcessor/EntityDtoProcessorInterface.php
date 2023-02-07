@@ -20,9 +20,25 @@ use StfalconStudio\ApiBundle\DTO\UpdateDtoInterface;
  */
 interface EntityDtoProcessorInterface
 {
+    /**
+     * @param DtoInterface $dto
+     *
+     * @return object
+     */
     public function createEntityFromDto(DtoInterface $dto): object;
 
+    /**
+     * @param object $object
+     *
+     * @return UpdateDtoInterface
+     */
     public function createUpdateDtoFromEntity(object $object): UpdateDtoInterface;
 
+    /**
+     * @param object             $object
+     * @param UpdateDtoInterface $dto
+     *
+     * @return void
+     */
     public function updateEntityFromDto(object $object, UpdateDtoInterface $dto): void;
 }
