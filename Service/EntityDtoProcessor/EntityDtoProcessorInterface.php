@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Service\AttributeProcessor;
+namespace StfalconStudio\ApiBundle\Service\EntityDtoProcessor;
 
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use StfalconStudio\ApiBundle\DTO\UpdateDtoInterface;
