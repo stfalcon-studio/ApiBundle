@@ -293,6 +293,56 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
     }
 
+    public function testOnKernelExceptionWhenResourceNotFoundCausedByMapEntityAttribute(): void
+    {
+        $exceptionMessage = '"App\\Entity\\Event\\Event\" object not found by \"Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver\". The expression \"repository.findClosedEventById(id)\" returned null.';
+        $httpException = new NotFoundHttpException($exceptionMessage);
+        $resourceNotFoundMessage = 'Resource not found';
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('resource_not_found_exception_message')
+            ->willReturn($resourceNotFoundMessage)
+        ;
+
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn(sprintf('{"error":"resource_not_found", "error_description":"%s"}', $resourceNotFoundMessage))
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"resource_not_found", "error_description":"Resource not found"}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_NOT_FOUND)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(NotFoundHttpException::class, $exceptionEvent->getThrowable());
+    }
+
     public function testOnKernelExceptionWhenGenericNotFoundHttpException(): void
     {
         $exceptionMessage = 'Exception test message';
