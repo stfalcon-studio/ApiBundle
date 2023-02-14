@@ -100,7 +100,8 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 $statusCode = $e->getStatusCode();
                 $errorName = BaseErrorNames::RESOURCE_NOT_FOUND;
 
-                if (preg_match('/^(.+) object not found by the @(.+) annotation\.$/', $message)) {
+                if (preg_match('/^(.+) object not found by the @(.+) annotation\.$/', $message)
+                    || preg_match('/^(.+) object not found by (.+). The expression (.+) returned null\.$/', $message)) {
                     $message = 'resource_not_found_exception_message';
                 }
                 break;
