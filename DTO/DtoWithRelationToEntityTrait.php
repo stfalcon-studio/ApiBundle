@@ -30,9 +30,9 @@ trait DtoWithRelationToEntityTrait
     /**
      * @param string $entityId
      *
-     * @return self
+     * @return static
      */
-    public function setEntityId(string $entityId): self
+    public function setEntityId(string $entityId): static
     {
         $this->entityId = \trim($entityId);
 
