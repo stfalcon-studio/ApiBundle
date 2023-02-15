@@ -35,9 +35,9 @@ trait OptimisticLockTrait
     /**
      * @param int $editVersion
      *
-     * @return self
+     * @return static
      */
-    public function setEditVersion(int $editVersion): self
+    public function setEditVersion(int $editVersion): static
     {
         $this->editVersion = $editVersion;
 
