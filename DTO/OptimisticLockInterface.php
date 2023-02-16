@@ -25,7 +25,7 @@ interface OptimisticLockInterface
     /**
      * @param int $editVersion
      *
-     * @return self
+     * @return static
      */
-    public function setEditVersion(int $editVersion): self;
+    public function setEditVersion(int $editVersion): static;
 }
