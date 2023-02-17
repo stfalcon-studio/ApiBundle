@@ -12,11 +12,14 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\DTO;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * DtoWithRelationToEntityTrait.
  */
 trait DtoWithRelationToEntityTrait
 {
+    #[Assert\NotBlank(allowNull: true)]
     private ?string $entityId = null;
 
     /**
