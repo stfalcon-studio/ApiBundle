@@ -24,13 +24,15 @@ final class ExceptionResponseFactoryTest extends TestCase
     public function testCreateJsonResponse(): void
     {
         $json = '{"test":"data"}';
-        $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
+        $statusCode = Response::HTTP_TOO_MANY_REQUESTS;
+        $headers = ['Retry-After' => 60];
 
         $exceptionResponseFactory = new ExceptionResponseFactory();
-        $response = $exceptionResponseFactory->createJsonResponse($json, $statusCode);
+        $response = $exceptionResponseFactory->createJsonResponse($json, $statusCode, $headers);
 
         self::assertSame($json, $response->getContent());
         self::assertSame($statusCode, $response->getStatusCode());
+        self::assertSame('60', $response->headers->get('Retry-After'));
         self::assertSame(\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE, $response->getEncodingOptions());
     }
 }
