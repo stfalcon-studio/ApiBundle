@@ -29,6 +29,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -943,5 +944,51 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         ;
 
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
+    }
+
+    public function testPassesHeadersToResponseFromHttpException(): void
+    {
+        $httpException = new TooManyRequestsHttpException(58);
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('Error code is not yet specified for this case. Please contact to developer about this case.')
+            ->willReturn('Error code is not yet specified for this case. Please contact to developer about this case.')
+        ;
+
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn('{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}')
+        ;
+
+        $json = '{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_TOO_MANY_REQUESTS, ['Retry-After' => 58])
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        $response = $exceptionEvent->getResponse();
+
+        self::assertSame($this->response, $response);
+        self::assertInstanceOf(TooManyRequestsHttpException::class, $exceptionEvent->getThrowable());
     }
 }

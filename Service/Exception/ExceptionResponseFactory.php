@@ -22,11 +22,12 @@ class ExceptionResponseFactory
     /**
      * @param string $json
      * @param int    $statusCode
+     * @param array  $headers
      *
      * @return JsonResponse
      */
-    public function createJsonResponse(string $json, int $statusCode): JsonResponse
+    public function createJsonResponse(string $json, int $statusCode, array $headers): JsonResponse
     {
-        return (new JsonResponse($json, $statusCode, [], true))->setEncodingOptions(\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
+        return (new JsonResponse($json, $statusCode, $headers, true))->setEncodingOptions(\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE);
     }
 }

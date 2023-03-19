@@ -158,7 +158,13 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
             ['json_encode_options' => \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE]
         );
 
-        $response = $this->exceptionResponseFactory->createJsonResponse($json, $statusCode);
+        if ($e instanceof HttpExceptionInterface) {
+            $headers = $e->getHeaders();
+        } else {
+            $headers = [];
+        }
+
+        $response = $this->exceptionResponseFactory->createJsonResponse($json, $statusCode, $headers);
 
         $event->setResponse($response);
     }
