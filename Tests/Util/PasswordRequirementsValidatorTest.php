@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Util;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Util\PasswordRequirementsValidator;
 
@@ -34,11 +35,7 @@ final class PasswordRequirementsValidatorTest extends TestCase
         );
     }
 
-    /**
-     * @param string $password
-     *
-     * @dataProvider dataProviderForTestPasswordIsValid
-     */
+    #[DataProvider('dataProviderForTestPasswordIsValid')]
     public function testPasswordIsValid(string $password): void
     {
         self::assertTrue($this->validator->isValid($password));
@@ -53,11 +50,7 @@ final class PasswordRequirementsValidatorTest extends TestCase
         yield ['ПАРОЛь1'];
     }
 
-    /**
-     * @param string $password
-     *
-     * @dataProvider dataProviderForTestPasswordIsNotValid
-     */
+    #[DataProvider('dataProviderForTestPasswordIsNotValid')]
     public function testPasswordIsNotValid(string $password): void
     {
         self::assertFalse($this->validator->isValid($password));

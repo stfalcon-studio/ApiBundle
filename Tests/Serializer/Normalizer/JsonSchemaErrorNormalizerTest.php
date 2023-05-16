@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Tests\Serializer\Normalizer;
 
 use JsonSchema\Validator as JsonSchemaValidator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Serializer\Normalizer\JsonSchemaErrorNormalizer;
 
@@ -49,12 +50,7 @@ final class JsonSchemaErrorNormalizerTest extends TestCase
         self::assertEmpty($this->normalizer->normalize($this->jsonSchemaValidator));
     }
 
-    /**
-     * @param array $errors
-     * @param array $expected
-     *
-     * @dataProvider dataProviderForTestNormalizeWhenObjectWithErrors
-     */
+    #[DataProvider('dataProviderForTestNormalizeWhenObjectWithErrors')]
     public function testNormalizeWhenObjectWithErrors(array $errors, array $expected): void
     {
         $this->jsonSchemaValidator->addErrors($errors);

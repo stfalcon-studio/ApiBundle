@@ -104,13 +104,17 @@ final class JsonSchemaValidatorTest extends TestCase
         $violations = [];
         $normalizedJsonSchema = [];
 
+        $matcher = $this->exactly(2);
+
         $this->serializer
             ->expects(self::exactly(2))
             ->method('normalize')
-            ->withConsecutive(
-                [$this->validator, 'json', ['jsonSchema' => $dummyJsonSchema]],
-                [$dummyJsonSchema, 'object']
-            )
+            ->willReturnCallback(function () use ($matcher, $dummyJsonSchema) {
+                return match ($matcher->numberOfInvocations()) {
+                    1 => [$this->validator, 'json', ['jsonSchema' => $dummyJsonSchema]],
+                    2 => [$dummyJsonSchema, 'object']
+                };
+            })
             ->will(self::onConsecutiveCalls($violations, $normalizedJsonSchema))
         ;
 

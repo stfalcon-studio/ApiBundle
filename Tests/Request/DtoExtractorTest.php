@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Request;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
@@ -52,12 +53,7 @@ final class DtoExtractorTest extends TestCase
         );
     }
 
-    /**
-     * @param object|null $objectToPopulate
-     * @param array       $context
-     *
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testGetDtoFromRequestWithoutPopulation(?object $objectToPopulate, array $context): void
     {
         $className = 'TestClassName';

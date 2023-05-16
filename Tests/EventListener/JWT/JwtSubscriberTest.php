@@ -17,6 +17,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTInvalidEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\EventListener\JWT\JwtSubscriber;
@@ -64,12 +65,7 @@ final class JwtSubscriberTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
-    /**
-     * @param MockObject|AuthenticationFailureEvent|string $event
-     * @param string                                       $message
-     *
-     * @dataProvider dataProviderForTestOnAuthenticationFailureResponse
-     */
+    #[DataProvider('dataProviderForTestOnAuthenticationFailureResponse')]
     public function testOnAuthenticationFailureResponse(MockObject|AuthenticationFailureEvent|string $event, string $message): void
     {
         $this->translator

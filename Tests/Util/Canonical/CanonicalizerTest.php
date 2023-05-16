@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Util\Canonical;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Util\Canonical\Canonicalizer;
@@ -38,12 +39,7 @@ final class CanonicalizerTest extends TestCase
         );
     }
 
-    /**
-     * @param string $rawEmail
-     * @param string $canonicalEmail
-     *
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testCanonicalizeWithoutDetectedEncoding(string $rawEmail, string $canonicalEmail): void
     {
         $this->encodingDetector
@@ -56,12 +52,7 @@ final class CanonicalizerTest extends TestCase
         self::assertSame($canonicalEmail, $this->canonicalizer->canonicalize($rawEmail));
     }
 
-    /**
-     * @param string $rawEmail
-     * @param string $canonicalEmail
-     *
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testCanonicalizeWithDetectedEncoding(string $rawEmail, string $canonicalEmail): void
     {
         $this->encodingDetector

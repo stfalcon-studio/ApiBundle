@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Command;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\Console\InvalidParameterException;
@@ -76,11 +77,7 @@ final class AbstractBaseCommandTest extends TestCase
         $this->command->runInitialize($this->input, $this->output);
     }
 
-    /**
-     * @dataProvider dataProviderForInitializeInvalidDateFormat
-     *
-     * @param string $optionValue
-     */
+    #[DataProvider('dataProviderForInitializeInvalidDateFormat')]
     public function testInitializeInvalidDateFormat(string $optionValue): void
     {
         $this->input

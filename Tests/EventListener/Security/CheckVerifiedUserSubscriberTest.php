@@ -22,7 +22,6 @@ use Symfony\Component\Security\Http\Event\CheckPassportEvent;
 
 final class CheckVerifiedUserSubscriberTest extends TestCase
 {
-    /** @var JwtBlackListService|MockObject */
     private JwtBlackListService|MockObject $jwtBlackListService;
 
     private CheckVerifiedUserSubscriber $subscriber;
@@ -69,10 +68,18 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
             ->method('getUser')
             ->willReturn($user)
         ;
+
+        $matcher = $this->exactly(2);
+
         $passport
             ->expects(self::exactly(2))
             ->method('getAttribute')
-            ->withConsecutive(['payload'], ['token'])
+            ->willReturnCallback(function () use ($matcher) {
+                return match ($matcher->numberOfInvocations()) {
+                    1 => ['payload'],
+                    2 => ['token'],
+                };
+            })
             ->willReturnOnConsecutiveCalls(['iat' => 1], 'qwerty')
         ;
 
@@ -127,7 +134,7 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
             ->method('tokenIsInBlackList')
         ;
 
-        $this->expectErrorMessage('Credentials were changed.');
+        $this->expectExceptionMessage('Credentials were changed.');
         $this->expectException(BadCredentialsException::class);
 
         $this->subscriber->onCheckPassport($event);
@@ -148,10 +155,18 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
             ->method('getUser')
             ->willReturn($user)
         ;
+
+        $matcher = $this->exactly(2);
+
         $passport
             ->expects(self::exactly(2))
             ->method('getAttribute')
-            ->withConsecutive(['payload'], ['token'])
+            ->willReturnCallback(function () use ($matcher) {
+                return match ($matcher->numberOfInvocations()) {
+                    1 => ['payload'],
+                    2 => ['token'],
+                };
+            })
             ->willReturnOnConsecutiveCalls(['iat' => 2], 'qwerty')
         ;
 
@@ -169,7 +184,7 @@ final class CheckVerifiedUserSubscriberTest extends TestCase
             ->willReturn(true)
         ;
 
-        $this->expectErrorMessage('Token in the black list.');
+        $this->expectExceptionMessage('Token in the black list.');
         $this->expectException(BadCredentialsException::class);
 
         $this->subscriber->onCheckPassport($event);
