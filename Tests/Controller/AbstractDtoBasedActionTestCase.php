@@ -23,7 +23,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-abstract class AbstractDtoBasedActionTest extends TestCase
+abstract class AbstractDtoBasedActionTestCase extends TestCase
 {
     /** @var AuthorizationCheckerInterface|MockObject */
     protected AuthorizationCheckerInterface|MockObject $authorizationChecker;

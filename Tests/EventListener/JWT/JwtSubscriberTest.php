@@ -89,9 +89,9 @@ final class JwtSubscriberTest extends TestCase
 
     public function dataProviderForTestOnAuthenticationFailureResponse(): iterable
     {
-        yield [$this->createMock(AuthenticationFailureEvent::class), 'unauthorised_user_message'];
-        yield [$this->createMock(JWTInvalidEvent::class), 'invalid_jwt_token_message'];
-        yield [$this->createMock(JWTNotFoundEvent::class), 'not_found_jwt_token_message'];
-        yield [$this->createMock(JWTExpiredEvent::class), 'expired_jwt_token_message'];
+        yield [new AuthenticationFailureEvent(null, null), 'unauthorised_user_message'];
+        yield [new JWTInvalidEvent(null, null), 'invalid_jwt_token_message'];
+        yield [new JWTNotFoundEvent(null, null), 'not_found_jwt_token_message'];
+        yield [new JWTExpiredEvent(null, null), 'expired_jwt_token_message'];
     }
 }

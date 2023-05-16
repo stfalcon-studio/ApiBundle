@@ -15,7 +15,7 @@ namespace StfalconStudio\ApiBundle\Tests\Controller;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-final class DtoBasedActionTest extends AbstractDtoBasedActionTest
+final class DtoBasedActionTestCase extends AbstractDtoBasedActionTestCase
 {
     /** @var DummyAction */
     protected $action;
