@@ -44,9 +44,9 @@ return [
 
 ```yaml
 doctrine:
-    orm:
-        mappings:
-            StfalconApiBundle: ~
+  orm:
+    mappings:
+      StfalconApiBundle: ~
 ```
 
 #### Set up a directory for JSON schemas
@@ -55,11 +55,11 @@ The default directory is `./src/Json/Schema/`. Or you can change it via bundle c
 
 ```yaml
 stfalcon_api:
-    api_host: '%env(APP_API_HOST)%'
-    json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
-    jwt:
-      enabled: true # set false to disable JWT auth 
-      redis_client_jwt_black_list: "@snc_redis.jwt_black_list"
+  api_host: '%env(APP_API_HOST)%'
+  json_schema_dir: '%kernel.project_dir%/src/Json/Schema/'
+  jwt:
+    enabled: true # set false to disable JWT auth 
+    redis_client_jwt_black_list: "@snc_redis.jwt_black_list"
 ```
 
 ## Contributing
