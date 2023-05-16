@@ -18,9 +18,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class RequestStackTraitTest extends TestCase
 {
-    /** @var RequestStack|MockObject */
     private RequestStack|MockObject $requestStack;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

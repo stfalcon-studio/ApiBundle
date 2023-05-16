@@ -23,12 +23,8 @@ use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionRespon
  */
 final class ExceptionResponseProcessorTest extends TestCase
 {
-    /** @var CustomAppExceptionInterface|MockObject */
     private CustomAppExceptionInterface|MockObject $customAppException;
-
-    /** @var CustomAppExceptionResponseProcessorInterface|MockObject */
     private CustomAppExceptionResponseProcessorInterface|MockObject $errorResponseProcessor;
-
     private ExceptionResponseProcessor $exceptionResponseProcessor;
 
     protected function setUp(): void

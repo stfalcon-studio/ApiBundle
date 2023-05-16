@@ -21,9 +21,7 @@ use StfalconStudio\ApiBundle\Serializer\Serializer;
  */
 final class SerializerTraitTest extends TestCase
 {
-    /** @var Serializer|MockObject */
     private Serializer|MockObject $serializer;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

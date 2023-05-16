@@ -26,9 +26,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class JwtSubscriberTest extends TestCase
 {
-    /** @var TranslatorInterface|MockObject */
     private TranslatorInterface|MockObject $translator;
-
     private JwtSubscriber $subscriber;
 
     protected function setUp(): void
@@ -87,7 +85,7 @@ final class JwtSubscriberTest extends TestCase
         $this->subscriber->onAuthenticationFailureResponse($event);
     }
 
-    public function dataProviderForTestOnAuthenticationFailureResponse(): iterable
+    public static function dataProviderForTestOnAuthenticationFailureResponse(): iterable
     {
         yield [new AuthenticationFailureEvent(null, null), 'unauthorised_user_message'];
         yield [new JWTInvalidEvent(null, null), 'invalid_jwt_token_message'];

@@ -28,10 +28,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 final class DtoExtractorTest extends TestCase
 {
-    /** @var SerializerInterface|MockObject */
     private SerializerInterface|MockObject $serializer;
-
-    /** @var DtoAttributeProcessor|MockObject */
     private DtoAttributeProcessor|MockObject $dtoAttributeProcessor;
 
     private DtoExtractor $dtoExtractor;

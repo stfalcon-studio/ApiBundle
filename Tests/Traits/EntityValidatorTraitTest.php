@@ -18,9 +18,7 @@ use StfalconStudio\ApiBundle\Validator\EntityValidator;
 
 final class EntityValidatorTraitTest extends TestCase
 {
-    /** @var EntityValidator|MockObject */
     private EntityValidator|MockObject $entityValidator;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

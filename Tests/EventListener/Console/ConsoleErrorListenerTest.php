@@ -22,12 +22,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ConsoleErrorListenerTest extends TestCase
 {
-    /** @var InputInterface|MockObject */
     private InputInterface|MockObject $input;
-
-    /** @var OutputInterface|MockObject */
     private OutputInterface|MockObject $output;
-
     private ConsoleErrorListener $subscriber;
 
     protected function setUp(): void

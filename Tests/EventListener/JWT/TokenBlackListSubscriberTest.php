@@ -21,9 +21,7 @@ use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 
 final class TokenBlackListSubscriberTest extends TestCase
 {
-    /** @var JwtBlackListService|MockObject */
     private JwtBlackListService|MockObject $tokenBlackListService;
-
     private TokenBlackListSubscriber $subscriber;
 
     protected function setUp(): void

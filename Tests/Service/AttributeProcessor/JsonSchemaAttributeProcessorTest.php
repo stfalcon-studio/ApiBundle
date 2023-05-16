@@ -25,12 +25,8 @@ use StfalconStudio\ApiBundle\Util\File\FileReader;
  */
 final class JsonSchemaAttributeProcessorTest extends TestCase
 {
-    /** @var DtoAttributeProcessor|MockObject */
     private DtoAttributeProcessor|MockObject $dtoAttributeProcessor;
-
-    /** @var FileReader|MockObject */
     private FileReader|MockObject $fileReader;
-
     private JsonSchemaAttributeProcessor $jsonSchemaAttributeProcessor;
 
     protected function setUp(): void

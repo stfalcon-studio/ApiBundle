@@ -22,15 +22,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class AbstractBaseCommandTest extends TestCase
 {
-    /** @var OutputFormatterInterface|MockObject */
     private OutputFormatterInterface|MockObject $formatter;
-
-    /** @var InputInterface|MockObject */
     private InputInterface|MockObject $input;
-
-    /** @var OutputInterface|MockObject */
     private OutputInterface|MockObject $output;
-
     private DummyCommand $command;
 
     protected function setUp(): void

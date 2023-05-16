@@ -18,9 +18,7 @@ use Twig\Environment;
 
 final class TwigTraitTest extends TestCase
 {
-    /** @var Environment|MockObject */
     private Environment|MockObject $twig;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

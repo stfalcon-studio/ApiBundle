@@ -39,30 +39,14 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 {
     private const API_HOST = 'https://test.com';
 
-    /** @var SerializerInterface|MockObject */
     private SerializerInterface|MockObject $serializer;
-
-    /** @var ClientInterface|MockObject */
     private ClientInterface|MockObject $sentryClient;
-
-    /** @var TranslatorInterface|MockObject */
     private TranslatorInterface|MockObject $translator;
-
-    /** @var Request|MockObject */
     private Request|MockObject $request;
-
-    /** @var JsonResponse|MockObject */
     private JsonResponse|MockObject $response;
-
-    /** @var HttpKernelInterface|MockObject */
     private HttpKernelInterface|MockObject $kernel;
-
-    /** @var ExceptionResponseProcessorInterface|MockObject */
     private ExceptionResponseProcessorInterface|MockObject $exceptionResponseProcessor;
-
-    /** @var ExceptionResponseFactory|MockObject */
     private ExceptionResponseFactory|MockObject $exceptionResponseFactory;
-
     private ApiExceptionFormatterListener $exceptionFormatterListener;
 
     protected function setUp(): void

@@ -23,18 +23,10 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 final class JwtRefreshSubscriberTest extends TestCase
 {
-    /** @var RefreshEvent|MockObject */
     private RefreshEvent|MockObject $refreshEvent;
-
-    /** @var TokenInterface|MockObject */
     private TokenInterface|MockObject $token;
-
-    /** @var RefreshToken|MockObject */
     private RefreshToken|MockObject $refreshToken;
-
-    /** @var CredentialsInterface|MockObject */
     private CredentialsInterface|MockObject $user;
-
     private JwtRefreshSubscriber $subscriber;
 
     protected function setUp(): void

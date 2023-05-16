@@ -18,7 +18,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class ValidatorTraitTest extends TestCase
 {
-    /** @var ValidatorInterface|MockObject */
     private ValidatorInterface|MockObject $validator;
 
     private DummyClass $dummyClass;

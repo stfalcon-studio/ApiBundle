@@ -18,9 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 final class AuthenticationUtilsTraitTest extends TestCase
 {
-    /** @var AuthenticationUtils|MockObject */
     private AuthenticationUtils|MockObject $authenticationUtils;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

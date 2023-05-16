@@ -18,9 +18,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 final class MessageBusTraitTest extends TestCase
 {
-    /** @var MessageBusInterface|MockObject */
     private MessageBusInterface|MockObject $bus;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

@@ -26,15 +26,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 final class JsonSchemaValidatorTest extends TestCase
 {
-    /** @var Validator|MockObject */
     private Validator|MockObject $validator;
-
-    /** @var JsonSchemaAttributeProcessor|MockObject */
     private JsonSchemaAttributeProcessor|MockObject $jsonSchemaAttributeProcessor;
-
-    /** @var Serializer|MockObject */
     private Serializer|MockObject $serializer;
-
     private JsonSchemaValidator $jsonSchemaValidator;
 
     protected function setUp(): void

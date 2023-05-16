@@ -22,9 +22,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 final class SerializerTest extends TestCase
 {
-    /** @var SerializerInterface|MockObject */
     private SerializerInterface|MockObject $symfonySerializer;
-
     private Serializer $serializer;
 
     protected function setUp(): void

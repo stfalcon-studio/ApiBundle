@@ -18,9 +18,7 @@ use Sentry\ClientInterface;
 
 final class SentryClientTraitTest extends TestCase
 {
-    /** @var ClientInterface|MockObject */
     private ClientInterface|MockObject $sentryClient;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

@@ -18,9 +18,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 final class FilesystemTraitTest extends TestCase
 {
-    /** @var Filesystem|MockObject */
     private Filesystem|MockObject $filesystem;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

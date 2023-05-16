@@ -18,9 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class TranslatorTraitTest extends TestCase
 {
-    /** @var TranslatorInterface|MockObject */
     private TranslatorInterface|MockObject $translator;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

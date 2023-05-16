@@ -18,9 +18,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class RouterTraitTest extends TestCase
 {
-    /** @var RouterInterface|MockObject */
     private RouterInterface|MockObject $router;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void
