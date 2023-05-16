@@ -28,21 +28,11 @@ use StfalconStudio\ApiBundle\Security\JwtTokenHelper;
 
 final class JwtBlackListServiceTest extends TestCase
 {
-    /** @var JWSProviderInterface|MockObject */
     private JWSProviderInterface|MockObject $jwsProvider;
-
-    /** @var Client|MockObject */
     private Client|MockObject $redisClientJwtBlackList;
-
-    /** @var JwtTokenHelper|MockObject */
     private JwtTokenHelper|MockObject $jwtTokenHelper;
-
-    /** @var JwtCacheHelper|MockObject */
     private JwtCacheHelper|MockObject $jwtCacheHelper;
-
-    /** @var DateTimeHelper|MockObject */
     private DateTimeHelper|MockObject $dateTimeHelper;
-
     private JwtBlackListService $jwtBlackListService;
 
     protected function setUp(): void

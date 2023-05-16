@@ -25,9 +25,7 @@ use StfalconStudio\ApiBundle\Model\Aggregate\AggregateRootInterface;
 
 final class AggregatePartListenerTest extends TestCase
 {
-    /** @var DateTimeHelper|MockObject */
     private DateTimeHelper|MockObject $dateTimeHelper;
-
     private AggregatePartListener $listener;
 
     protected function setUp(): void

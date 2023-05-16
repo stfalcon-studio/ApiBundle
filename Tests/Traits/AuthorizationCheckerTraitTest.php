@@ -18,9 +18,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 final class AuthorizationCheckerTraitTest extends TestCase
 {
-    /** @var AuthorizationCheckerInterface|MockObject */
     private AuthorizationCheckerInterface|MockObject $authenticationUtils;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

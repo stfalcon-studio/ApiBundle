@@ -18,9 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ManagerRegistryTraitTest extends TestCase
 {
-    /** @var ManagerRegistry|MockObject */
     private ManagerRegistry|MockObject $managerRegistry;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

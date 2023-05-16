@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Validator\Constraints\Password;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\Validator\UnexpectedConstraintException;
@@ -24,12 +25,8 @@ use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 final class PasswordMeetSpecialRequirementsValidatorTest extends TestCase
 {
-    /** @var ExecutionContextInterface|MockObject */
-    private $context;
-
-    /** @var PasswordRequirementsValidator|MockObject */
-    private $passwordValidator;
-
+    private ExecutionContextInterface|MockObject $context;
+    private PasswordRequirementsValidator|MockObject $passwordValidator;
     private PasswordMeetSpecialRequirementsValidator $validator;
 
     protected function setUp(): void
@@ -68,11 +65,7 @@ final class PasswordMeetSpecialRequirementsValidatorTest extends TestCase
         $this->validator->validate('foo_password', new DummyConstraint());
     }
 
-    /**
-     * @param string|null $password
-     *
-     * @dataProvider dataProviderForTestValidateWhenPasswordIsEmpty
-     */
+    #[DataProvider('dataProviderForTestValidateWhenPasswordIsEmpty')]
     public function testValidateWhenPasswordIsEmpty(?string $password): void
     {
         $this->context

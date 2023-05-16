@@ -21,9 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 final class JwtTokenHelperTest extends TestCase
 {
-    /** @var TokenStorageInterface|MockObject */
     private TokenStorageInterface|MockObject $tokenStorage;
-
     private JwtTokenHelper $jwtTokenHelper;
 
     protected function setUp(): void

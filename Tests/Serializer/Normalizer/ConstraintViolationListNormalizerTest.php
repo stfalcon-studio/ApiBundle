@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Serializer\Normalizer;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Serializer\Normalizer\ConstraintViolationListNormalizer;
@@ -20,9 +21,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 final class ConstraintViolationListNormalizerTest extends TestCase
 {
-    /** @var SymfonyConstraintViolationListNormalizer|MockObject */
     private SymfonyConstraintViolationListNormalizer|MockObject $symfonyNormalizer;
-
     private ConstraintViolationListNormalizer $normalizer;
 
     protected function setUp(): void
@@ -39,12 +38,7 @@ final class ConstraintViolationListNormalizerTest extends TestCase
         );
     }
 
-    /**
-     * @param string $originDetail
-     * @param string $resultDetail
-     *
-     * @dataProvider dataProviderForTestNormalize
-     */
+    #[DataProvider('dataProviderForTestNormalize')]
     public function testNormalize(string $originDetail, string $resultDetail): void
     {
         $object = new \stdClass();

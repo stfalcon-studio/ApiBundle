@@ -41,7 +41,7 @@ class PasswordGenerator
         foreach ($sets as $set) {
             $arrayOfCharsForSet = str_split($set);
 
-            $randomIndex = random_int(0, \count($arrayOfCharsForSet) - 1);
+            $randomIndex = random_int(0, max(1, \count($arrayOfCharsForSet) - 1));
             $password .= $set[$randomIndex];
 
             $all .= $set;
@@ -52,7 +52,7 @@ class PasswordGenerator
 
         $numberOfIterations = $length - $numberOfSets;
         for ($i = 0; $i < $numberOfIterations; ++$i) {
-            $randomIndex = random_int(0, \count($all) - 1);
+            $randomIndex = random_int(0, max(1, \count($all) - 1));
             $password .= $all[$randomIndex];
         }
 

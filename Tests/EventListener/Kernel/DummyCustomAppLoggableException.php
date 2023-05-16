@@ -17,26 +17,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class DummyCustomAppLoggableException extends AbstractCustomHttpAppException
 {
-    /**
-     * @param string|null     $message
-     * @param \Exception|null $previous
-     */
     public function __construct(?string $message = null, \Exception $previous = null)
     {
         parent::__construct(Response::HTTP_BAD_REQUEST, $message, $previous);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function loggable(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getErrorName(): string
     {
         return 'dummy';

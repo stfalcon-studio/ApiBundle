@@ -18,9 +18,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 
 final class FormFactoryTraitTest extends TestCase
 {
-    /** @var FormFactoryInterface|MockObject */
     private FormFactoryInterface|MockObject $formFactory;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

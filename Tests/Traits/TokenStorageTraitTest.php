@@ -18,9 +18,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 final class TokenStorageTraitTest extends TestCase
 {
-    /** @var TokenStorageInterface|MockObject */
     private TokenStorageInterface|MockObject $tokenStorage;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

@@ -19,9 +19,7 @@ use StfalconStudio\ApiBundle\Asset\DatetimeVersionStrategy;
 
 final class DatetimeVersionStrategyTest extends TestCase
 {
-    /** @var DateTimeHelper|MockObject */
     private DateTimeHelper|MockObject $dateTimeHelper;
-
     private DatetimeVersionStrategy $datetimeVersionStrategy;
 
     protected function setUp(): void

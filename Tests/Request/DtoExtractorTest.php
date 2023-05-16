@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Request;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\DTO\DtoInterface;
@@ -27,10 +28,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 final class DtoExtractorTest extends TestCase
 {
-    /** @var SerializerInterface|MockObject */
     private SerializerInterface|MockObject $serializer;
-
-    /** @var DtoAttributeProcessor|MockObject */
     private DtoAttributeProcessor|MockObject $dtoAttributeProcessor;
 
     private DtoExtractor $dtoExtractor;
@@ -52,12 +50,7 @@ final class DtoExtractorTest extends TestCase
         );
     }
 
-    /**
-     * @param object|null $objectToPopulate
-     * @param array       $context
-     *
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testGetDtoFromRequestWithoutPopulation(?object $objectToPopulate, array $context): void
     {
         $className = 'TestClassName';

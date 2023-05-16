@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Command;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Exception\Console\InvalidParameterException;
@@ -21,15 +22,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class AbstractBaseCommandTest extends TestCase
 {
-    /** @var OutputFormatterInterface|MockObject */
     private OutputFormatterInterface|MockObject $formatter;
-
-    /** @var InputInterface|MockObject */
     private InputInterface|MockObject $input;
-
-    /** @var OutputInterface|MockObject */
     private OutputInterface|MockObject $output;
-
     private DummyCommand $command;
 
     protected function setUp(): void
@@ -76,11 +71,7 @@ final class AbstractBaseCommandTest extends TestCase
         $this->command->runInitialize($this->input, $this->output);
     }
 
-    /**
-     * @dataProvider dataProviderForInitializeInvalidDateFormat
-     *
-     * @param string $optionValue
-     */
+    #[DataProvider('dataProviderForInitializeInvalidDateFormat')]
     public function testInitializeInvalidDateFormat(string $optionValue): void
     {
         $this->input

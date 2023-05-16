@@ -18,9 +18,7 @@ use Psr\Log\LoggerInterface;
 
 final class LoggerTraitTest extends TestCase
 {
-    /** @var LoggerInterface|MockObject */
     private LoggerInterface|MockObject $logger;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

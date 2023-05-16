@@ -20,9 +20,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 final class SymfonySerializerTraitTest extends TestCase
 {
-    /** @var SerializerInterface|MockObject */
     private SerializerInterface|MockObject $symfonySerializer;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

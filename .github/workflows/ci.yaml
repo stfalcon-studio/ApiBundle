@@ -25,6 +25,14 @@ jobs:
       - name: 'Checkout Code'
         uses: actions/checkout@v2
 
+      - name: 'Setup PHP'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          ini-values: memory_limit=-1
+          coverage: none
+          tools: composer:v2
+
       - name: 'Install Dependencies'
         run: composer install --prefer-dist --no-progress --no-interaction
 
@@ -41,7 +49,7 @@ jobs:
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           ini-values: memory_limit=-1
           coverage: none
           tools: composer:v2
@@ -66,7 +74,7 @@ jobs:
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           ini-values: memory_limit=-1
           coverage: none
           tools: composer:v2
@@ -86,10 +94,8 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - '8.1'
           - '8.2'
         symfony-version:
-          - '6.1'
           - '6.2'
     steps:
       - name: 'Checkout Code'
@@ -102,8 +108,6 @@ jobs:
           ini-values: memory_limit=-1
           coverage: none
           tools: composer:v2
-        env:
-          SYMFONY_VERSION: ${{ matrix.symfony-version }}
 
       - name: 'Install PHP dependencies with Composer'
         run: composer install --prefer-dist --no-progress --optimize-autoloader
@@ -125,7 +129,7 @@ jobs:
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           ini-values: memory_limit=-1
           coverage: pcov
           tools: composer:v2

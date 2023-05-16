@@ -18,9 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 final class DocumentManagerTraitTest extends TestCase
 {
-    /** @var DocumentManager|MockObject */
     private DocumentManager|MockObject $documentManager;
-
     private DummyClass $dummyClass;
 
     protected function setUp(): void

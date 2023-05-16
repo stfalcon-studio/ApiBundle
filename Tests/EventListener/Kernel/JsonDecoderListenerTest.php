@@ -25,12 +25,8 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
  */
 final class JsonDecoderListenerTest extends TestCase
 {
-    /** @var RequestEvent|MockObject */
     private RequestEvent|MockObject $requestEvent;
-
-    /** @var Request|MockObject */
     private Request|MockObject $request;
-
     private InputBag $parameterBag;
     private JsonDecoderListener $jsonDecoderSubscriber;
 

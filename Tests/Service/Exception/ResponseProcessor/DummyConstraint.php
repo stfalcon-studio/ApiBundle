@@ -19,7 +19,6 @@ class DummyConstraint extends Constraint
     public const INVALID_ERROR = 'cc34-d445';
     public const INVALID_ERROR_NAME = 'INVALID_ERROR';
 
-    /** @var array */
     protected static $errorNames = [
         self::INVALID_ERROR => self::INVALID_ERROR_NAME,
     ];

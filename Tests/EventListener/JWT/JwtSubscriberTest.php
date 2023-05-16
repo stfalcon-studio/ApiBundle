@@ -25,9 +25,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class JwtSubscriberTest extends TestCase
 {
-    /** @var TranslatorInterface|MockObject */
     private TranslatorInterface|MockObject $translator;
-
     private JwtSubscriber $subscriber;
 
     protected function setUp(): void
@@ -64,20 +62,16 @@ final class JwtSubscriberTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
-    /**
-     * @param MockObject|AuthenticationFailureEvent|string $event
-     * @param string                                       $message
-     *
-     * @dataProvider dataProviderForTestOnAuthenticationFailureResponse
-     */
-    public function testOnAuthenticationFailureResponse(MockObject|AuthenticationFailureEvent|string $event, string $message): void
+    public function testOnAuthenticationFailureResponse(): void
     {
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with($message)
+            ->with('unauthorised_user_message')
             ->willReturn('translated message')
         ;
+
+        $event = $this->createMock(AuthenticationFailureEvent::class);
 
         $event
             ->expects(self::once())
@@ -91,11 +85,72 @@ final class JwtSubscriberTest extends TestCase
         $this->subscriber->onAuthenticationFailureResponse($event);
     }
 
-    public function dataProviderForTestOnAuthenticationFailureResponse(): iterable
+    public function testOnJWTInvalidEvent(): void
     {
-        yield [$this->createMock(AuthenticationFailureEvent::class), 'unauthorised_user_message'];
-        yield [$this->createMock(JWTInvalidEvent::class), 'invalid_jwt_token_message'];
-        yield [$this->createMock(JWTNotFoundEvent::class), 'not_found_jwt_token_message'];
-        yield [$this->createMock(JWTExpiredEvent::class), 'expired_jwt_token_message'];
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('invalid_jwt_token_message')
+            ->willReturn('translated message')
+        ;
+
+        $event = $this->createMock(JWTInvalidEvent::class);
+
+        $event
+            ->expects(self::once())
+            ->method('setResponse')
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                    && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
+        ;
+
+        $this->subscriber->onAuthenticationFailureResponse($event);
+    }
+
+    public function testOnJWTNotFoundEvent(): void
+    {
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('not_found_jwt_token_message')
+            ->willReturn('translated message')
+        ;
+
+        $event = $this->createMock(JWTNotFoundEvent::class);
+
+        $event
+            ->expects(self::once())
+            ->method('setResponse')
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                    && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
+        ;
+
+        $this->subscriber->onAuthenticationFailureResponse($event);
+    }
+
+    public function testOnJWTExpiredEvent(): void
+    {
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('expired_jwt_token_message')
+            ->willReturn('translated message')
+        ;
+
+        $event = $this->createMock(JWTExpiredEvent::class);
+
+        $event
+            ->expects(self::once())
+            ->method('setResponse')
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                    && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
+        ;
+
+        $this->subscriber->onAuthenticationFailureResponse($event);
     }
 }

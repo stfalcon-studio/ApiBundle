@@ -17,10 +17,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 final class DummyHttpException extends HttpException
 {
-    /**
-     * @param string          $message
-     * @param \Exception|null $previous
-     */
     public function __construct(string $message = '', \Exception $previous = null)
     {
         parent::__construct(Response::HTTP_FORBIDDEN, $message, $previous);

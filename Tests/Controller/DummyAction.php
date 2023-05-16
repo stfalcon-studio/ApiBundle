@@ -22,40 +22,21 @@ class DummyAction extends AbstractDtoBasedAction
 {
     use EntityManagerTrait;
 
-    /**
-     * @param Request $request
-     */
     public function doValidateJsonSchema(Request $request): void
     {
         $this->validateJsonSchema($request);
     }
 
-    /**
-     * @param DtoInterface                 $dto
-     * @param Constraint|Constraint[]|null $constraints
-     * @param array|null                   $groups
-     */
     public function doValidateDto(DtoInterface $dto, Constraint|array|null $constraints = null, array $groups = null): void
     {
         $this->validateDto($dto, $constraints, $groups);
     }
 
-    /**
-     * @param mixed                        $entity
-     * @param Constraint|Constraint[]|null $constraints
-     * @param array|null                   $groups
-     */
     public function doValidateEntity(mixed $entity, Constraint|array|null $constraints = null, array $groups = null): void
     {
         $this->validateEntity($entity, $constraints, $groups);
     }
 
-    /**
-     * @param Request     $request
-     * @param object|null $objectToPopulate
-     *
-     * @return DtoInterface
-     */
     public function doGetDtoFromRequest(Request $request, object $objectToPopulate = null): DtoInterface
     {
         return $this->getDtoFromRequest($request, $objectToPopulate);
