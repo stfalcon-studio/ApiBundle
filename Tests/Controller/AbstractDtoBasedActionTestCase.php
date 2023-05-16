@@ -32,8 +32,6 @@ abstract class AbstractDtoBasedActionTestCase extends TestCase
     protected DtoExtractor|MockObject $dtoExtractor;
     protected EventDispatcherInterface|MockObject $eventDispatcher;
     protected Request|MockObject $request;
-
-    /** @var AbstractDtoBasedAction */
     protected $action;
 
     protected function setUp(): void

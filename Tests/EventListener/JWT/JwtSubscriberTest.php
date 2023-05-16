@@ -17,7 +17,6 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTExpiredEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTInvalidEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTNotFoundEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\EventListener\JWT\JwtSubscriber;
@@ -63,15 +62,16 @@ final class JwtSubscriberTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
-    #[DataProvider('dataProviderForTestOnAuthenticationFailureResponse')]
-    public function testOnAuthenticationFailureResponse(MockObject|AuthenticationFailureEvent|string $event, string $message): void
+    public function testOnAuthenticationFailureResponse(): void
     {
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with($message)
+            ->with('unauthorised_user_message')
             ->willReturn('translated message')
         ;
+
+        $event = $this->createMock(AuthenticationFailureEvent::class);
 
         $event
             ->expects(self::once())
@@ -85,11 +85,72 @@ final class JwtSubscriberTest extends TestCase
         $this->subscriber->onAuthenticationFailureResponse($event);
     }
 
-    public static function dataProviderForTestOnAuthenticationFailureResponse(): iterable
+    public function testOnJWTInvalidEvent(): void
     {
-        yield [new AuthenticationFailureEvent(null, null), 'unauthorised_user_message'];
-        yield [new JWTInvalidEvent(null, null), 'invalid_jwt_token_message'];
-        yield [new JWTNotFoundEvent(null, null), 'not_found_jwt_token_message'];
-        yield [new JWTExpiredEvent(null, null), 'expired_jwt_token_message'];
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('invalid_jwt_token_message')
+            ->willReturn('translated message')
+        ;
+
+        $event = $this->createMock(JWTInvalidEvent::class);
+
+        $event
+            ->expects(self::once())
+            ->method('setResponse')
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                    && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
+        ;
+
+        $this->subscriber->onAuthenticationFailureResponse($event);
+    }
+
+    public function testOnJWTNotFoundEvent(): void
+    {
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('not_found_jwt_token_message')
+            ->willReturn('translated message')
+        ;
+
+        $event = $this->createMock(JWTNotFoundEvent::class);
+
+        $event
+            ->expects(self::once())
+            ->method('setResponse')
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                    && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
+        ;
+
+        $this->subscriber->onAuthenticationFailureResponse($event);
+    }
+
+    public function testOnJWTExpiredEvent(): void
+    {
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with('expired_jwt_token_message')
+            ->willReturn('translated message')
+        ;
+
+        $event = $this->createMock(JWTExpiredEvent::class);
+
+        $event
+            ->expects(self::once())
+            ->method('setResponse')
+            ->with($this->callback(static function (JsonResponse $response) {
+                return '{"error":"unauthorised_user","errorDescription":"translated message"}' === $response->getContent()
+                    && JsonResponse::HTTP_UNAUTHORIZED === $response->getStatusCode();
+            }))
+        ;
+
+        $this->subscriber->onAuthenticationFailureResponse($event);
     }
 }

@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class DtoBasedActionTestCase extends AbstractDtoBasedActionTestCase
 {
-    /** @var DummyAction */
     protected $action;
 
     protected function setUp(): void
