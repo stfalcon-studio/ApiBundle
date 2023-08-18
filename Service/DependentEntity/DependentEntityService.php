@@ -62,7 +62,7 @@ class DependentEntityService
             if (\is_string($propertyPathValue)) {
                 $reflectionType = $property->getType();
 
-                if (!$reflectionType instanceof \ReflectionType) {
+                if (!$reflectionType instanceof \ReflectionNamedType) {
                     throw new LogicException(\sprintf('Cannot get reflection type from property %s', $propertyName));
                 }
 

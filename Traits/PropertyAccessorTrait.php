@@ -15,10 +15,18 @@ namespace StfalconStudio\ApiBundle\Traits;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Contracts\Service\Attribute\Required;
 
+/**
+ * Property Accessor Trait.
+ */
 trait PropertyAccessorTrait
 {
     protected PropertyAccessor $propertyAccessor;
 
+    /**
+     * @param PropertyAccessor $propertyAccessor
+     *
+     * @return void
+     */
     #[Required]
     public function setPropertyAccessor(PropertyAccessor $propertyAccessor): void
     {
