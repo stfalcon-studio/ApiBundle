@@ -14,7 +14,6 @@ namespace StfalconStudio\ApiBundle\Validator\Constraints\Entity;
 
 use StfalconStudio\ApiBundle\Exception\Validator\UnexpectedConstraintException;
 use StfalconStudio\ApiBundle\Service\Repository\RepositoryService;
-use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -23,8 +22,6 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class EntityExistsValidator extends ConstraintValidator
 {
-    use EntityManagerTrait;
-
     /**
      * @param RepositoryService $repositoryService
      */
