@@ -19,7 +19,7 @@ use StfalconStudio\ApiBundle\Service\Repository\RepositoryService;
 use StfalconStudio\ApiBundle\Traits\PropertyAccessorTrait;
 
 /**
- * Dependent Entity Service
+ * Dependent Entity Service.
  */
 class DependentEntityService
 {

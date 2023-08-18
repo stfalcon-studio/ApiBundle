@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Service\Repository;
 
 /**
- * Findable By Id Interface
+ * Findable By Id Interface.
  */
 interface FindableByIdInterface
 {

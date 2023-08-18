@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Entity Exists Validator
+ * Entity Exists Validator.
  */
 class EntityExistsValidator extends ConstraintValidator
 {

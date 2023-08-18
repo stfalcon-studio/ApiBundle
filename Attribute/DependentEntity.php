@@ -15,7 +15,7 @@ namespace StfalconStudio\ApiBundle\Attribute;
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 
 /**
- * Dependent Entity Attribute
+ * Dependent Entity Attribute.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class DependentEntity

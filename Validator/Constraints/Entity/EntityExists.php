@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 /**
- * Entity Exists
+ * Entity Exists.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class EntityExists extends Constraint

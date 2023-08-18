@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Service\Repository;
 
 /**
- * Gettable One By Id Interface
+ * Gettable One By Id Interface.
  */
 interface GettableOneByIdInterface
 {

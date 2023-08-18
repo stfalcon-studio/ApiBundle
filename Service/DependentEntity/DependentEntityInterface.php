@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Service\DependentEntity;
 
 /**
- * Dependent Entity Interface
+ * Dependent Entity Interface.
  */
 interface DependentEntityInterface
 {
