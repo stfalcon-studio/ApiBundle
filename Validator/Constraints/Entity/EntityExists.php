@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Validator\Constraints\Entity;
 
+use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
@@ -35,6 +36,10 @@ class EntityExists extends Constraint
 
         if (empty($class)) {
             throw new ConstraintDefinitionException('The "class" parameter can not be empty.');
+        }
+
+        if (!\class_exists($class)) {
+            throw new InvalidArgumentException(\sprintf('Class %s does not exist.', $class));
         }
 
         $this->class = $class;
