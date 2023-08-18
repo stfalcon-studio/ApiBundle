@@ -12,7 +12,15 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Service\Repository;
 
-interface FindOneByIdInterface
+/**
+ * Gettable One By Id Interface
+ */
+interface GettableOneByIdInterface
 {
-    public function findOneById(string $id): mixed;
+    /**
+     * @param string $id
+     *
+     * @return mixed
+     */
+    public function getOneById(string $id): mixed;
 }

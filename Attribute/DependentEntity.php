@@ -14,20 +14,25 @@ namespace StfalconStudio\ApiBundle\Attribute;
 
 use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 
+/**
+ * Dependent Entity Attribute
+ */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
-class DependedEntity
+class DependentEntity
 {
-    private string $propertyPath;
-
-    public function __construct(string $propertyPath)
+    /**
+     * @param string $propertyPath
+     */
+    public function __construct(private readonly string $propertyPath)
     {
         if (empty($propertyPath)) {
             throw new InvalidArgumentException('The "propertyPath" parameter can not be empty.');
         }
-
-        $this->propertyPath = $propertyPath;
     }
 
+    /**
+     * @return string
+     */
     public function getPropertyPath(): string
     {
         return $this->propertyPath;

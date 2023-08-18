@@ -10,9 +10,11 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Service\Repository;
+namespace StfalconStudio\ApiBundle\Service\DependentEntity;
 
-interface GetOneByIdInterface
+/**
+ * Dependent Entity Interface
+ */
+interface DependentEntityInterface
 {
-    public function getOneById(string $id): mixed;
 }

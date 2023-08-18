@@ -12,20 +12,47 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Service\Repository;
 
+use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 
+/**
+ * Repository Service
+ */
 class RepositoryService
 {
     use EntityManagerTrait;
 
+    /**
+     * @param string $id
+     * @param string $class
+     *
+     * @return mixed
+     */
     public function getEntityById(string $id, string $class): mixed
     {
         $repository = $this->em->getRepository($class); // @phpstan-ignore-line
 
-        if (!$repository instanceof GetOneByIdInterface) {
-            return null;
+        if (!$repository instanceof GettableOneByIdInterface) {
+            throw new LogicException(\sprintf('Repository %s should implements %s interface', $repository->getClassName(), GettableOneByIdInterface::class));
         }
 
         return $repository->getOneById($id);
+    }
+
+    /**
+     * @param string $id
+     * @param string $class
+     *
+     * @return mixed
+     */
+    public function findEntityById(string $id, string $class): mixed
+    {
+        $repository = $this->em->getRepository($class); // @phpstan-ignore-line
+
+        if (!$repository instanceof FindableByIdInterface) {
+            throw new LogicException(\sprintf('Repository %s should implements %s interface', $repository->getClassName(), FindableByIdInterface::class));
+        }
+
+        return $repository->findOneById($id);
     }
 }

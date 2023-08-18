@@ -10,8 +10,17 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Service\DependedEntity;
+namespace StfalconStudio\ApiBundle\Service\Repository;
 
-interface DependedEntityInterface
+/**
+ * Findable By Id Interface
+ */
+interface FindableByIdInterface
 {
+    /**
+     * @param string $id
+     *
+     * @return mixed
+     */
+    public function findOneById(string $id): mixed;
 }

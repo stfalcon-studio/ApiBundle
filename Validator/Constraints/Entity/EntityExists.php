@@ -16,6 +16,9 @@ use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
+/**
+ * Entity Exists
+ */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class EntityExists extends Constraint
 {
@@ -30,6 +33,12 @@ class EntityExists extends Constraint
 
     public string $class;
 
+    /**
+     * @param string     $class
+     * @param mixed      $options
+     * @param array|null $groups
+     * @param mixed      $payload
+     */
     public function __construct(string $class, mixed $options = null, array $groups = null, mixed $payload = null)
     {
         parent::__construct($options, $groups, $payload);

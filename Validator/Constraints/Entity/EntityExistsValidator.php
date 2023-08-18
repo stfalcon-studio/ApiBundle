@@ -13,15 +13,31 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Validator\Constraints\Entity;
 
 use StfalconStudio\ApiBundle\Exception\Validator\UnexpectedConstraintException;
-use StfalconStudio\ApiBundle\Service\Repository\FindOneByIdInterface;
+use StfalconStudio\ApiBundle\Service\Repository\RepositoryService;
 use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
+/**
+ * Entity Exists Validator
+ */
 class EntityExistsValidator extends ConstraintValidator
 {
     use EntityManagerTrait;
 
+    /**
+     * @param RepositoryService $repositoryService
+     */
+    public function __construct(private readonly RepositoryService $repositoryService)
+    {
+    }
+
+    /**
+     * @param mixed                   $value
+     * @param Constraint|EntityExists $constraint
+     *
+     * @return void
+     */
     public function validate(mixed $value, Constraint|EntityExists $constraint): void
     {
         if (!$constraint instanceof EntityExists) {
@@ -32,13 +48,7 @@ class EntityExistsValidator extends ConstraintValidator
             return;
         }
 
-        $repository = $this->em->getRepository($constraint->class); // @phpstan-ignore-line
-
-        if (!$repository instanceof FindOneByIdInterface) {
-            return;
-        }
-
-        if (!$repository->findOneById($value) instanceof $constraint->class) {
+        if (!$this->repositoryService->findEntityById($value, $constraint->class) instanceof $constraint->class) {
             $this->context
                 ->buildViolation($constraint->message)
                 ->setCode(EntityExists::ENTITY_DOES_NOT_EXIST)
