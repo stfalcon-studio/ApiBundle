@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\DependencyInjection;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\CustomAppExceptionResponseProcessorInterface;
 use Symfony\Component\Config\FileLocator;
@@ -46,7 +46,7 @@ class StfalconApiExtension extends Extension
             $jwtBlackListServiceDefinition->addMethodCall('setRedisClientJwtBlackList', $redisClient);
         }
 
-        if (\interface_exists(EntityManager::class)) {
+        if (\interface_exists(EntityManagerInterface::class)) {
             $loader->load('orm.php');
         }
 
