@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Doctrine\ORM\EntityManager;
 
 /**
  * This is the class, that loads and manages StfalconApiBundle configuration.
@@ -43,6 +44,10 @@ class StfalconApiExtension extends Extension
             $redisClient = [new Reference($config['jwt']['redis_client_jwt_black_list'])];
             $jwtBlackListServiceDefinition = $container->getDefinition(JwtBlackListService::class);
             $jwtBlackListServiceDefinition->addMethodCall('setRedisClientJwtBlackList', $redisClient);
+        }
+
+        if (\interface_exists(EntityManager::class)) {
+            $loader->load('orm.php');
         }
 
         $container->setParameter('stfalcon_api.api_host', $config['api_host']);
