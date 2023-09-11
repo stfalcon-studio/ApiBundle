@@ -55,7 +55,7 @@ class DependentEntityService
                 continue;
             }
 
-            $propertyPath = $attributes[0]->getArguments()['propertypath'];
+            $propertyPath = $attributes[0]->getArguments()['propertyPath'];
 
             $propertyPathValue = $this->propertyAccessor->getValue($entity, $propertyPath);
 

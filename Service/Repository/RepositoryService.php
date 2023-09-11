@@ -33,7 +33,7 @@ class RepositoryService
         $repository = $this->em->getRepository($class); // @phpstan-ignore-line
 
         if (!$repository instanceof GettableOneByIdInterface) {
-            throw new LogicException(\sprintf('Repository %s should implements %s interface', $repository->getClassName(), GettableOneByIdInterface::class));
+            throw new LogicException(\sprintf('Repository %s should implements %s interface', $repository::class, GettableOneByIdInterface::class));
         }
 
         return $repository->getOneById($id);
@@ -50,7 +50,7 @@ class RepositoryService
         $repository = $this->em->getRepository($class); // @phpstan-ignore-line
 
         if (!$repository instanceof FindableByIdInterface) {
-            throw new LogicException(\sprintf('Repository %s should implements %s interface', $repository->getClassName(), FindableByIdInterface::class));
+            throw new LogicException(\sprintf('Repository %s should implements %s interface', $repository::class, FindableByIdInterface::class));
         }
 
         return $repository->findOneById($id);
