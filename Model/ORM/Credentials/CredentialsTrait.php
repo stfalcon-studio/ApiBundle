@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\Credentials;
+namespace StfalconStudio\ApiBundle\Model\ORM\Credentials;
 
 use Doctrine\ORM\Mapping as ORM;
 

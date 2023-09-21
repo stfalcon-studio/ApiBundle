@@ -20,8 +20,8 @@ use Fresh\DateTime\DateTimeHelper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
-use StfalconStudio\ApiBundle\Model\Aggregate\AggregatePartInterface;
-use StfalconStudio\ApiBundle\Model\Aggregate\AggregateRootInterface;
+use StfalconStudio\ApiBundle\Model\ORM\Aggregate\AggregatePartInterface;
+use StfalconStudio\ApiBundle\Model\ORM\Aggregate\AggregateRootInterface;
 
 final class AggregatePartListenerTest extends TestCase
 {

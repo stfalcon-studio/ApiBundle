@@ -10,18 +10,15 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\UUID;
+namespace StfalconStudio\ApiBundle\Model\ORM\UUID;
 
 /**
- * UuidTrait.
+ * UuidInterface.
  */
-trait UuidTrait
+interface UuidInterface
 {
     /**
      * @return string
      */
-    public function getId(): string
-    {
-        return (string) $this->id;
-    }
+    public function getId(): string;
 }

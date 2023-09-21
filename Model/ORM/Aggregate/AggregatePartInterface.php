@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\Aggregate;
+namespace StfalconStudio\ApiBundle\Model\ORM\Aggregate;
 
 /**
  * AggregatePartInterface.

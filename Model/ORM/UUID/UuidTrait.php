@@ -10,11 +10,18 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\Aggregate;
+namespace StfalconStudio\ApiBundle\Model\ORM\UUID;
 
 /**
- * AggregateRootInterface.
+ * UuidTrait.
  */
-interface AggregateRootInterface
+trait UuidTrait
 {
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return (string) $this->id;
+    }
 }
