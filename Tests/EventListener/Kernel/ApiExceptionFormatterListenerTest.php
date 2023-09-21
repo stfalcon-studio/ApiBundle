@@ -639,6 +639,56 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
     }
 
+    public function testOnKernelExceptionNotAcceptableHttpException(): void
+    {
+        $exceptionMessage = 'not_acceptable_exception_message';
+        $httpException = new MethodNotAllowedHttpException(['POST'], $exceptionMessage);
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with($exceptionMessage)
+            ->willReturn($exceptionMessage)
+        ;
+
+        $message = 'Not Acceptable.';
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn(sprintf('{"error":"not_acceptable", "error_description":"%s"}', $message))
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"not_acceptable", "error_description":"Not Acceptable."}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_METHOD_NOT_ALLOWED)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
+    }
+
     public function testOnKernelExceptionDummyHttpException(): void
     {
         $exceptionMessage = 'exception_message';

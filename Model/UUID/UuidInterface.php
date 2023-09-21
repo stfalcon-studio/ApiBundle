@@ -18,7 +18,7 @@ namespace StfalconStudio\ApiBundle\Model\UUID;
 interface UuidInterface
 {
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string;
+    public function getId(): ?string;
 }
