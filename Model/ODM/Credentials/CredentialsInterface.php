@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\ORM\Credentials;
+namespace StfalconStudio\ApiBundle\Model\ODM\Credentials;
 
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface as BaseCredentialsInterface;
 

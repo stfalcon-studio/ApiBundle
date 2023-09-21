@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\DependencyInjection;
 
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManagerInterface;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\CustomAppExceptionResponseProcessorInterface;
@@ -48,6 +49,9 @@ class StfalconApiExtension extends Extension
 
         if (\interface_exists(EntityManagerInterface::class)) {
             $loader->load('orm.php');
+        }
+        if (\interface_exists(DocumentManager::class)) {
+            $loader->load('odm.php');
         }
 
         $container->setParameter('stfalcon_api.api_host', $config['api_host']);

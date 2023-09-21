@@ -10,13 +10,15 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\ORM\Credentials;
-
-use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface as BaseCredentialsInterface;
+namespace StfalconStudio\ApiBundle\Model\ODM\Aggregate;
 
 /**
- * CredentialsInterface.
+ * AggregatePartInterface.
  */
-interface CredentialsInterface extends BaseCredentialsInterface
+interface AggregatePartInterface
 {
+    /**
+     * @return AggregateRootInterface
+     */
+    public function getAggregateRoot(): AggregateRootInterface;
 }

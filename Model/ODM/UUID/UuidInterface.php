@@ -10,13 +10,15 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\ORM\Credentials;
-
-use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface as BaseCredentialsInterface;
+namespace StfalconStudio\ApiBundle\Model\ODM\UUID;
 
 /**
- * CredentialsInterface.
+ * UuidInterface.
  */
-interface CredentialsInterface extends BaseCredentialsInterface
+interface UuidInterface
 {
+    /**
+     * @return string
+     */
+    public function getId(): string;
 }
