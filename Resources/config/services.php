@@ -10,9 +10,11 @@
 
 declare(strict_types=1);
 
+use Doctrine\ORM\EntityManagerInterface;
 use Fresh\DateTime\DateTimeHelper;
 use JsonSchema\Validator;
 use Predis\Client;
+use StfalconStudio\ApiBundle\Validator\Constraints\Entity\EntityExistsValidator;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
@@ -32,9 +34,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,Request,Serializer,Util,Validator}/');
-    $services->load('StfalconStudio\ApiBundle\Service\\', __DIR__.'/../../{AttributeProcessor,DependentEntity,Exception}/');
+    $services->load('StfalconStudio\ApiBundle\Service\\', __DIR__.'/../../Service/{AttributeProcessor,DependentEntity,Exception}/');
     $services->load('StfalconStudio\ApiBundle\EventListener\Console\\', __DIR__.'/../../EventListener/Console');
     $services->load('StfalconStudio\ApiBundle\EventListener\Kernel\\', __DIR__.'/../../EventListener/Kernel');
+    if (!\interface_exists(EntityManagerInterface::class)) {
+        $services->remove(EntityExistsValidator::class);
+    }
 
     $services->set(Client::class, Client::class);
     $services->set(Validator::class, Validator::class);

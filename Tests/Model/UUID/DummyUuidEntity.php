@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Model\UUID;
 
-use StfalconStudio\ApiBundle\Model\UUID\UuidTrait;
+use StfalconStudio\ApiBundle\Model\ORM\UUID\UuidTrait;
 use Symfony\Component\Uid\Uuid;
 
 class DummyUuidEntity
