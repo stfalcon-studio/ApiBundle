@@ -14,8 +14,8 @@ namespace StfalconStudio\ApiBundle\EventListener\ORM\Aggregate;
 
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Fresh\DateTime\DateTimeHelper;
-use StfalconStudio\ApiBundle\Model\Aggregate\AggregatePartInterface;
-use StfalconStudio\ApiBundle\Model\Aggregate\AggregateRootInterface;
+use StfalconStudio\ApiBundle\Model\ORM\Aggregate\AggregatePartInterface;
+use StfalconStudio\ApiBundle\Model\ORM\Aggregate\AggregateRootInterface;
 
 /**
  * AggregatePartListener.
