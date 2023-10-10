@@ -28,6 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -642,7 +643,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
     public function testOnKernelExceptionNotAcceptableHttpException(): void
     {
         $exceptionMessage = 'not_acceptable_exception_message';
-        $httpException = new MethodNotAllowedHttpException(['POST'], $exceptionMessage);
+        $httpException = new NotAcceptableHttpException($exceptionMessage);
 
         $exceptionEvent = new ExceptionEvent(
             $this->kernel,
