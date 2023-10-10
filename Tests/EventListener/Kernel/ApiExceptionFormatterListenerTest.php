@@ -681,7 +681,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->exceptionResponseFactory
             ->expects(self::once())
             ->method('createJsonResponse')
-            ->with($json, Response::HTTP_METHOD_NOT_ALLOWED)
+            ->with($json, Response::HTTP_NOT_ACCEPTABLE)
             ->willReturn($this->response)
         ;
 
