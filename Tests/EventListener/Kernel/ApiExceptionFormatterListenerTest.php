@@ -687,7 +687,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
 
-        self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
+        self::assertInstanceOf(NotAcceptableHttpException::class, $exceptionEvent->getThrowable());
     }
 
     public function testOnKernelExceptionDummyHttpException(): void
