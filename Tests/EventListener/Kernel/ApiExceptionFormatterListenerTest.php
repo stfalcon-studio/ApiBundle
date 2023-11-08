@@ -278,9 +278,17 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
     }
 
-    public function testOnKernelExceptionWhenResourceNotFoundCausedByMapEntityAttribute(): void
+    public function resourceNotFoundExceptionMessageDataProvider(): array
     {
-        $exceptionMessage = '"App\\Entity\\Event\\Event\" object not found by \"Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver\". The expression \"repository.findClosedEventById(id)\" returned null.';
+        return [
+            ['"App\\Entity\\Event\\Event\" object not found by \"Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver\". The expression \"repository.findClosedEventById(id)\" returned null.'],
+            ['"App\\Entity\\Event\\Event" object not found by "Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver".'],
+        ];
+    }
+
+    /** @dataProvider resourceNotFoundExceptionMessageDataProvider */
+    public function testOnKernelExceptionWhenResourceNotFoundCausedByMapEntityAttribute(string $exceptionMessage): void
+    {
         $httpException = new NotFoundHttpException($exceptionMessage);
         $resourceNotFoundMessage = 'Resource not found';
 
