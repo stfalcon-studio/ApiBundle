@@ -38,6 +38,16 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            ConstraintViolationListInterface::class => true,
+        ];
+    }
+
+    /**
      * Clear the "detail" field from prefixed property paths.
      *
      * From the parent class:
