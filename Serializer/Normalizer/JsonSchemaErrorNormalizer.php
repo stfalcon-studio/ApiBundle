@@ -30,6 +30,16 @@ class JsonSchemaErrorNormalizer implements NormalizerInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            JsonSchemaValidator::class => true,
+        ];
+    }
+
+    /**
      * @param JsonSchemaValidator|object $object
      * @param string|null                $format
      * @param array                      $context
