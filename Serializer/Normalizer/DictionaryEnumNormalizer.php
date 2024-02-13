@@ -24,10 +24,7 @@ class DictionaryEnumNormalizer implements NormalizerInterface
     use TranslatorTrait;
 
     /**
-     * @param mixed       $data
-     * @param string|null $format
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
