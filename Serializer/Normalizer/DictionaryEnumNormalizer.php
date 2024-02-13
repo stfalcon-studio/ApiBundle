@@ -35,6 +35,16 @@ class DictionaryEnumNormalizer implements NormalizerInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            DictionaryEnumInterface::class => true,
+        ];
+    }
+
+    /**
      * @param DictionaryEnumInterface $object
      * @param string|null             $format
      * @param array                   $context
