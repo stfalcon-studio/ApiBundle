@@ -14,6 +14,7 @@ namespace StfalconStudio\ApiBundle\Tests\EventListener\Kernel;
 
 use Doctrine\ODM\MongoDB\LockException;
 use Doctrine\ORM\OptimisticLockException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sentry\ClientInterface;
@@ -278,7 +279,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
     }
 
-    public function resourceNotFoundExceptionMessageDataProvider(): array
+    public static function resourceNotFoundExceptionMessageDataProvider(): array
     {
         return [
             ['"App\\Entity\\Event\\Event\" object not found by \"Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver\". The expression \"repository.findClosedEventById(id)\" returned null.'],
@@ -286,7 +287,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         ];
     }
 
-    /** @dataProvider resourceNotFoundExceptionMessageDataProvider */
+    #[DataProvider('resourceNotFoundExceptionMessageDataProvider')]
     public function testOnKernelExceptionWhenResourceNotFoundCausedByMapEntityAttribute(string $exceptionMessage): void
     {
         $httpException = new NotFoundHttpException($exceptionMessage);

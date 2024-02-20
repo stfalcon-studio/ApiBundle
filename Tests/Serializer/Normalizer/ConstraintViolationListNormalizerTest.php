@@ -16,7 +16,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Serializer\Normalizer\ConstraintViolationListNormalizer;
-use Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer as SymfonyConstraintViolationListNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface as SymfonyConstraintViolationListNormalizer;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 final class ConstraintViolationListNormalizerTest extends TestCase
@@ -61,20 +61,20 @@ final class ConstraintViolationListNormalizerTest extends TestCase
     public static function dataProviderForTestNormalize(): iterable
     {
         yield [
-            'origin_detail' => 'field1: Error description.',
-            'result_detail' => 'Error description.',
+            'originDetail' => 'field1: Error description.',
+            'resultDetail' => 'Error description.',
         ];
         yield [
-            'origin_detail' => "field1: Error description 1.\nfield2: Error description 2.",
-            'result_detail' => "Error description 1.\nError description 2.",
+            'originDetail' => "field1: Error description 1.\nfield2: Error description 2.",
+            'resultDetail' => "Error description 1.\nError description 2.",
         ];
         yield [
-            'origin_detail' => 'Error description.',
-            'result_detail' => 'Error description.',
+            'originDetail' => 'Error description.',
+            'resultDetail' => 'Error description.',
         ];
         yield [
-            'origin_detail' => "field1: Error :description 1.\nfield2: Error :description 2.",
-            'result_detail' => "Error :description 1.\nError :description 2.",
+            'originDetail' => "field1: Error :description 1.\nfield2: Error :description 2.",
+            'resultDetail' => "Error :description 1.\nError :description 2.",
         ];
     }
 
