@@ -109,7 +109,7 @@ final class JsonSchemaValidatorTest extends TestCase
                     2 => [$dummyJsonSchema, 'object']
                 };
             })
-            ->will(self::onConsecutiveCalls($violations, $normalizedJsonSchema))
+            ->willReturn($violations, $normalizedJsonSchema)
         ;
 
         $this->expectException(InvalidJsonSchemaException::class);
