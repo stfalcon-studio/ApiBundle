@@ -10,15 +10,15 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\UUID;
+namespace StfalconStudio\ApiBundle\Model\ORM\Aggregate;
 
 /**
- * UuidInterface.
+ * AggregatePartInterface.
  */
-interface UuidInterface
+interface AggregatePartInterface
 {
     /**
-     * @return string|null
+     * @return AggregateRootInterface
      */
-    public function getId(): ?string;
+    public function getAggregateRoot(): AggregateRootInterface;
 }

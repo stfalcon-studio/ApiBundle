@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Model\Credentials;
 
-use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
-use StfalconStudio\ApiBundle\Model\Credentials\CredentialsTrait;
+use StfalconStudio\ApiBundle\Model\ORM\Credentials\CredentialsInterface;
+use StfalconStudio\ApiBundle\Model\ORM\Credentials\CredentialsTrait;
 
 class DummyCredentialsEntity implements CredentialsInterface
 {

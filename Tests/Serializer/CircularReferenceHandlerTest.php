@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Tests\Serializer;
 
 use PHPUnit\Framework\TestCase;
-use StfalconStudio\ApiBundle\Model\UUID\UuidInterface;
+use StfalconStudio\ApiBundle\Model\ORM\UUID\UuidInterface;
 use StfalconStudio\ApiBundle\Serializer\CircularReferenceHandler;
 
 final class CircularReferenceHandlerTest extends TestCase

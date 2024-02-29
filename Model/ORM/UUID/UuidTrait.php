@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\UUID;
+namespace StfalconStudio\ApiBundle\Model\ORM\UUID;
 
 /**
  * UuidTrait.

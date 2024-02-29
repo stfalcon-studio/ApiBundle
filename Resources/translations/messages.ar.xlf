@@ -50,6 +50,10 @@
                 <source>internal_server_error_exception_message</source>
                 <target>خطأ في الخادم الداخلي.</target>
             </trans-unit>
+            <trans-unit id="13">
+                <source>not_acceptable_exception_message</source>
+                <target>غير مقبول</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

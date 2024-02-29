@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Tests\EventListener\Security;
 
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
-use StfalconStudio\ApiBundle\Model\Credentials\CredentialsTrait;
+use StfalconStudio\ApiBundle\Model\ORM\Credentials\CredentialsTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class DummyUser implements UserInterface, CredentialsInterface

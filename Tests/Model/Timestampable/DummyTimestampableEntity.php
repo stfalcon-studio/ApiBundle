@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Tests\Model\Timestampable;
 
-use StfalconStudio\ApiBundle\Model\Timestampable\TimestampableTrait;
+use StfalconStudio\ApiBundle\Model\ORM\Timestampable\TimestampableTrait;
 
 class DummyTimestampableEntity
 {

@@ -10,9 +10,9 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\Timestampable;
+namespace StfalconStudio\ApiBundle\Model\ODM\Timestampable;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -20,49 +20,41 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 trait TimestampableTrait
 {
-    #[ORM\Column(type: 'datetimetz_immutable')]
-    protected \DateTimeImmutable $createdAt;
+    #[MongoDB\Field(type: 'date_immutable')]
+    protected \DateTimeInterface|null $createdAt = null;
 
-    #[ORM\Column(type: 'datetimetz')]
+    #[MongoDB\Field(type: 'date')]
     #[Gedmo\Timestampable(on: 'update')]
-    protected \DateTime $updatedAt;
+    protected \DateTimeInterface|null $updatedAt = null;
 
     /**
-     * @param \DateTimeImmutable $createdAt
-     *
-     * @return self
+     * @param \DateTimeImmutable|null $createdAt
      */
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt = null): void
     {
         $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
      * @return \DateTimeImmutable
      */
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTime $updatedAt
-     *
-     * @return self
+     * @param \DateTimeInterface|null $updatedAt
      */
-    public function setUpdatedAt(\DateTime $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt = null): void
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }

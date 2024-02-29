@@ -10,16 +10,16 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\Credentials;
+namespace StfalconStudio\ApiBundle\Model\ODM\Credentials;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * CredentialsTrait.
  */
 trait CredentialsTrait
 {
-    #[ORM\Column(type: 'datetimetz', nullable: true)]
+    #[MongoDB\Field(type: 'date', nullable: true)]
     protected ?\DateTimeInterface $credentialsLastChangedAt = null;
 
     /**

@@ -26,6 +26,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -95,6 +96,11 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 $statusCode = Response::HTTP_METHOD_NOT_ALLOWED;
                 $errorName = BaseErrorNames::METHOD_NOT_ALLOWED;
                 break;
+            case $e instanceof NotAcceptableHttpException:
+                $message = 'not_acceptable_exception_message';
+                $statusCode = Response::HTTP_NOT_ACCEPTABLE;
+                $errorName = BaseErrorNames::NOT_ACCEPTABLE;
+                break;
             case $e instanceof NotFoundHttpException:
                 $message = $e->getMessage();
                 $statusCode = $e->getStatusCode();
@@ -123,6 +129,9 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                         break;
                     case Response::HTTP_FORBIDDEN:
                         $errorName = BaseErrorNames::ACCESS_DENIED;
+                        break;
+                    case Response::HTTP_NOT_ACCEPTABLE:
+                        $errorName = BaseErrorNames::NOT_ACCEPTABLE;
                         break;
                     case Response::HTTP_INTERNAL_SERVER_ERROR:
                         $errorName = BaseErrorNames::INTERNAL_SERVER_ERROR;

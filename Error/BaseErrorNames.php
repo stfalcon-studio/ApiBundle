@@ -41,6 +41,9 @@ class BaseErrorNames
     // 405
     public final const METHOD_NOT_ALLOWED = 'method_not_allowed';
 
+    // 406
+    public final const NOT_ACCEPTABLE = 'not_acceptable';
+
     // 409
     public final const CONFLICT_TARGET_RESOURCE_UPDATE = 'conflict_target_resource_update';
 

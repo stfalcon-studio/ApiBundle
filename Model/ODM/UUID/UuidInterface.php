@@ -10,15 +10,13 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\UUID;
+namespace StfalconStudio\ApiBundle\Model\ODM\UUID;
+
+use StfalconStudio\ApiBundle\Model\UUID\UuidInterface as BaseUuidInterface;
 
 /**
  * UuidInterface.
  */
-interface UuidInterface
+interface UuidInterface extends BaseUuidInterface
 {
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string;
 }

@@ -10,10 +10,10 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\Model\Aggregate;
+namespace StfalconStudio\ApiBundle\Model\ODM\Aggregate;
 
-use StfalconStudio\ApiBundle\Model\Timestampable\TimestampableInterface;
-use StfalconStudio\ApiBundle\Model\UUID\UuidInterface;
+use StfalconStudio\ApiBundle\Model\ODM\Timestampable\TimestampableInterface;
+use StfalconStudio\ApiBundle\Model\ODM\UUID\UuidInterface;
 
 /**
  * AggregateRootInterface.
