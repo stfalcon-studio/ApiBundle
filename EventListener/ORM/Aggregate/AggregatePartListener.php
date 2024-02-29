@@ -51,8 +51,10 @@ final class AggregatePartListener
         }
 
         foreach ($this->aggregateRoots as $aggregateRoot) {
-            $aggregateRoot->setUpdatedAt($this->dateTimeHelper->getCurrentDatetime());
-            $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(\get_class($aggregateRoot)), $aggregateRoot);
+            if (!$uow->isScheduledForDelete($aggregateRoot)) {
+                $aggregateRoot->setUpdatedAt($this->dateTimeHelper->getCurrentDatetime());
+                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(\get_class($aggregateRoot)), $aggregateRoot);
+            }
         }
 
         $this->aggregateRoots = [];
