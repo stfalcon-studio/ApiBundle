@@ -17,6 +17,7 @@ use StfalconStudio\ApiBundle\Exception\InvalidArgumentException;
 use StfalconStudio\ApiBundle\Service\AttributeProcessor\DtoAttributeProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -59,7 +60,10 @@ class DtoExtractor
     {
         $context = [];
         if (null !== $objectToPopulate) {
-            $context = [AbstractNormalizer::OBJECT_TO_POPULATE => $objectToPopulate];
+            $context = [
+                AbstractNormalizer::OBJECT_TO_POPULATE => $objectToPopulate,
+                AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
+            ];
         }
 
         $object = $this->serializer->deserialize($request->getContent(), $dtoClassName, 'json', $context);
