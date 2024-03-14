@@ -94,7 +94,7 @@ final class DtoExtractorTest extends TestCase
             'context' => [],
         ];
         yield [
-            'object_to_populate' => new \stdClass(),
+            'objectToPopulate' => new \stdClass(),
             'context' => [
                 AbstractNormalizer::OBJECT_TO_POPULATE => new \stdClass(),
                 AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
