@@ -90,11 +90,11 @@ final class DtoExtractorTest extends TestCase
     public static function dataProvider(): iterable
     {
         yield [
-            'object_to_populate' => null,
+            'objectToPopulate' => null,
             'context' => [],
         ];
         yield [
-            'object_to_populate' => new \stdClass(),
+            'objectToPopulate' => new \stdClass(),
             'context' => [
                 AbstractNormalizer::OBJECT_TO_POPULATE => new \stdClass(),
                 AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
@@ -127,7 +127,10 @@ final class DtoExtractorTest extends TestCase
         $dtoMock = $this->createStub(\stdClass::class);
 
         $objectToPopulate = new \stdClass();
-        $context = [AbstractNormalizer::OBJECT_TO_POPULATE => $objectToPopulate];
+        $context = [
+            AbstractNormalizer::OBJECT_TO_POPULATE => $objectToPopulate,
+            AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
+        ];
 
         $this->serializer
             ->expects(self::once())
