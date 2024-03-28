@@ -978,6 +978,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         ;
 
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
         $response = $exceptionEvent->getResponse();
 
         self::assertSame($this->response, $response);
