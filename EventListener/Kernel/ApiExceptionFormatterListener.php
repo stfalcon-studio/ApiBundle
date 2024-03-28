@@ -124,6 +124,9 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                     case Response::HTTP_FORBIDDEN:
                         $errorName = BaseErrorNames::ACCESS_DENIED;
                         break;
+                    case Response::HTTP_TOO_MANY_REQUESTS:
+                        $errorName = BaseErrorNames::HTTP_TOO_MANY_REQUESTS;
+                        break;
                     case Response::HTTP_INTERNAL_SERVER_ERROR:
                         $errorName = BaseErrorNames::INTERNAL_SERVER_ERROR;
 
