@@ -17,6 +17,7 @@ use Doctrine\ORM\OptimisticLockException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sentry\ClientInterface;
+use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use StfalconStudio\ApiBundle\EventListener\Kernel\ApiExceptionFormatterListener;
 use StfalconStudio\ApiBundle\Service\Exception\ExceptionResponseFactory;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessor;
@@ -940,7 +941,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 
     public function testPassesHeadersToResponseFromHttpException(): void
     {
-        $httpException = new TooManyRequestsHttpException(58);
+        $httpException = new TooManyRequestsHttpException(58, message: 'too_many_requests');
 
         $exceptionEvent = new ExceptionEvent(
             $this->kernel,
@@ -958,17 +959,17 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with('Error code is not yet specified for this case. Please contact to developer about this case.')
-            ->willReturn('Error code is not yet specified for this case. Please contact to developer about this case.')
+            ->with('too_many_requests')
+            ->willReturn('too_many_requests')
         ;
 
         $this->serializer
             ->expects(self::once())
             ->method('serialize')
-            ->willReturn('{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}')
+            ->willReturn('{"error":"too_many_requests", "error_description":"too_many_requests"}')
         ;
 
-        $json = '{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}';
+        $json = '{"error":"too_many_requests", "error_description":"too_many_requests"}';
         $this->exceptionResponseFactory
             ->expects(self::once())
             ->method('createJsonResponse')
@@ -977,7 +978,6 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         ;
 
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
-
         $response = $exceptionEvent->getResponse();
 
         self::assertSame($this->response, $response);
