@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Serializer\Normalizer;
 
-use Symfony\Component\Serializer\Debug\TraceableNormalizer;
-use Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer as SymfonyConstraintViolationListNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
@@ -23,18 +21,28 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 class ConstraintViolationListNormalizer implements NormalizerInterface
 {
     /**
-     * @param SymfonyConstraintViolationListNormalizer|TraceableNormalizer $symfonyConstraintViolationListNormalizer
+     * @param NormalizerInterface $symfonyConstraintViolationListNormalizer
      */
-    public function __construct(private readonly SymfonyConstraintViolationListNormalizer|TraceableNormalizer $symfonyConstraintViolationListNormalizer)
+    public function __construct(private readonly NormalizerInterface $symfonyConstraintViolationListNormalizer)
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof ConstraintViolationListInterface;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            ConstraintViolationListInterface::class => true,
+        ];
     }
 
     /**

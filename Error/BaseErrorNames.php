@@ -50,6 +50,9 @@ class BaseErrorNames
     // 422
     public final const INVALID_ENTITY = 'invalid_entity';
 
+    // 429
+    public final const HTTP_TOO_MANY_REQUESTS = 'too_many_requests';
+
     // 500
     public final const INTERNAL_SERVER_ERROR = 'internal_server_error';
 

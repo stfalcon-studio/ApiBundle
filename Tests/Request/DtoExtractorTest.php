@@ -21,6 +21,7 @@ use StfalconStudio\ApiBundle\Request\DtoExtractor;
 use StfalconStudio\ApiBundle\Service\AttributeProcessor\DtoAttributeProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -88,8 +89,17 @@ final class DtoExtractorTest extends TestCase
 
     public static function dataProvider(): iterable
     {
-        yield [null, []];
-        yield [new \stdClass(), [AbstractNormalizer::OBJECT_TO_POPULATE => new \stdClass()]];
+        yield [
+            'objectToPopulate' => null,
+            'context' => [],
+        ];
+        yield [
+            'objectToPopulate' => new \stdClass(),
+            'context' => [
+                AbstractNormalizer::OBJECT_TO_POPULATE => new \stdClass(),
+                AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
+            ]
+        ];
     }
 
     public function testExceptionOnDtoWithoutInterface(): void
@@ -117,7 +127,10 @@ final class DtoExtractorTest extends TestCase
         $dtoMock = $this->createStub(\stdClass::class);
 
         $objectToPopulate = new \stdClass();
-        $context = [AbstractNormalizer::OBJECT_TO_POPULATE => $objectToPopulate];
+        $context = [
+            AbstractNormalizer::OBJECT_TO_POPULATE => $objectToPopulate,
+            AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
+        ];
 
         $this->serializer
             ->expects(self::once())

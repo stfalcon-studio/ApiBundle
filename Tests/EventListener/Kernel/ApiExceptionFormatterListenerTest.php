@@ -14,9 +14,11 @@ namespace StfalconStudio\ApiBundle\Tests\EventListener\Kernel;
 
 use Doctrine\ODM\MongoDB\LockException;
 use Doctrine\ORM\OptimisticLockException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sentry\ClientInterface;
+use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use StfalconStudio\ApiBundle\EventListener\Kernel\ApiExceptionFormatterListener;
 use StfalconStudio\ApiBundle\Service\Exception\ExceptionResponseFactory;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessor;
@@ -279,9 +281,17 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         self::assertInstanceOf(HttpException::class, $exceptionEvent->getThrowable());
     }
 
-    public function testOnKernelExceptionWhenResourceNotFoundCausedByMapEntityAttribute(): void
+    public static function resourceNotFoundExceptionMessageDataProvider(): array
     {
-        $exceptionMessage = '"App\\Entity\\Event\\Event\" object not found by \"Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver\". The expression \"repository.findClosedEventById(id)\" returned null.';
+        return [
+            ['"App\\Entity\\Event\\Event\" object not found by \"Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver\". The expression \"repository.findClosedEventById(id)\" returned null.'],
+            ['"App\\Entity\\Event\\Event" object not found by "Symfony\\Bridge\\Doctrine\\ArgumentResolver\\EntityValueResolver".'],
+        ];
+    }
+
+    #[DataProvider('resourceNotFoundExceptionMessageDataProvider')]
+    public function testOnKernelExceptionWhenResourceNotFoundCausedByMapEntityAttribute(string $exceptionMessage): void
+    {
         $httpException = new NotFoundHttpException($exceptionMessage);
         $resourceNotFoundMessage = 'Resource not found';
 
@@ -983,7 +993,7 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 
     public function testPassesHeadersToResponseFromHttpException(): void
     {
-        $httpException = new TooManyRequestsHttpException(58);
+        $httpException = new TooManyRequestsHttpException(58, message: 'too_many_requests');
 
         $exceptionEvent = new ExceptionEvent(
             $this->kernel,
@@ -1001,17 +1011,17 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->translator
             ->expects(self::once())
             ->method('trans')
-            ->with('Error code is not yet specified for this case. Please contact to developer about this case.')
-            ->willReturn('Error code is not yet specified for this case. Please contact to developer about this case.')
+            ->with('too_many_requests')
+            ->willReturn('too_many_requests')
         ;
 
         $this->serializer
             ->expects(self::once())
             ->method('serialize')
-            ->willReturn('{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}')
+            ->willReturn('{"error":"too_many_requests", "error_description":"too_many_requests"}')
         ;
 
-        $json = '{"error":"error_code_is_not_specified", "error_description":"Error code is not yet specified for this case. Please contact to developer about this case."}';
+        $json = '{"error":"too_many_requests", "error_description":"too_many_requests"}';
         $this->exceptionResponseFactory
             ->expects(self::once())
             ->method('createJsonResponse')

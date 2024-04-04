@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+  workflow_dispatch: ~
   push:
     branches:
       - 'main'
@@ -12,7 +13,7 @@ jobs:
     name: "Composer Validate"
     steps:
       - name: 'Checkout Code'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 'Validate composer.json'
         run: composer validate --no-check-all --strict --no-check-lock
@@ -23,7 +24,7 @@ jobs:
     name: "Composer Install"
     steps:
       - name: 'Checkout Code'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
@@ -44,7 +45,7 @@ jobs:
       fail-fast: false
     steps:
       - name: 'Checkout Code'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
@@ -69,7 +70,7 @@ jobs:
       fail-fast: false
     steps:
       - name: 'Checkout Code'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
@@ -96,10 +97,10 @@ jobs:
         php-version:
           - '8.2'
         symfony-version:
-          - '6.2'
+          - '7.0'
     steps:
       - name: 'Checkout Code'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
@@ -124,7 +125,7 @@ jobs:
       fail-fast: false
     steps:
       - name: 'Checkout Code'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
@@ -147,8 +148,9 @@ jobs:
           path: reports
 
       - name: 'Upload to Codecov'
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           files: ./coverage.xml
           fail_ci_if_error: true
+          flags: unittests
           verbose: true

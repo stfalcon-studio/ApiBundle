@@ -107,7 +107,7 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                 $errorName = BaseErrorNames::RESOURCE_NOT_FOUND;
 
                 if (preg_match('/^(.+) object not found by the @(.+) annotation\.$/', $message)
-                    || preg_match('/^(.+) object not found by (.+). The expression (.+) returned null\.$/', $message)) {
+                    || preg_match('/^(.+) object not found by (.+)\..*$/', $message)) {
                     $message = 'resource_not_found_exception_message';
                 }
                 break;
@@ -129,6 +129,9 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
                         break;
                     case Response::HTTP_FORBIDDEN:
                         $errorName = BaseErrorNames::ACCESS_DENIED;
+                        break;
+                    case Response::HTTP_TOO_MANY_REQUESTS:
+                        $errorName = BaseErrorNames::HTTP_TOO_MANY_REQUESTS;
                         break;
                     case Response::HTTP_NOT_ACCEPTABLE:
                         $errorName = BaseErrorNames::NOT_ACCEPTABLE;
