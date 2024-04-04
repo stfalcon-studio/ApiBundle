@@ -1,58 +1,58 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages.fr.xlf">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages.de.xlf">
         <body>
             <trans-unit id="1">
                 <source>unauthorised_user_message</source>
-                <target>Mauvais login et/ou mot de passe.</target>
+                <target>Schlechte Anmeldedaten. Bitte überprüfen Sie, ob Ihr Login/Passwort richtig eingestellt ist.</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>invalid_jwt_token_message</source>
-                <target>Mauvais login et/ou mot de passe, Merci de réessayer.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>not_found_jwt_token_message</source>
-                <target>Mauvais login et/ou mot de passe, Merci de réessayer.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>expired_jwt_token_message</source>
-                <target>Mauvais login et/ou mot de passe, Merci de réessayer.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="5">
                 <source>invalid_refresh_token_exception_message</source>
-                <target>Mauvaises qualifications. Essayez de vous connecter à nouveau.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="6">
                 <source>optimistic_lock_exception_message</source>
-                <target>La ressource a été modifiée depuis un autre endroit, obtenez une nouvelle version des données.</target>
+                <target>Die Ressource wurde aktualisiert. Bitte holen Sie sich die aktuellen Daten.</target>
             </trans-unit>
             <trans-unit id="7">
                 <source>access_denied_exception_message</source>
-                <target>Accès refusé.</target>
+                <target>Zugriff abgelehnt.</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>method_not_allowed_exception_message</source>
-                <target>Not allowed HTTP method.</target>
+                <target>Nicht zulässige HTTP-Methode.</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>resource_not_found_exception_message</source>
-                <target>Ressource non trouvée.</target>
+                <target>Ressource nicht gefunden.</target>
             </trans-unit>
             <trans-unit id="10">
                 <source>invalid_json_schema_exception_message</source>
-                <target>Votre demande ne correspond pas au schéma JSON spécifié.</target>
+                <target>Ihre Anfrage entspricht nicht dem angegebenen JSON-Schema.</target>
             </trans-unit>
             <trans-unit id="11">
                 <source>invalid_entity_exception_message</source>
-                <target>Les règles de validation ne sont pas respectées.</target>
+                <target>Die Entität erfüllt die Validierungsregeln nicht.</target>
             </trans-unit>
             <trans-unit id="12">
                 <source>internal_server_error_exception_message</source>
-                <target>Erreur Interne Serveur.</target>
+                <target>Internal Server Error.</target>
             </trans-unit>
             <trans-unit id="13">
                 <source>not_acceptable_exception_message</source>
-                <target>Pas acceptable.</target>
+                <target>Inakzeptabel.</target>
             </trans-unit>
         </body>
     </file>
