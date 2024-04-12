@@ -26,9 +26,8 @@ final class CheckVerifiedUserSubscriber implements EventSubscriberInterface
     /**
      * @param JwtBlackListService $tokenBlackListService
      */
-    public function __construct(
-        private readonly JwtBlackListService $tokenBlackListService,
-    ) {
+    public function __construct(private readonly JwtBlackListService $tokenBlackListService)
+    {
     }
 
     /**

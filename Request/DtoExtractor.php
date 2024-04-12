@@ -29,10 +29,8 @@ class DtoExtractor
      * @param DtoAttributeProcessor $dtoAttributeProcessor
      * @param SerializerInterface   $serializer
      */
-    public function __construct(
-        private readonly DtoAttributeProcessor $dtoAttributeProcessor,
-        private readonly SerializerInterface $serializer,
-    ) {
+    public function __construct(private readonly DtoAttributeProcessor $dtoAttributeProcessor, private readonly SerializerInterface $serializer)
+    {
     }
 
     /**

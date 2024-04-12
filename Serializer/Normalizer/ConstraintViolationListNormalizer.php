@@ -23,9 +23,8 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
     /**
      * @param NormalizerInterface $symfonyConstraintViolationListNormalizer
      */
-    public function __construct(
-        private readonly NormalizerInterface $symfonyConstraintViolationListNormalizer,
-    ) {
+    public function __construct(private readonly NormalizerInterface $symfonyConstraintViolationListNormalizer)
+    {
     }
 
     /**

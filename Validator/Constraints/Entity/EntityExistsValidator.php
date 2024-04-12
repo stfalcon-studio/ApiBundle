@@ -25,9 +25,8 @@ class EntityExistsValidator extends ConstraintValidator
     /**
      * @param RepositoryService $repositoryService
      */
-    public function __construct(
-        private readonly RepositoryService $repositoryService,
-    ) {
+    public function __construct(private readonly RepositoryService $repositoryService)
+    {
     }
 
     /**

@@ -47,12 +47,8 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
      * @param ExceptionResponseProcessorInterface $exceptionResponseProcessor
      * @param ExceptionResponseFactory            $exceptionResponseFactory
      */
-    public function __construct(
-        private readonly string $apiHost,
-        private readonly string $environment,
-        private readonly ExceptionResponseProcessorInterface $exceptionResponseProcessor,
-        private readonly ExceptionResponseFactory $exceptionResponseFactory,
-    ) {
+    public function __construct(private readonly string $apiHost, private readonly string $environment, private readonly ExceptionResponseProcessorInterface $exceptionResponseProcessor, private readonly ExceptionResponseFactory $exceptionResponseFactory)
+    {
     }
 
     /**

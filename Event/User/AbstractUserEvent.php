@@ -23,9 +23,8 @@ abstract class AbstractUserEvent extends Event
     /**
      * @param UserInterface $user
      */
-    public function __construct(
-        private readonly UserInterface $user,
-    ) {
+    public function __construct(private readonly UserInterface $user)
+    {
     }
 
     /**

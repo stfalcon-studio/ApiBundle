@@ -32,11 +32,8 @@ class JsonSchemaAttributeProcessor
      * @param FileReader            $fileReader
      * @param string                $jsonSchemaDir
      */
-    public function __construct(
-        private readonly DtoAttributeProcessor $dtoAttributeProcessor,
-        private readonly FileReader $fileReader,
-        private readonly string $jsonSchemaDir,
-    ) {
+    public function __construct(private readonly DtoAttributeProcessor $dtoAttributeProcessor, private readonly FileReader $fileReader, private readonly string $jsonSchemaDir)
+    {
     }
 
     /**
