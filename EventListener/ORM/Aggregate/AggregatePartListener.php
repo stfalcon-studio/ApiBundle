@@ -28,8 +28,9 @@ final class AggregatePartListener
     /**
      * @param DateTimeHelper $dateTimeHelper
      */
-    public function __construct(private readonly DateTimeHelper $dateTimeHelper)
-    {
+    public function __construct(
+        private readonly DateTimeHelper $dateTimeHelper,
+    ) {
     }
 
     /**

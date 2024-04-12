@@ -25,8 +25,9 @@ class PasswordMeetSpecialRequirementsValidator extends ConstraintValidator
     /**
      * @param PasswordRequirementsValidator $passwordRequirementsValidator
      */
-    public function __construct(private readonly PasswordRequirementsValidator $passwordRequirementsValidator)
-    {
+    public function __construct(
+        private readonly PasswordRequirementsValidator $passwordRequirementsValidator,
+    ) {
     }
 
     /**

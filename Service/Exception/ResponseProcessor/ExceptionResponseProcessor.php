@@ -22,8 +22,9 @@ class ExceptionResponseProcessor implements ExceptionResponseProcessorInterface
     /**
      * @param iterable|CustomAppExceptionResponseProcessorInterface[] $errorResponseProcessors
      */
-    public function __construct(private readonly iterable $errorResponseProcessors)
-    {
+    public function __construct(
+        private readonly iterable $errorResponseProcessors,
+    ) {
     }
 
     /**

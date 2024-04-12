@@ -32,8 +32,9 @@ final class JwtSubscriber implements EventSubscriberInterface
     /**
      * @param TranslatorInterface $translator
      */
-    public function __construct(private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly TranslatorInterface $translator,
+    ) {
     }
 
     /**

@@ -27,8 +27,9 @@ class DatetimeVersionStrategy implements VersionStrategyInterface
     /**
      * @param DateTimeHelper $dateTimeHelper
      */
-    public function __construct(DateTimeHelper $dateTimeHelper)
-    {
+    public function __construct(
+        private readonly DateTimeHelper $dateTimeHelper,
+    ) {
         $this->version = $dateTimeHelper->getCurrentDatetimeImmutable()->format('YmdHis');
     }
 

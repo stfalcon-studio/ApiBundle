@@ -33,8 +33,12 @@ class JwtBlackListService
      * @param JwtCacheHelper       $jwtCacheHelper
      * @param DateTimeHelper       $dateTimeHelper
      */
-    public function __construct(private readonly JWSProviderInterface $jwsProvider, private readonly JwtTokenHelper $jwtTokenHelper, private readonly JwtCacheHelper $jwtCacheHelper, private readonly DateTimeHelper $dateTimeHelper)
-    {
+    public function __construct(
+        private readonly JWSProviderInterface $jwsProvider,
+        private readonly JwtTokenHelper $jwtTokenHelper,
+        private readonly JwtCacheHelper $jwtCacheHelper,
+        private readonly DateTimeHelper $dateTimeHelper,
+    ) {
     }
 
     /**
