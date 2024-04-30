@@ -49,13 +49,32 @@ final class ConstraintViolationListNormalizerTest extends TestCase
             ->expects(self::once())
             ->method('normalize')
             ->with($object, $format, $context)
-            ->willReturn(['detail' => $originDetail])
+            ->willReturn([
+                'detail' => $originDetail,
+                'violations' => [
+                    [
+                        'propertyPath' => 'test',
+                        'title' => 'test',
+                        'type' => 'test',
+                        'template' => 'test',
+                        'parameters' => 'test',
+                    ]
+                ]
+            ])
         ;
 
         $result = (array) $this->normalizer->normalize($object, $format, $context);
 
         self::assertArrayHasKey('detail', $result);
         self::assertSame($resultDetail, $result['detail']);
+        self::assertSame(
+            [
+                'propertyPath' => 'test',
+                'title' => 'test',
+                'type' => 'test',
+            ],
+            $result['violations'][0],
+        );
     }
 
     public static function dataProviderForTestNormalize(): iterable
