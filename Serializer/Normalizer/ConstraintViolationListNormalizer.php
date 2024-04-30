@@ -63,6 +63,8 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
     {
         $result = $this->symfonyConstraintViolationListNormalizer->normalize($object, $format, $context);
 
+        $this->removeInternalViolationFields($result);
+
         if (\is_array($result) && \array_key_exists('detail', $result) && $result['detail']) {
             $messages = explode("\n", $result['detail']);
 
@@ -78,5 +80,16 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
         }
 
         return $result;
+    }
+
+    private function removeInternalViolationFields(array &$data): void
+    {
+        if (isset($data['violations'])) {
+            foreach ($data['violations'] as &$violation) {
+                unset($violation['template'], $violation['parameters']);
+                $this->removeInternalViolationFields($violation);
+            }
+            unset($violation);
+        }
     }
 }
