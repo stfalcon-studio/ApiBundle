@@ -83,7 +83,7 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param array &$data
+     * @param &array $data
      */
     private function removeInternalViolationFields(array &$data): void
     {
