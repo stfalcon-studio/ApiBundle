@@ -82,6 +82,9 @@ class ConstraintViolationListNormalizer implements NormalizerInterface
         return $result;
     }
 
+    /**
+     * @param array &$data
+     */
     private function removeInternalViolationFields(array &$data): void
     {
         if (isset($data['violations'])) {
