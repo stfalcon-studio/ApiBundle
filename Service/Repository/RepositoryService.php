@@ -17,6 +17,8 @@ use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 
 /**
  * Repository Service.
+ *
+ * @deprecated
  */
 class RepositoryService
 {

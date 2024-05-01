@@ -14,6 +14,8 @@ namespace StfalconStudio\ApiBundle\Service\Repository;
 
 /**
  * Gettable One By Id Interface.
+ *
+ * @deprecated
  */
 interface GettableOneByIdInterface
 {

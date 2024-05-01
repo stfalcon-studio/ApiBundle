@@ -31,15 +31,18 @@ class EntityExists extends Constraint
 
     public string $message = 'entity_does_not_exist';
 
+    /** @var class-string<object> */
     public string $class;
+    public string $property;
 
     /**
-     * @param string     $class
-     * @param mixed      $options
-     * @param array|null $groups
-     * @param mixed      $payload
+     * @param class-string<object> $class
+     * @param mixed                $options
+     * @param array|null           $groups
+     * @param mixed                $payload
+     * @param string               $property
      */
-    public function __construct(string $class, mixed $options = null, array $groups = null, mixed $payload = null)
+    public function __construct(string $class, mixed $options = null, array $groups = null, mixed $payload = null, string $property = 'id')
     {
         parent::__construct($options, $groups, $payload);
 
@@ -52,5 +55,6 @@ class EntityExists extends Constraint
         }
 
         $this->class = $class;
+        $this->property = $property;
     }
 }
