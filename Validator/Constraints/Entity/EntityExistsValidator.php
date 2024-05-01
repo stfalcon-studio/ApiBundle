@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Validator\Constraints\Entity;
 
+use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Exception\Validator\UnexpectedConstraintException;
 use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 use Symfony\Component\Validator\Constraint;
@@ -36,13 +37,21 @@ class EntityExistsValidator extends ConstraintValidator
             throw new UnexpectedConstraintException($constraint, EntityExists::class);
         }
 
-        if (!(\is_int($value) || \is_string($value))) {
-            return;
+        $entityClass = $constraint->class;
+
+        try {
+            $this->em->getClassMetadata($entityClass);
+        } catch (\Exception $exception) {
+            throw new LogicException(sprintf('Class %s is not an Entity', $entityClass));
         }
 
         $repository = $this->em->getRepository($constraint->class);
 
         if (!$repository->findOneBy([$constraint->property => $value]) instanceof $constraint->class) {
+            if (!(\is_int($value) || \is_string($value) || $value instanceof \Stringable)) {
+                throw new LogicException(sprintf('Value expected to be int, string or implement %s to find cause of the problem', \Stringable::class));
+            }
+
             $this->context
                 ->buildViolation($constraint->message)
                 ->setCode(EntityExists::ENTITY_DOES_NOT_EXIST)
