@@ -14,6 +14,8 @@ namespace StfalconStudio\ApiBundle\Service\Repository;
 
 /**
  * FindableByIdInterface.
+ *
+ * @deprecated
  */
 interface FindableByIdInterface
 {

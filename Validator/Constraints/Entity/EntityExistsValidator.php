@@ -12,8 +12,9 @@ declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Validator\Constraints\Entity;
 
+use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Exception\Validator\UnexpectedConstraintException;
-use StfalconStudio\ApiBundle\Service\Repository\RepositoryService;
+use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -22,12 +23,7 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class EntityExistsValidator extends ConstraintValidator
 {
-    /**
-     * @param RepositoryService $repositoryService
-     */
-    public function __construct(private readonly RepositoryService $repositoryService)
-    {
-    }
+    use EntityManagerTrait;
 
     /**
      * @param mixed                   $value
@@ -41,15 +37,27 @@ class EntityExistsValidator extends ConstraintValidator
             throw new UnexpectedConstraintException($constraint, EntityExists::class);
         }
 
-        if (!\is_string($value)) {
-            return;
+        $entityClass = $constraint->class;
+
+        try {
+            $this->em->getClassMetadata($entityClass);
+        } catch (\Exception $exception) {
+            throw new LogicException(sprintf('Class %s is not an Entity', $entityClass));
         }
 
-        if (!$this->repositoryService->findEntityById($value, $constraint->class) instanceof $constraint->class) {
+        $repository = $this->em->getRepository($constraint->class);
+
+        if (!$repository->findOneBy([$constraint->property => $value]) instanceof $constraint->class) {
+            if (!(\is_int($value) || \is_string($value) || $value instanceof \Stringable)) {
+                throw new LogicException(sprintf('Value expected to be int, string or implement %s to find cause of the problem', \Stringable::class));
+            }
+
             $this->context
                 ->buildViolation($constraint->message)
                 ->setCode(EntityExists::ENTITY_DOES_NOT_EXIST)
-                ->setParameter('%id%', $value)
+                ->setParameter('%property%', $constraint->property)
+                ->setParameter('%value%', (string) $value)
+                ->setParameter('%class%', $constraint->class)
                 ->addViolation()
             ;
         }

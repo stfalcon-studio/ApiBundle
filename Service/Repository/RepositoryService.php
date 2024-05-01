@@ -16,7 +16,9 @@ use StfalconStudio\ApiBundle\Exception\LogicException;
 use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 
 /**
- * Repository Service.
+ * RepositoryService.
+ *
+ * @deprecated
  */
 class RepositoryService
 {
