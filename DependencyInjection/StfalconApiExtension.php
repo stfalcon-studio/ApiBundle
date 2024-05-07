@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\DependencyInjection;
 
 use Doctrine\ORM\EntityManagerInterface;
+use StfalconStudio\ApiBundle\Request\Filter\FilterExtractorInterface;
 use StfalconStudio\ApiBundle\Security\JwtBlackListService;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\CustomAppExceptionResponseProcessorInterface;
 use Symfony\Component\Config\FileLocator;
@@ -53,5 +54,6 @@ class StfalconApiExtension extends Extension
         $container->setParameter('stfalcon_api.api_host', $config['api_host']);
         $container->setParameter('stfalcon_api.json_schema_dir', $config['json_schema_dir']);
         $container->registerForAutoconfiguration(CustomAppExceptionResponseProcessorInterface::class)->addTag('stfalcon_api.exception_response_processor');
+        $container->registerForAutoconfiguration(FilterExtractorInterface::class)->addTag('stfalcon_api.filter_extractor');
     }
 }

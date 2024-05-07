@@ -28,8 +28,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->bind('$apiHost', '%stfalcon_api.api_host%')
         ->bind('$jsonSchemaDir', '%stfalcon_api.json_schema_dir%')
         ->bind('$environment', '%env(APP_ENV)%')
-        ->bind('iterable $errorResponseProcessors', new TaggedIteratorArgument('stfalcon_api.exception_response_processor'))
         ->bind('$symfonyConstraintViolationListNormalizer', new Reference('serializer.normalizer.constraint_violation_list'))
+        ->bind('iterable $errorResponseProcessors', new TaggedIteratorArgument('stfalcon_api.exception_response_processor'))
+        ->bind('iterable $filterExtractors', new TaggedIteratorArgument('stfalcon_api.filter_extractor'))
     ;
 
     $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,Request,Serializer,Service,Util,Validator}/');

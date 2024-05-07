@@ -55,7 +55,10 @@ final class StfalconApiExtensionTest extends TestCase
 
         $childDefinitions = $this->container->getAutoconfiguredInstanceof();
         foreach ($childDefinitions as $childDefinition) {
-            self::assertTrue($childDefinition->hasTag('stfalcon_api.exception_response_processor'));
+            self::assertTrue(
+                $childDefinition->hasTag('stfalcon_api.exception_response_processor')
+                || $childDefinition->hasTag('stfalcon_api.filter_extractor')
+            );
         }
     }
 
