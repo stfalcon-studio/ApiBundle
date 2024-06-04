@@ -62,6 +62,33 @@ stfalcon_api:
     redis_client_jwt_black_list: "@snc_redis.jwt_black_list"
 ```
 
+# Usage
+## Dictionary enums
+For simple dictionary enums, you can use the `DictionaryEnumInteface` interface on Enums.
+It will register for serialization like a dictionary, so the result will be like:
+```json
+{
+  "id": 1,
+  "value": "Enum name"
+}
+```
+
+So, now the dictionary action will look like:
+```php
+#[Route(path: '/foo/bar', name: 'foo_bar', methods: [Request::METHOD_GET])]
+public function __invoke(): JsonResponse
+{
+    // ...
+
+    return new JsonResponse(data: $this->serializer->serialize(FooBar::cases()), json: true);
+}
+```
+
+In some cases, you may need to serialise dictionary value not as dictionary, for this just add in context parameter `default_normalization` with any value.
+```php
+$this->serializer->serialize($fooBar, 'json', ['default_normalization' => true]);
+```
+
 ## Contributing
 
 Read the [CONTRIBUTING](https://github.com/stfalcon-studio/ApiBundle/blob/main/.github/CONTRIBUTING.md) file.
