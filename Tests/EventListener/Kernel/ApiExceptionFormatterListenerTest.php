@@ -30,6 +30,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -647,6 +648,56 @@ final class ApiExceptionFormatterListenerTest extends TestCase
         $this->exceptionFormatterListener->__invoke($exceptionEvent);
 
         self::assertInstanceOf(MethodNotAllowedHttpException::class, $exceptionEvent->getThrowable());
+    }
+
+    public function testOnKernelExceptionNotAcceptableHttpException(): void
+    {
+        $exceptionMessage = 'not_acceptable_exception_message';
+        $httpException = new NotAcceptableHttpException($exceptionMessage);
+
+        $exceptionEvent = new ExceptionEvent(
+            $this->kernel,
+            $this->request,
+            HttpKernelInterface::MAIN_REQUEST,
+            $httpException
+        );
+
+        $this->request
+            ->expects(self::once())
+            ->method('getHost')
+            ->willReturn(self::API_HOST)
+        ;
+
+        $this->translator
+            ->expects(self::once())
+            ->method('trans')
+            ->with($exceptionMessage)
+            ->willReturn($exceptionMessage)
+        ;
+
+        $message = 'Not Acceptable.';
+        $this->serializer
+            ->expects(self::once())
+            ->method('serialize')
+            ->willReturn(sprintf('{"error":"not_acceptable", "error_description":"%s"}', $message))
+        ;
+
+        $this->exceptionResponseProcessor
+            ->expects(self::never())
+            ->method('processResponseForException')
+        ;
+
+        $json = '{"error":"not_acceptable", "error_description":"Not Acceptable."}';
+        $this->exceptionResponseFactory
+            ->expects(self::once())
+            ->method('createJsonResponse')
+            ->with($json, Response::HTTP_NOT_ACCEPTABLE)
+            ->willReturn($this->response)
+        ;
+
+        $this->exceptionFormatterListener->__invoke($exceptionEvent);
+
+        self::assertInstanceOf(NotAcceptableHttpException::class, $exceptionEvent->getThrowable());
     }
 
     public function testOnKernelExceptionDummyHttpException(): void

@@ -10,12 +10,12 @@
 
 declare(strict_types=1);
 
-namespace StfalconStudio\ApiBundle\EventListener\ORM\Aggregate;
+namespace StfalconStudio\ApiBundle\EventListener\ODM\Aggregate;
 
-use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ODM\MongoDB\Event\OnFlushEventArgs;
 use Fresh\DateTime\DateTimeHelper;
-use StfalconStudio\ApiBundle\Model\ORM\Aggregate\AggregatePartInterface;
-use StfalconStudio\ApiBundle\Model\ORM\Aggregate\AggregateRootInterface;
+use StfalconStudio\ApiBundle\Model\ODM\Aggregate\AggregatePartInterface;
+use StfalconStudio\ApiBundle\Model\ODM\Aggregate\AggregateRootInterface;
 
 /**
  * AggregatePartListener.
@@ -37,24 +37,22 @@ final class AggregatePartListener
      */
     public function onFlush(OnFlushEventArgs $eventArgs): void
     {
-        $em = $eventArgs->getEntityManager();
+        $em = $eventArgs->getDocumentManager();
         $uow = $em->getUnitOfWork();
 
-        foreach ($uow->getScheduledEntityUpdates() as $entity) {
+        foreach ($uow->getScheduledDocumentUpdates() as $entity) {
             $this->processEntity($entity);
         }
-        foreach ($uow->getScheduledEntityInsertions() as $entity) {
+        foreach ($uow->getScheduledDocumentInsertions() as $entity) {
             $this->processEntity($entity);
         }
-        foreach ($uow->getScheduledEntityDeletions() as $entity) {
+        foreach ($uow->getScheduledDocumentDeletions() as $entity) {
             $this->processEntity($entity);
         }
 
         foreach ($this->aggregateRoots as $aggregateRoot) {
-            if (!$uow->isScheduledForDelete($aggregateRoot)) {
-                $aggregateRoot->setUpdatedAt($this->dateTimeHelper->getCurrentDatetime());
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata(\get_class($aggregateRoot)), $aggregateRoot);
-            }
+            $aggregateRoot->setUpdatedAt($this->dateTimeHelper->getCurrentDatetime());
+            $uow->recomputeSingleDocumentChangeSet($em->getClassMetadata(\get_class($aggregateRoot)), $aggregateRoot);
         }
 
         $this->aggregateRoots = [];

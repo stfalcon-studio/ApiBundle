@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="en" datatype="plaintext" original="messages.en.xlf">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="messages.fr.xlf">
         <body>
             <trans-unit id="1">
                 <source>unauthorised_user_message</source>
@@ -49,6 +49,10 @@
             <trans-unit id="12">
                 <source>internal_server_error_exception_message</source>
                 <target>Erreur Interne Serveur.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>not_acceptable_exception_message</source>
+                <target>Pas acceptable.</target>
             </trans-unit>
         </body>
     </file>

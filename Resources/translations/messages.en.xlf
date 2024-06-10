@@ -50,6 +50,10 @@
                 <source>internal_server_error_exception_message</source>
                 <target>Internal Server Error.</target>
             </trans-unit>
+            <trans-unit id="13">
+                <source>not_acceptable_exception_message</source>
+                <target>Not Acceptable.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

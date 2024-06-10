@@ -56,19 +56,12 @@ final class JwtSubscriber implements EventSubscriberInterface
      */
     public function onAuthenticationFailureResponse(AuthenticationFailureEvent $event): void
     {
-        switch (true) {
-            case $event instanceof JWTInvalidEvent:
-                $message = 'invalid_jwt_token_message';
-                break;
-            case $event instanceof JWTNotFoundEvent:
-                $message = 'not_found_jwt_token_message';
-                break;
-            case $event instanceof JWTExpiredEvent:
-                $message = 'expired_jwt_token_message';
-                break;
-            default:
-                $message = 'unauthorised_user_message';
-        }
+        $message = match (true) {
+            $event instanceof JWTInvalidEvent => 'invalid_jwt_token_message',
+            $event instanceof JWTNotFoundEvent => 'not_found_jwt_token_message',
+            $event instanceof JWTExpiredEvent => 'expired_jwt_token_message',
+            default => 'unauthorised_user_message',
+        };
 
         $data = [
             'error' => BaseErrorNames::UNAUTHORISED_USER,

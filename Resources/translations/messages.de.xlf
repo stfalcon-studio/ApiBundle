@@ -1,58 +1,58 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="ru" datatype="plaintext" original="messages.ru.xlf">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages.de.xlf">
         <body>
             <trans-unit id="1">
                 <source>unauthorised_user_message</source>
-                <target>Неверные учетные данные. Пожалуйста, проверьте, что логин и пароль введены правильно.</target>
+                <target>Schlechte Anmeldedaten. Bitte überprüfen Sie, ob Ihr Login/Passwort richtig eingestellt ist.</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>invalid_jwt_token_message</source>
-                <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>not_found_jwt_token_message</source>
-                <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>expired_jwt_token_message</source>
-                <target>Неверные учетные данные. Попробуйте зайти в аккаунт еще раз.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="5">
                 <source>invalid_refresh_token_exception_message</source>
-                <target>Токен невалидный.</target>
+                <target>Schlechte Anmeldedaten. Versuchen Sie erneut, sich anzumelden.</target>
             </trans-unit>
             <trans-unit id="6">
                 <source>optimistic_lock_exception_message</source>
-                <target>Рерус был модифицирован другим пользователем. Ваши изменения не приняты.\nПожалуйста, загрузите актуальную версию данных и внесите изменения повторно.</target>
+                <target>Die Ressource wurde aktualisiert. Bitte holen Sie sich die aktuellen Daten.</target>
             </trans-unit>
             <trans-unit id="7">
                 <source>access_denied_exception_message</source>
-                <target>В доступе отказано.</target>
+                <target>Zugriff abgelehnt.</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>method_not_allowed_exception_message</source>
-                <target>Не разрешенный HTTP метод.</target>
+                <target>Nicht zulässige HTTP-Methode.</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>resource_not_found_exception_message</source>
-                <target>Ресурс не найден.</target>
+                <target>Ressource nicht gefunden.</target>
             </trans-unit>
             <trans-unit id="10">
                 <source>invalid_json_schema_exception_message</source>
-                <target>Ваш запрос не отвечает описанию JSON схемы для этого ресурса.</target>
+                <target>Ihre Anfrage entspricht nicht dem angegebenen JSON-Schema.</target>
             </trans-unit>
             <trans-unit id="11">
                 <source>invalid_entity_exception_message</source>
-                <target>Невалидные данные.</target>
+                <target>Die Entität erfüllt die Validierungsregeln nicht.</target>
             </trans-unit>
             <trans-unit id="12">
                 <source>internal_server_error_exception_message</source>
-                <target>Внутренняя ошибка сервера.</target>
+                <target>Internal Server Error.</target>
             </trans-unit>
             <trans-unit id="13">
                 <source>not_acceptable_exception_message</source>
-                <target>Недопустимый запрос.</target>
+                <target>Inakzeptabel.</target>
             </trans-unit>
         </body>
     </file>
