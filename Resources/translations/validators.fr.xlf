@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="en" datatype="plaintext" original="messages.en.xlf">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="validators.en.xlf">
         <body>
             <trans-unit id="1">
                 <source>password_does_not_meet_special_requirements</source>
