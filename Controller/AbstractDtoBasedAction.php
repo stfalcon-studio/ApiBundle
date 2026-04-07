@@ -45,7 +45,7 @@ abstract class AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    protected function validateDto(DtoInterface $dto, Constraint|array|null $constraints = null, array $groups = null): void
+    protected function validateDto(DtoInterface $dto, Constraint|array|null $constraints = null, ?array $groups = null): void
     {
         $this->entityValidator->validate($dto, $constraints, $groups);
     }
@@ -55,7 +55,7 @@ abstract class AbstractDtoBasedAction
      * @param Constraint|Constraint[]|null $constraints
      * @param array|null                   $groups
      */
-    protected function validateEntity(object $entity, Constraint|array|null $constraints = null, array $groups = null): void
+    protected function validateEntity(object $entity, Constraint|array|null $constraints = null, ?array $groups = null): void
     {
         $this->entityValidator->validate($entity, $constraints, $groups);
     }
@@ -66,7 +66,7 @@ abstract class AbstractDtoBasedAction
      *
      * @return DtoInterface
      */
-    protected function getDtoFromRequest(Request $request, object $objectToPopulate = null): DtoInterface
+    protected function getDtoFromRequest(Request $request, ?object $objectToPopulate = null): DtoInterface
     {
         return $this->dtoExtractor->getDtoFromRequestForControllerClass($request, static::class, $objectToPopulate);
     }
