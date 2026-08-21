@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Entity\JWT;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gesdinet\JWTRefreshTokenBundle\Entity\RefreshTokenRepository;
 use Gesdinet\JWTRefreshTokenBundle\Model\AbstractRefreshToken;
+use StfalconStudio\ApiBundle\Repository\JWT\RefreshTokenRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -25,6 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     name: 'jwt_refresh_tokens',
     indexes: [
         new ORM\Index(columns: ['refresh_token']),
+        new ORM\Index(columns: ['valid']),
     ],
     uniqueConstraints: [
         new ORM\UniqueConstraint(columns: ['refresh_token']),
