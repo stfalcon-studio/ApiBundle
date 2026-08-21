@@ -31,12 +31,15 @@
         "symfony/framework-bundle": "^7.0",
         "symfony/serializer": "^7.0",
         "symfony/translation": "^7.0",
-        "symfony/validator": "^7.0"
+        "symfony/validator": "^7.0",
+        "symfony/lock": "^7.0"
     },
     "require-dev": {
         "doctrine/common": "^3.4",
         "doctrine/mongodb-odm": "^2.6",
         "doctrine/orm": "^2.18",
+        "doctrine/doctrine-bundle": "^2.11",
+        "doctrine/persistence": "^3.0",
         "escapestudios/symfony2-coding-standard": "^3.13",
         "gesdinet/jwt-refresh-token-bundle": "^v1.1.1",
         "jetbrains/phpstorm-attributes": "^1.0",
