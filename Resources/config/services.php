@@ -34,7 +34,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->bind('iterable $filterExtractors', new TaggedIteratorArgument('stfalcon_api.filter_extractor'))
     ;
 
-    $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,Request,Serializer,Service,Util,Validator,Repository}/');
+    $services->load('StfalconStudio\ApiBundle\\', __DIR__.'/../../{Asset,Request,Serializer,Service,Util,Validator,Repository,Command}/');
     $services->load('StfalconStudio\ApiBundle\EventListener\Console\\', __DIR__.'/../../EventListener/Console');
     $services->load('StfalconStudio\ApiBundle\EventListener\Kernel\\', __DIR__.'/../../EventListener/Kernel');
     $services->load('StfalconStudio\ApiBundle\EventListener\ORM\\', __DIR__.'/../../EventListener/ORM');
