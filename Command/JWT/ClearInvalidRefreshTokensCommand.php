@@ -34,9 +34,8 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
 
     protected int $batchSize;
 
-    public function __construct(
-        private readonly RefreshTokenRepository $refreshTokenRepository,
-    ) {
+    public function __construct(private readonly RefreshTokenRepository $refreshTokenRepository)
+    {
         parent::__construct();
     }
 

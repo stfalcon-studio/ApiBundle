@@ -31,7 +31,8 @@
         "symfony/framework-bundle": "^7.0",
         "symfony/serializer": "^7.0",
         "symfony/translation": "^7.0",
-        "symfony/validator": "^7.0"
+        "symfony/validator": "^7.0",
+        "symfony/lock": "^7.0"
     },
     "require-dev": {
         "doctrine/common": "^3.4",
