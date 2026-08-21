@@ -26,12 +26,12 @@ use Symfony\Component\Validator\Constraints as Assert;
     name: 'jwt_refresh_tokens',
     indexes: [
         new ORM\Index(columns: ['refresh_token']),
-        new ORM\Index(columns: ['valid']),
     ],
     uniqueConstraints: [
         new ORM\UniqueConstraint(columns: ['refresh_token']),
     ]
 )]
+#[ORM\Index(columns: ['valid'], name: 'idx_refresh_token_valid')]
 class RefreshToken extends AbstractRefreshToken
 {
     #[ORM\Id]
