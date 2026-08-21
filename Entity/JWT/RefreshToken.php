@@ -32,6 +32,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new ORM\UniqueConstraint(columns: ['refresh_token']),
     ]
 )]
+#[ORM\Index(columns: ['valid'], name: 'idx_refresh_token_valid')]
 class RefreshToken extends AbstractRefreshToken
 {
     #[ORM\Id]
