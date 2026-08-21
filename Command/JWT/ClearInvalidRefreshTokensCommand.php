@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the StfalconApiBundle.
+ *
+ * (c) Stfalcon LLC <stfalcon.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace StfalconStudio\ApiBundle\Command\JWT;
@@ -10,7 +19,6 @@ use StfalconStudio\ApiBundle\Traits\EntityManagerTrait;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
