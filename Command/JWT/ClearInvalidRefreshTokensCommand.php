@@ -24,6 +24,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * ClearInvalidRefreshTokensCommand.
+ */
 #[AsCommand(name: 'stfalcon-api-bundle:jwt:clear-refresh-token', description: 'Clear invalid refresh tokens.')]
 class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
 {
@@ -34,11 +37,17 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
 
     protected int $batchSize;
 
+    /**
+     * @param RefreshTokenRepository $refreshTokenRepository
+     */
     public function __construct(private readonly RefreshTokenRepository $refreshTokenRepository)
     {
         parent::__construct();
     }
 
+    /**
+     * @return void
+     */
     protected function configure(): void
     {
         parent::configure();
@@ -48,6 +57,12 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
             ->addOption('batch-size', 'bs', InputOption::VALUE_OPTIONAL, 'Batch size', self::DEFAULT_BATCH_SIZE);
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return void
+     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         parent::initialize($input, $output);
@@ -60,6 +75,12 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
         }
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$this->lock(self::getDefaultName())) {
@@ -98,6 +119,11 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
         return self::SUCCESS;
     }
 
+    /**
+     * @param ProgressBar $progressBar
+     *
+     * @return void
+     */
     private function delete(ProgressBar $progressBar): void
     {
         do {
@@ -106,6 +132,11 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
         } while ($this->batchSize === $deleted);
     }
 
+    /**
+     * @param ProgressBar $progressBar
+     *
+     * @return void
+     */
     private function remove(ProgressBar $progressBar): void
     {
         do {

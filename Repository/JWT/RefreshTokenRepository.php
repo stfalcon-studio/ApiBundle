@@ -18,13 +18,26 @@ use Doctrine\Persistence\ManagerRegistry;
 use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 use StfalconStudio\ApiBundle\Exception\UnexpectedValueException;
 
+/**
+ * RefreshTokenRepository.
+ */
 class RefreshTokenRepository extends ServiceEntityRepository
 {
+    /**
+     * @param ManagerRegistry $managerRegistry
+     */
     public function __construct(ManagerRegistry $managerRegistry)
     {
         parent::__construct($managerRegistry, RefreshToken::class);
     }
 
+    /**
+     * @param \DateTimeInterface $datetime
+     * @param int                $limit
+     * @param int                $offset
+     *
+     * @return RefreshToken[]
+     */
     public function findInvalid(\DateTimeInterface $datetime, int $limit, int $offset = 0): array
     {
         /** @var RefreshToken[] $result */
@@ -39,6 +52,11 @@ class RefreshTokenRepository extends ServiceEntityRepository
         return $result;
     }
 
+    /**
+     * @param \DateTimeInterface $datetime
+     *
+     * @return int
+     */
     public function invalidTokensCount(\DateTimeInterface $datetime): int
     {
         $qb = $this->createQueryBuilder('u');
@@ -56,6 +74,12 @@ class RefreshTokenRepository extends ServiceEntityRepository
         return (int) $result;
     }
 
+    /**
+     * @param \DateTimeInterface $datetime
+     * @param int                $limit
+     *
+     * @return int
+     */
     public function deleteInvalid(\DateTimeInterface $datetime, int $limit): int
     {
         $conn = $this->getEntityManager()->getConnection();
