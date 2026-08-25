@@ -81,7 +81,7 @@ final class ClearInvalidRefreshTokensCommandTest extends TestCase
         ;
 
         $this->refreshTokenRepository->expects(self::never())->method('deleteInvalid');
-        $this->refreshTokenRepository->expects(self::never())->method('findInvalid');
+        $this->refreshTokenRepository->expects(self::never())->method('findInvalidWithPagination');
         $this->entityManager->expects(self::never())->method('remove');
 
         $result = $this->commandTester->execute(['command' => $this->command->getName()]);
@@ -109,7 +109,7 @@ final class ClearInvalidRefreshTokensCommandTest extends TestCase
             ->willReturnOnConsecutiveCalls(2, 2, 1)
         ;
 
-        $this->refreshTokenRepository->expects(self::never())->method('findInvalid');
+        $this->refreshTokenRepository->expects(self::never())->method('findInvalidWithPagination');
         $this->entityManager->expects(self::never())->method('remove');
 
         $result = $this->commandTester->execute([
@@ -139,7 +139,7 @@ final class ClearInvalidRefreshTokensCommandTest extends TestCase
 
         $this->refreshTokenRepository
             ->expects(self::exactly(2))
-            ->method('findInvalid')
+            ->method('findInvalidWithPagination')
             ->with(self::isInstanceOf(\DateTimeInterface::class), 2, 0)
             ->willReturnOnConsecutiveCalls(
                 [$tokenA, $tokenB],
@@ -174,7 +174,7 @@ final class ClearInvalidRefreshTokensCommandTest extends TestCase
 
         $this->refreshTokenRepository
             ->expects(self::once())
-            ->method('findInvalid')
+            ->method('findInvalidWithPagination')
             ->with(self::isInstanceOf(\DateTimeInterface::class), 500, 0)
             ->willReturn([])
         ;
