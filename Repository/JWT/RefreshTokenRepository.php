@@ -59,6 +59,7 @@ class RefreshTokenRepository extends ServiceEntityRepository implements RefreshT
 
         return $result;
     }
+
     /**
      * @param \DateTimeInterface $datetime
      *
