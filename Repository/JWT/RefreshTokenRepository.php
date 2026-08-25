@@ -52,6 +52,18 @@ class RefreshTokenRepository extends ServiceEntityRepository implements RefreshT
     }
 
     /**
+     * @param \DateTimeInterface|null $datetime
+     * @param int|null                $batchSize
+     * @param int                     $offset
+     *
+     * @return iterable<RefreshToken>
+     */
+    public function findInvalidBatch(?\DateTimeInterface $datetime = null, ?int $batchSize = null, int $offset = 0): iterable
+    {
+        return $this->findInvalidWithPagination($datetime ?? new \DateTime(), $batchSize ?? 500, $offset);
+    }
+
+    /**
      * @param \DateTimeInterface $datetime
      * @param int                $limit
      * @param int                $offset
