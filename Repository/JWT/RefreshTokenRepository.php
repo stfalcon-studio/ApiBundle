@@ -53,25 +53,6 @@ class RefreshTokenRepository extends ServiceEntityRepository implements RefreshT
 
     /**
      * @param \DateTimeInterface|null $datetime
-     *
-     * @return RefreshToken[]
-     */
-    public function findInvalid($datetime = null): array
-    {
-        $datetime = (null === $datetime) ? new \DateTime() : $datetime;
-
-        /** @var RefreshToken[] $result */
-        $result = $this->createQueryBuilder('u')
-            ->where('u.valid < :datetime')
-            ->setParameter(':datetime', $datetime)
-            ->getQuery()
-            ->getResult();
-
-        return $result;
-    }
-
-    /**
-     * @param \DateTimeInterface|null $datetime
      * @param int|null                $batchSize
      * @param int                     $offset
      *
