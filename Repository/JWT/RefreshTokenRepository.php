@@ -26,6 +26,11 @@ class RefreshTokenRepository extends ServiceEntityRepository implements RefreshT
         parent::__construct($managerRegistry, RefreshToken::class);
     }
 
+    /**
+     * @param \DateTimeInterface|null $datetime
+     *
+     * @return RefreshToken[]
+     */
     public function findInvalid($datetime = null): array
     {
         $datetime = (null === $datetime) ? new \DateTime() : $datetime;
@@ -40,6 +45,13 @@ class RefreshTokenRepository extends ServiceEntityRepository implements RefreshT
         return $result;
     }
 
+    /**
+     * @param \DateTimeInterface $datetime
+     * @param int                $limit
+     * @param int                $offset
+     *
+     * @return RefreshToken[]
+     */
     public function findInvalidWithPagination(\DateTimeInterface $datetime, int $limit, int $offset = 0): array
     {
         /** @var RefreshToken[] $result */
@@ -54,6 +66,11 @@ class RefreshTokenRepository extends ServiceEntityRepository implements RefreshT
         return $result;
     }
 
+    /**
+     * @param \DateTimeInterface $datetime
+     *
+     * @return int
+     */
     public function invalidTokensCount(\DateTimeInterface $datetime): int
     {
         $qb = $this->createQueryBuilder('u');
