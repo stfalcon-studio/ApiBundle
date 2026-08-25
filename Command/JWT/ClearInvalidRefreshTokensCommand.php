@@ -110,7 +110,7 @@ class ClearInvalidRefreshTokensCommand extends AbstractBaseCommand
     private function remove(ProgressBar $progressBar): void
     {
         do {
-            $invalidTokens = $this->refreshTokenRepository->findInvalid($this->currentDate, $this->batchSize, 0);
+            $invalidTokens = $this->refreshTokenRepository->findInvalidWithPagination($this->currentDate, $this->batchSize, 0);
             $batchCount = \count($invalidTokens);
 
             foreach ($invalidTokens as $invalidToken) {

@@ -15,17 +15,32 @@ namespace StfalconStudio\ApiBundle\Repository\JWT;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Gesdinet\JWTRefreshTokenBundle\Doctrine\RefreshTokenRepositoryInterface;
 use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 use StfalconStudio\ApiBundle\Exception\UnexpectedValueException;
 
-class RefreshTokenRepository extends ServiceEntityRepository
+class RefreshTokenRepository extends ServiceEntityRepository implements RefreshTokenRepositoryInterface
 {
     public function __construct(ManagerRegistry $managerRegistry)
     {
         parent::__construct($managerRegistry, RefreshToken::class);
     }
 
-    public function findInvalid(\DateTimeInterface $datetime, int $limit, int $offset = 0): array
+    public function findInvalid($datetime = null): array
+    {
+        $datetime = (null === $datetime) ? new \DateTime() : $datetime;
+
+        /** @var RefreshToken[] $result */
+        $result = $this->createQueryBuilder('u')
+            ->where('u.valid < :datetime')
+            ->setParameter(':datetime', $datetime)
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
+
+    public function findInvalidWithPagination(\DateTimeInterface $datetime, int $limit, int $offset = 0): array
     {
         /** @var RefreshToken[] $result */
         $result = $this->createQueryBuilder('u')
