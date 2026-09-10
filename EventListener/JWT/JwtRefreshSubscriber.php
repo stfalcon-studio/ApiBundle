@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\EventListener\JWT;
 
 use Gesdinet\JWTRefreshTokenBundle\Event\RefreshEvent;
-use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
 use StfalconStudio\ApiBundle\Exception\JWT\InvalidRefreshTokenException;
 use StfalconStudio\ApiBundle\Model\Credentials\CredentialsInterface;
+use StfalconStudio\ApiBundle\Model\JWT\CreatedAtAwareRefreshTokenInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -41,18 +41,20 @@ final class JwtRefreshSubscriber implements EventSubscriberInterface
     public function processRefreshToken(RefreshEvent $event): void
     {
         $user = $event->getToken()->getUser();
+        $refreshToken = $event->getRefreshToken();
 
-        if ($user instanceof CredentialsInterface) {
-            $refreshToken = $event->getRefreshToken();
+        if (!$user instanceof CredentialsInterface || !$refreshToken instanceof CreatedAtAwareRefreshTokenInterface) {
+            return;
+        }
 
-            if ($refreshToken instanceof RefreshToken) {
-                $userCredentialsLastChangedAt = $user->getCredentialsLastChangedAt();
-                $refreshTokenCreatedAt = $refreshToken->getCreatedAt()->getTimestamp();
+        $userCredentialsLastChangedAt = $user->getCredentialsLastChangedAt();
 
-                if ($userCredentialsLastChangedAt instanceof \DateTimeInterface && $refreshTokenCreatedAt < $userCredentialsLastChangedAt->getTimestamp()) {
-                    throw new InvalidRefreshTokenException();
-                }
-            }
+        if (!$userCredentialsLastChangedAt instanceof \DateTimeInterface) {
+            return;
+        }
+
+        if ($refreshToken->getCreatedAt()->getTimestamp() < $userCredentialsLastChangedAt->getTimestamp()) {
+            throw new InvalidRefreshTokenException();
         }
     }
 }

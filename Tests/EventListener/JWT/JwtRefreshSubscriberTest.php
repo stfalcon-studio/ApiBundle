@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Tests\EventListener\JWT;
 
 use Gesdinet\JWTRefreshTokenBundle\Event\RefreshEvent;
+use Gesdinet\JWTRefreshTokenBundle\Model\RefreshTokenInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use StfalconStudio\ApiBundle\Entity\JWT\RefreshToken;
@@ -129,6 +130,35 @@ final class JwtRefreshSubscriberTest extends TestCase
             ->expects(self::once())
             ->method('getCreatedAt')
             ->willReturn(new \DateTimeImmutable('2030-01-01 00:00:01'))
+        ;
+
+        $this->subscriber->processRefreshToken($this->refreshEvent);
+    }
+
+    public function testProcessRefreshTokenWithRefreshTokenWithoutCreatedAt(): void
+    {
+        $refreshTokenWithoutCreatedAt = $this->createMock(RefreshTokenInterface::class);
+
+        $this->refreshEvent
+            ->expects(self::once())
+            ->method('getToken')
+            ->willReturn($this->token)
+        ;
+        $this->refreshEvent
+            ->expects(self::once())
+            ->method('getRefreshToken')
+            ->willReturn($refreshTokenWithoutCreatedAt)
+        ;
+
+        $this->token
+            ->expects(self::once())
+            ->method('getUser')
+            ->willReturn($this->user)
+        ;
+
+        $this->user
+            ->expects(self::never())
+            ->method('getCredentialsLastChangedAt')
         ;
 
         $this->subscriber->processRefreshToken($this->refreshEvent);

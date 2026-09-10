@@ -15,6 +15,7 @@ namespace StfalconStudio\ApiBundle\Entity\JWT;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gesdinet\JWTRefreshTokenBundle\Model\AbstractRefreshToken;
+use StfalconStudio\ApiBundle\Model\JWT\CreatedAtAwareRefreshTokenInterface;
 use StfalconStudio\ApiBundle\Repository\JWT\RefreshTokenRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,7 +34,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     ]
 )]
 #[ORM\Index(columns: ['valid'], name: 'idx_refresh_token_valid')]
-class RefreshToken extends AbstractRefreshToken
+class RefreshToken extends AbstractRefreshToken implements CreatedAtAwareRefreshTokenInterface
 {
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'integer')]
