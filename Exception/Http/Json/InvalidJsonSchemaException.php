@@ -59,4 +59,12 @@ class InvalidJsonSchemaException extends AbstractCustomHttpAppException
     {
         return BaseErrorNames::INVALID_JSON_SCHEMA;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function loggable(): bool
+    {
+        return true;
+    }
 }

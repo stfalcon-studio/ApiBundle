@@ -38,4 +38,12 @@ class MalformedJsonException extends AbstractCustomHttpAppException
     {
         return BaseErrorNames::MALFORMED_JSON;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function loggable(): bool
+    {
+        return true;
+    }
 }
