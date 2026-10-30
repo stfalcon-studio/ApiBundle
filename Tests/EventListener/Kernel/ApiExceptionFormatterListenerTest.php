@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 use Sentry\ClientInterface;
 use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use StfalconStudio\ApiBundle\EventListener\Kernel\ApiExceptionFormatterListener;
+use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
 use StfalconStudio\ApiBundle\Service\Exception\ExceptionResponseFactory;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessor;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessorInterface;
@@ -106,6 +107,28 @@ final class ApiExceptionFormatterListenerTest extends TestCase
 
         self::assertLessThan($errorListenerPriorities['logKernelException'], ApiExceptionFormatterListener::PRIORITY);
         self::assertGreaterThan($errorListenerPriorities['onKernelException'], ApiExceptionFormatterListener::PRIORITY);
+    }
+
+    public function testIsApiRequestOnApiHost(): void
+    {
+        $this->request->method('getHost')->willReturn(self::API_HOST);
+
+        self::assertTrue($this->exceptionFormatterListener->isApiRequest($this->request));
+    }
+
+    public function testIsNotApiRequestOnAnotherHost(): void
+    {
+        $this->request->method('getHost')->willReturn('https://not-api-host.com');
+
+        self::assertFalse($this->exceptionFormatterListener->isApiRequest($this->request));
+    }
+
+    public function testGetSentryReportedExceptionClasses(): void
+    {
+        self::assertSame(
+            [CustomAppExceptionInterface::class, OptimisticLockException::class, LockException::class],
+            $this->exceptionFormatterListener->getSentryReportedExceptionClasses(),
+        );
     }
 
     public function testOnKernelExceptionRequestIsNotMaster(): void

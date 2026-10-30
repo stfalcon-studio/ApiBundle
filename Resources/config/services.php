@@ -14,6 +14,8 @@ declare(strict_types=1);
 use Fresh\DateTime\DateTimeHelper;
 use JsonSchema\Validator;
 use Predis\Client;
+use Sentry\SentryBundle\EventListener\ErrorListener;
+use StfalconStudio\ApiBundle\EventListener\Kernel\ApiExceptionsFilterSentryListenerDecorator;
 use StfalconStudio\ApiBundle\EventListener\ORM\Aggregate\AggregatePartListener;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -40,6 +42,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->load('StfalconStudio\ApiBundle\EventListener\ORM\\', __DIR__.'/../../EventListener/ORM');
 
     $services->set(AggregatePartListener::class, AggregatePartListener::class)->tag('doctrine.event_listener', ['event' => 'onFlush']);
+    $services->set(ApiExceptionsFilterSentryListenerDecorator::class, ApiExceptionsFilterSentryListenerDecorator::class)->decorate(ErrorListener::class)->arg('$sentryErrorListener', new Reference('.inner'));
     $services->set(Client::class, Client::class);
     $services->set(Validator::class, Validator::class);
     $services->set(DateTimeHelper::class, DateTimeHelper::class);

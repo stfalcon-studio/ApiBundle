@@ -67,7 +67,7 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
             return;
         }
 
-        if ($this->urlIsNotRelatedToApi($event->getRequest())) {
+        if (!$this->isApiRequest($event->getRequest())) {
             return;
         }
 
@@ -193,8 +193,18 @@ final class ApiExceptionFormatterListener implements EventSubscriberInterface
      *
      * @return bool
      */
-    private function urlIsNotRelatedToApi(Request $request): bool
+    public function isApiRequest(Request $request): bool
     {
-        return $request->getHost() !== $this->apiHost;
+        return $request->getHost() === $this->apiHost;
+    }
+
+    /**
+     * {@see self::__invoke()} reports these: change together.
+     *
+     * @return list<class-string<\Throwable>>
+     */
+    public function getSentryReportedExceptionClasses(): array
+    {
+        return [CustomAppExceptionInterface::class, OptimisticLockException::class, LockException::class];
     }
 }

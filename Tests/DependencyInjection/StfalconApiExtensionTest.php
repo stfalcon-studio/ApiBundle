@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace StfalconStudio\ApiBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
+use Sentry\SentryBundle\EventListener\ErrorListener;
 use StfalconStudio\ApiBundle\DependencyInjection\StfalconApiExtension;
 use StfalconStudio\ApiBundle\Service\AttributeProcessor\DtoAttributeProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -33,6 +34,7 @@ final class StfalconApiExtensionTest extends TestCase
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
         $this->container->setParameter('kernel.project_dir', '/tmp');
+        $this->container->register(ErrorListener::class); // decorate() target: SentryBundle isn't loaded here
     }
 
     protected function tearDown(): void
