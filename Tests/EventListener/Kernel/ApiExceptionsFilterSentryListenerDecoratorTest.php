@@ -93,6 +93,23 @@ final class ApiExceptionsFilterSentryListenerDecoratorTest extends TestCase
         $this->decorator->handleExceptionEvent($this->createEvent('api.test', HttpKernelInterface::MAIN_REQUEST, new \RuntimeException('Jericho fell')));
     }
 
+    public function testStacksOverAnotherDecorator(): void
+    {
+        $this->hub->expects(self::once())->method('captureEvent');
+
+        $outerDecorator = new ApiExceptionsFilterSentryListenerDecorator(
+            $this->decorator,
+            new ApiExceptionFormatterListener(
+                'api.test',
+                'prod',
+                $this->createMock(ExceptionResponseProcessorInterface::class),
+                $this->createMock(ExceptionResponseFactory::class),
+            ),
+        );
+
+        $outerDecorator->handleExceptionEvent($this->createEvent('api.test', HttpKernelInterface::MAIN_REQUEST, new \RuntimeException('Jericho fell')));
+    }
+
     private function createEvent(string $host, int $requestType, \Throwable $exception): ExceptionEvent
     {
         return new ExceptionEvent(

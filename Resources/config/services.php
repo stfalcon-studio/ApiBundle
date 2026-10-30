@@ -42,7 +42,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->load('StfalconStudio\ApiBundle\EventListener\ORM\\', __DIR__.'/../../EventListener/ORM');
 
     $services->set(AggregatePartListener::class, AggregatePartListener::class)->tag('doctrine.event_listener', ['event' => 'onFlush']);
-    $services->set(ApiExceptionsFilterSentryListenerDecorator::class, ApiExceptionsFilterSentryListenerDecorator::class)->decorate(ErrorListener::class)->arg('$sentryErrorListener', new Reference('.inner'));
+    $services->set(ApiExceptionsFilterSentryListenerDecorator::class, ApiExceptionsFilterSentryListenerDecorator::class)->decorate(ErrorListener::class)->arg('$wrappedListener', new Reference('.inner'));
     $services->set(Client::class, Client::class);
     $services->set(Validator::class, Validator::class);
     $services->set(DateTimeHelper::class, DateTimeHelper::class);

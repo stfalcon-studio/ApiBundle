@@ -22,10 +22,10 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 final readonly class ApiExceptionsFilterSentryListenerDecorator
 {
     /**
-     * @param ErrorListener                 $sentryErrorListener
+     * @param ErrorListener|self            $wrappedListener               object: other decorators may stack beneath
      * @param ApiExceptionFormatterListener $apiExceptionFormatterListener
      */
-    public function __construct(private ErrorListener $sentryErrorListener, private ApiExceptionFormatterListener $apiExceptionFormatterListener)
+    public function __construct(private object $wrappedListener, private ApiExceptionFormatterListener $apiExceptionFormatterListener)
     {
     }
 
@@ -41,7 +41,7 @@ final readonly class ApiExceptionsFilterSentryListenerDecorator
             return;
         }
 
-        $this->sentryErrorListener->handleExceptionEvent($event);
+        $this->wrappedListener->handleExceptionEvent($event);
     }
 
     /**
