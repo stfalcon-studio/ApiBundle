@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 use Sentry\ClientInterface;
 use StfalconStudio\ApiBundle\Error\BaseErrorNames;
 use StfalconStudio\ApiBundle\EventListener\Kernel\ApiExceptionFormatterListener;
+use StfalconStudio\ApiBundle\Exception\CustomAppExceptionInterface;
 use StfalconStudio\ApiBundle\Service\Exception\ExceptionResponseFactory;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessor;
 use StfalconStudio\ApiBundle\Service\Exception\ResponseProcessor\ExceptionResponseProcessorInterface;
@@ -29,11 +30,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\EventListener\ErrorListener;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -93,9 +96,39 @@ final class ApiExceptionFormatterListenerTest extends TestCase
     {
         $event = ApiExceptionFormatterListener::getSubscribedEvents();
         self::assertEquals(ExceptionEvent::class, $event->key());
-        self::assertEquals('__invoke', $event->current());
+        self::assertEquals(['__invoke', ApiExceptionFormatterListener::PRIORITY], $event->current());
         $event->next();
         self::assertFalse($event->valid());
+    }
+
+    public function testRunsAfterSymfonyLogsTheExceptionAndBeforeItRendersTheErrorPage(): void
+    {
+        $errorListenerPriorities = array_column(ErrorListener::getSubscribedEvents()[KernelEvents::EXCEPTION], 1, 0);
+
+        self::assertLessThan($errorListenerPriorities['logKernelException'], ApiExceptionFormatterListener::PRIORITY);
+        self::assertGreaterThan($errorListenerPriorities['onKernelException'], ApiExceptionFormatterListener::PRIORITY);
+    }
+
+    public function testIsApiRequestOnApiHost(): void
+    {
+        $this->request->method('getHost')->willReturn(self::API_HOST);
+
+        self::assertTrue($this->exceptionFormatterListener->isApiRequest($this->request));
+    }
+
+    public function testIsNotApiRequestOnAnotherHost(): void
+    {
+        $this->request->method('getHost')->willReturn('https://not-api-host.com');
+
+        self::assertFalse($this->exceptionFormatterListener->isApiRequest($this->request));
+    }
+
+    public function testGetSentryReportedExceptionClasses(): void
+    {
+        self::assertSame(
+            [CustomAppExceptionInterface::class, OptimisticLockException::class, LockException::class],
+            $this->exceptionFormatterListener->getSentryReportedExceptionClasses(),
+        );
     }
 
     public function testOnKernelExceptionRequestIsNotMaster(): void

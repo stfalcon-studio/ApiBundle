@@ -21,7 +21,7 @@ final class MalformedJsonExceptionTest extends TestCase
 {
     public function testLoggable(): void
     {
-        self::assertFalse((new MalformedJsonException())->loggable());
+        self::assertTrue((new MalformedJsonException())->loggable());
     }
 
     public function testDefaultMessage(): void

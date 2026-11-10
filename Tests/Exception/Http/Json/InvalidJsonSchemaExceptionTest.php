@@ -21,7 +21,7 @@ final class InvalidJsonSchemaExceptionTest extends TestCase
 {
     public function testLoggable(): void
     {
-        self::assertFalse((new InvalidJsonSchemaException([], []))->loggable());
+        self::assertTrue((new InvalidJsonSchemaException([], []))->loggable());
     }
 
     public function testConstruct(): void
